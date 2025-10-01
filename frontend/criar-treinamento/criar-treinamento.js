@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-  
+        
         // Mostrar loading
         showLoading();
         conteudoDiv.innerText = "⏳ Processando vídeo...";
@@ -505,7 +505,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const descricao = document.getElementById("descricao").value;
             const data_inicio = document.getElementById("data_inicio").value;
             const data_encerramento = document.getElementById("data_encerramento").value;
-  
+            const id_departamento = document.getElementById("departamento").value;
             if (!titulo || !descricao || !data_inicio || !data_encerramento) {
                 alert("Preencha os campos Nome, Descrição e Datas antes de salvar o treinamento gerado.");
                 return;
@@ -546,7 +546,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 video_url,
                 conteudo_json,
                 data_inicio,
-                data_encerramento
+                data_encerramento,
+                id_departamento
             };
   
             fetch("http://traineasy.selfip.com:3000/salvar-treinamento", {
