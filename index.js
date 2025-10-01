@@ -2,18 +2,23 @@ const express = require('express');
 const mysql = require('mysql2');
 const bcrypt = require('bcryptjs'); 
 const multer = require('multer');
-const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 const axios = require('axios');
-const vosk = require('vosk');
 const path = require('path');
+
+require('dotenv').config(); 
+
+const { AssemblyAI } = require("assemblyai");
+
+const AssemblyClient = new AssemblyAI({
+  apiKey: process.env.ASSEMBLYAI_API_KEY, // coloque sua chave no .env
+});
 
 const { MercadoPagoConfig, Preference } = require("mercadopago");
 
 
-require('dotenv').config({ path: 'OPENROUTER_API_KEY.env' }); // Caminho para o arquivo .env
-const API_KEY = process.env.OPENROUTER_API_KEY;
 
+const API_KEY = process.env.OPENROUTER_API_KEY;
 const app = express();
 const port = 3000;
 
@@ -361,42 +366,30 @@ function limparTranscricao(texto) {
 
 app.post('/upload-video', upload.single('video'), async (req, res) => {
   const videoPath = req.file.path;
-  const audioPath = videoPath.replace(path.extname(videoPath), '.wav');
+  // const audioPath = videoPath.replace(path.extname(videoPath), '.wav');
 
   try {
     // 1. Converter vídeo para áudio WAV ideal para Vosk
-    await new Promise((resolve, reject) => {
-      ffmpeg(videoPath)
-        .audioCodec('pcm_s16le') 
-        .audioChannels(1)        
-        .audioFrequency(16000)   
-        .format('wav')
-        .save(audioPath)
-        .on('end', resolve)
-        .on('error', reject);
-    });
+    // await new Promise((resolve, reject) => {
+    //   ffmpeg(videoPath)
+    //     .audioCodec('pcm_s16le') 
+    //     .audioChannels(1)        
+    //     .audioFrequency(16000)   
+    //     .format('wav')
+    //     .save(audioPath)
+    //     .on('end', resolve)
+    //     .on('error', reject);
+    // });
 
-    // 2. Transcrição com Vosk
-    if (!fs.existsSync('./model')) {
-      return res.status(500).send('Modelo Vosk não encontrado. Coloque em ./model');
-    }
+  
+    const params = {
+      audio: videoPath,
+      language_code: "pt", // força o AssemblyAI a entender que o áudio está em português
+    };
 
-    vosk.setLogLevel(0);
-    const model = new vosk.Model('./model');
-    const wfReader = fs.createReadStream(audioPath, { highWaterMark: 4096 });
-    const rec = new vosk.Recognizer({ model, sampleRate: 16000 });
+    let transcription = await AssemblyClient.transcripts.transcribe(params);
 
-    let transcription = '';
-
-    for await (const data of wfReader) {
-      const ok = rec.acceptWaveform(data);
-      if (ok) transcription += rec.result().text + ' ';
-    }
-    transcription += rec.finalResult().text;
-    rec.free();
-    model.free();
-
-    transcription = limparTranscricao(transcription);
+    transcription = limparTranscricao(transcription.text);
     
     if (!transcription.trim()) {
       return res.status(500).send('Não foi possível transcrever o vídeo.');
@@ -409,7 +402,7 @@ app.post('/upload-video', upload.single('video'), async (req, res) => {
     const response = await axios.post(
       'https://openrouter.ai/api/v1/chat/completions',
       {
-        model: 'deepseek/deepseek-chat-v3-0324:free',
+        model: 'deepseek/deepseek-chat-v3.1:free',
         messages: [
           {
             role: "user",
@@ -519,7 +512,7 @@ res.json({
 console.log("Resposta recebida!");
 // Limpar arquivos temporários
 
-fs.unlinkSync(audioPath);
+// fs.unlinkSync(audioPath);
 
 } catch (error) {
 console.error('Erro no processamento:', error);
@@ -538,12 +531,13 @@ res.status(500).json({
 // =======em processo de estabilização========
 
 app.post("/salvar-treinamento", upload.single('video_manual'),(req, res) => {
-  const { 
+  let { 
     id_empresa, 
     titulo, 
     descricao,  
     conteudo_json, 
     data_inicio, 
+    video_url,
     data_encerramento, 
     id_departamento 
   } = req.body;
@@ -558,17 +552,18 @@ app.post("/salvar-treinamento", upload.single('video_manual'),(req, res) => {
     id_departamento
   });
 
+  // Verifica se o video url está vindo dentro do body- sendo exclusivo do modo automático
+  if (video_url){
 
-  let video_url = null;
-  if (req.file) {
-    const nomeArquivo = req.file.filename
-    const novoCaminho = path.join(req.file.destination, nomeArquivo);
+    if (req.file) {
+      const nomeArquivo = req.file.filename
+      const novoCaminho = path.join(req.file.destination, nomeArquivo);
 
-    // Renomeia o arquivo para manter a extensão correta
-    fs.renameSync(req.file.path, novoCaminho);
-    video_url = `/uploads/${nomeArquivo}`;
+      // Renomeia o arquivo para manter a extensão correta
+      fs.renameSync(req.file.path, novoCaminho);
+      video_url = `/uploads/${nomeArquivo}`;
+    }
   }
-
   // Se o `conteudo_json` não for uma string (caso do modo manual), ele precisa ser stringificado
   const conteudoParaSalvar = typeof conteudo_json === 'string' ? conteudo_json : JSON.stringify(conteudo_json);
 
@@ -585,7 +580,7 @@ app.post("/salvar-treinamento", upload.single('video_manual'),(req, res) => {
     conteudoParaSalvar,
     data_inicio, 
     data_encerramento,
-    id_departamento
+    id_departamento||1
   ], (err, result) => {
     if (err) {
       console.error('Erro ao inserir no banco de dados:', err);
