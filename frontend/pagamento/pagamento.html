@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagamento - TrainEasy</title>
+  <link rel="stylesheet" href="pagamento.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header/Topbar -->
+  <header class="topbar">
+    <div class="user-section">
+      <div class="user-info">
+        <div class="user-avatar">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Avatar" id="userAvatar">
+        </div>
+        <div class="user-details">
+          <span class="welcome-text" id="boasVindas">Bem-vindo, João Silva</span>
+          <span class="company-name" id="nome_empresa">TechCorp Solutions</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="notification-btn" onclick="toggleNotifications()">
+          <i class="fas fa-bell"></i>
+          <span class="notif-count">3</span>
+        </button>
+        <div class="notifications-dropdown" id="notificationsDropdown">
+          <div class="notifications-header">
+            <h3>Notificações</h3>
+            <button class="mark-all-read" onclick="markAllAsRead()">
+              <i class="fas fa-check-double"></i>
+            </button>
+          </div>
+          <div class="notifications-list">
+            <div class="notification-item unread">
+              <div class="notification-icon">
+                <i class="fas fa-credit-card"></i>
+              </div>
+              <div class="notification-content">
+                <h4>Pagamento pendente</h4>
+                <p>Finalize seu pagamento para ativar o plano</p>
+                <span class="notification-time">Agora</span>
+              </div>
+            </div>
+            <div class="notification-item">
+              <div class="notification-icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <div class="notification-content">
+                <h4>Bem-vindo ao TrainEasy</h4>
+                <p>Sua conta foi criada com sucesso</p>
+                <span class="notification-time">1 hora atrás</span>
+              </div>
+            </div>
+          </div>
+          <div class="notifications-footer">
+            <button class="view-all-notifications" onclick="viewAllNotifications()">
+              Ver todas as notificações
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="logo" id="logo">
+      <i><img src="https://via.placeholder.com/32x32/6366f1/ffffff?text=T" alt="Logo da Empresa" class="logo-img"></i>
+      <span>TrainEasy</span>
+    </div>
+    
+    <div class="header-controls">
+      <div class="theme-toggle">
+        <button class="theme-btn" onclick="toggleTheme()">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
+      <div class="user-menu">
+        <button class="user-menu-btn" onclick="toggleUserMenu()">
+          <i class="fas fa-cog"></i>
+        </button>
+        <div class="user-menu-dropdown" id="userMenuDropdown">
+          <a href="#" onclick="openProfile()">
+            <i class="fas fa-user"></i>
+            Meu Perfil
+          </a>
+          <a href="#" onclick="openHelp()">
+            <i class="fas fa-question-circle"></i>
+            Ajuda
+          </a>
+          <hr>
+          <a href="#" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+            Sair
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>Menu Principal</h3>
+        <button class="sidebar-close" onclick="closeSidebar()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="#dashboard">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="#treinamentos">
+              <i class="fas fa-plus-circle"></i>
+              <span>Criação de Treinamentos</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="#meus-treinamentos">
+              <i class="fas fa-folder-open"></i>
+              <span>Meus Treinamentos</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="#departamentos">
+              <i class="fas fa-building"></i>
+              <span>Departamentos</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="#funcionarios">
+              <i class="fas fa-users"></i>
+              <span>Controle de Funcionários</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="#ranking">
+              <i class="fas fa-trophy"></i>
+              <span>Ranking Interno</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="#mercado">
+              <i class="fas fa-store"></i>
+              <span>Mercado de Pontos</span>
+            </a>
+          </li>
+          <li class="nav-item active" onclick="setActiveMenuItem(this)">
+            <a href="#pagamento">
+              <i class="fas fa-credit-card"></i>
+              <span>Pagamento</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="#estatisticas">
+              <i class="fas fa-chart-bar"></i>
+              <span>Estatísticas</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="company-info">
+          <div class="company-logo">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="company-details">
+            <h4 id="footer_empresa_name">TechCorp Solutions</h4>
+            <p>Plano Professional</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="payment-page">
+        <div class="page-header">
+          <h1>Escolha seu Plano</h1>
+          <p>Selecione o plano ideal para sua empresa e finalize o pagamento</p>
+        </div>
+
+        <!-- Plan Selection -->
+        <div class="plan-selection">
+          <h2>Nossos Planos</h2>
+          <div class="plans-grid">
+            <!-- Plano Básico -->
+            <div class="plan-option">
+              <input type="radio" id="plan-basic" name="selectedPlan" value="basic" data-price="49.90" data-name="Plano Básico">
+              <label for="plan-basic" class="plan-card">
+                <div class="plan-header">
+                  <h3 class="plan-name">Básico</h3>
+                  <div class="plan-price">R$ 49,90</div>
+                  <div class="plan-period">/mês</div>
+                </div>
+                <div class="plan-features">
+                  <ul>
+                    <li><i class="fas fa-check"></i> Até 50 funcionários</li>
+                    <li><i class="fas fa-check"></i> 10 treinamentos</li>
+                    <li><i class="fas fa-check"></i> Relatórios básicos</li>
+                    <li><i class="fas fa-check"></i> Suporte por email</li>
+                  </ul>
+                </div>
+              </label>
+            </div>
+
+            <!-- Plano Professional -->
+            <div class="plan-option plan-popular">
+              <input type="radio" id="plan-professional" name="selectedPlan" value="professional" data-price="99.90" data-name="Plano Professional" checked>
+              <label for="plan-professional" class="plan-card">
+                <div class="plan-header">
+                  <h3 class="plan-name">Professional</h3>
+                  <div class="plan-price">R$ 99,90</div>
+                  <div class="plan-period">/mês</div>
+                </div>
+                <div class="plan-features">
+                  <ul>
+                    <li><i class="fas fa-check"></i> Até 200 funcionários</li>
+                    <li><i class="fas fa-check"></i> Treinamentos ilimitados</li>
+                    <li><i class="fas fa-check"></i> Relatórios avançados</li>
+                    <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                    <li><i class="fas fa-check"></i> Gamificação</li>
+                  </ul>
+                </div>
+              </label>
+            </div>
+
+            <!-- Plano Enterprise -->
+            <div class="plan-option">
+              <input type="radio" id="plan-enterprise" name="selectedPlan" value="enterprise" data-price="199.90" data-name="Plano Enterprise">
+              <label for="plan-enterprise" class="plan-card">
+                <div class="plan-header">
+                  <h3 class="plan-name">Enterprise</h3>
+                  <div class="plan-price">R$ 199,90</div>
+                  <div class="plan-period">/mês</div>
+                </div>
+                <div class="plan-features">
+                  <ul>
+                    <li><i class="fas fa-check"></i> Funcionários ilimitados</li>
+                    <li><i class="fas fa-check"></i> Treinamentos ilimitados</li>
+                    <li><i class="fas fa-check"></i> Analytics avançados</li>
+                    <li><i class="fas fa-check"></i> Suporte 24/7</li>
+                    <li><i class="fas fa-check"></i> API personalizada</li>
+                    <li><i class="fas fa-check"></i> White label</li>
+                  </ul>
+                </div>
+              </label>
+            </div>
+
+            <!-- Plano Custom -->
+            <div class="plan-option">
+              <input type="radio" id="plan-custom" name="selectedPlan" value="custom" data-price="299.90" data-name="Plano Personalizado">
+              <label for="plan-custom" class="plan-card">
+                <div class="plan-header">
+                  <h3 class="plan-name">Personalizado</h3>
+                  <div class="plan-price">R$ 299,90</div>
+                  <div class="plan-period">/mês</div>
+                </div>
+                <div class="plan-features">
+                  <ul>
+                    <li><i class="fas fa-check"></i> Tudo do Enterprise</li>
+                    <li><i class="fas fa-check"></i> Desenvolvimento customizado</li>
+                    <li><i class="fas fa-check"></i> Integração dedicada</li>
+                    <li><i class="fas fa-check"></i> Gerente de conta</li>
+                    <li><i class="fas fa-check"></i> SLA garantido</li>
+                    <li><i class="fas fa-check"></i> Treinamento presencial</li>
+                  </ul>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-container">
+          <!-- Resumo do Pedido -->
+          <div class="order-summary">
+            <h2>Resumo do Pedido</h2>
+            
+            <div class="plan-details">
+              <h3 id="selectedPlanName">Plano Professional</h3>
+              <p id="selectedPlanDescription">Acesso completo à plataforma TrainEasy</p>
+              <div class="plan-features">
+                <ul id="selectedPlanFeatures">
+                  <li><i class="fas fa-check"></i> Até 200 funcionários</li>
+                  <li><i class="fas fa-check"></i> Treinamentos ilimitados</li>
+                  <li><i class="fas fa-check"></i> Relatórios avançados</li>
+                  <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                  <li><i class="fas fa-check"></i> Gamificação</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="price-breakdown">
+              <div class="price-item">
+                <span>Subtotal:</span>
+                <span id="subtotalPrice">R$ 99,90</span>
+              </div>
+              <div class="price-item">
+                <span>Desconto:</span>
+                <span id="discountPrice">-R$ 0,00</span>
+              </div>
+              <div class="price-item total">
+                <span>Total:</span>
+                <span id="totalPrice">R$ 99,90</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulário de Pagamento -->
+          <div class="payment-form">
+            <h2>Dados do Pagamento</h2>
+            
+            <form id="paymentForm" onsubmit="processPayment(event)">
+              <div class="form-section">
+                <h3>Informações Pessoais</h3>
+                
+                <div class="form-group">
+                  <label for="customerName">Nome Completo *</label>
+                  <input type="text" id="customerName" name="customerName" required>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="customerEmail">E-mail *</label>
+                    <input type="email" id="customerEmail" name="customerEmail" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="customerPhone">Telefone *</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" placeholder="(11) 99999-9999" required>
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="customerBirthDate">Data de Nascimento *</label>
+                    <input type="date" id="customerBirthDate" name="customerBirthDate" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="customerDocument">CPF *</label>
+                    <input type="text" id="customerDocument" name="customerDocument" placeholder="000.000.000-00" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3>Método de Pagamento</h3>
+                
+                <div class="payment-methods">
+                  <div class="payment-method">
+                    <input type="radio" id="creditCard" name="paymentMethod" value="credit_card" checked>
+                    <label for="creditCard">
+                      <i class="fas fa-credit-card"></i>
+                      <span>Cartão de Crédito</span>
+                    </label>
+                  </div>
+                  
+                  <div class="payment-method">
+                    <input type="radio" id="pix" name="paymentMethod" value="pix">
+                    <label for="pix">
+                      <i class="fas fa-qrcode"></i>
+                      <span>PIX</span>
+                    </label>
+                  </div>
+                  
+                  <div class="payment-method">
+                    <input type="radio" id="boleto" name="paymentMethod" value="boleto">
+                    <label for="boleto">
+                      <i class="fas fa-barcode"></i>
+                      <span>Boleto Bancário</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="payment-submit-btn">
+                <i class="fas fa-lock"></i>
+                Finalizar Pagamento
+              </button>
+              
+              <div class="security-info">
+                <i class="fas fa-shield-alt"></i>
+                <span>Seus dados estão protegidos com criptografia SSL</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="modal-overlay" id="loadingOverlay">
+    <div class="modal-content loading-modal">
+      <div class="loading-spinner"></div>
+      <h3>Processando Pagamento</h3>
+      <p>Aguarde enquanto processamos sua solicitação...</p>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-content success-modal">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3>Pagamento Processado!</h3>
+      <p>Redirecionando para o Mercado Pago...</p>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div class="modal-overlay" id="errorModal">
+    <div class="modal-content error-modal">
+      <div class="error-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+      <h3>Erro no Pagamento</h3>
+      <p id="errorMessage">Ocorreu um erro ao processar o pagamento.</p>
+      <button onclick="closeModal()" class="modal-btn">Tentar Novamente</button>
+    </div>
+  </div>
+
+  <script src="pagamento.js"></script>
+</body>
+</html>

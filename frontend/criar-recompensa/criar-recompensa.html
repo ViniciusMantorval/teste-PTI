@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Criar Recompensa - TrainEasy</title>
+  <link rel="stylesheet" href="criar-recompensa.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header/Topbar -->
+  <header class="topbar">
+    <div class="user-section">
+      <div class="user-info">
+        <div class="user-avatar">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Avatar" id="userAvatar">
+        </div>
+        <div class="user-details">
+          <span class="welcome-text" id="boasVindas">Bem-vindo, User</span>
+          <span class="company-name" id="nome_empresa">Empresa</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="notification-btn" onclick="toggleNotifications()">
+          <i class="fas fa-bell"></i>
+          <span class="notif-count">5</span>
+        </button>
+        <div class="notifications-dropdown" id="notificationsDropdown">
+          <div class="notifications-header">
+            <h3>Notificações</h3>
+            <button class="mark-all-read" onclick="markAllAsRead()">
+              <i class="fas fa-check-double"></i>
+            </button>
+          </div>
+          <div class="notifications-list">
+            <div class="notification-item unread">
+              <div class="notification-icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <div class="notification-content">
+                <h4>Novo funcionário cadastrado</h4>
+                <p>Maria Silva foi adicionada ao departamento de TI</p>
+                <span class="notification-time">2 min atrás</span>
+              </div>
+            </div>
+            <div class="notification-item unread">
+              <div class="notification-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="notification-content">
+                <h4>Treinamento concluído</h4>
+                <p>15 funcionários concluíram o curso de JavaScript</p>
+                <span class="notification-time">1 hora atrás</span>
+              </div>
+            </div>
+          </div>
+          <div class="notifications-footer">
+            <button class="view-all-notifications" onclick="viewAllNotifications()">
+              Ver todas as notificações
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="logo" id="logo">
+      <i><img src="../logo/logo.png" alt="Logo da Empresa" class="logo-img"></i>
+      <span>TrainEasy</span>
+    </div>
+    
+    <div class="header-controls">
+      <button class="search-btn" onclick="toggleSearch()">
+        <i class="fas fa-search"></i>
+      </button>
+      <div class="search-container" id="searchContainer">
+        <input type="text" placeholder="Buscar..." id="searchInput" onkeyup="handleSearch(event)">
+        <button class="search-close" onclick="closeSearch()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="theme-toggle">
+        <button class="theme-btn" onclick="toggleTheme()">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
+      <div class="user-menu">
+        <button class="user-menu-btn" onclick="toggleUserMenu()">
+          <i class="fas fa-cog"></i>
+        </button>
+        <div class="user-menu-dropdown" id="userMenuDropdown">
+          <a href="../perfil/perfil.html">
+            <i class="fas fa-user"></i>
+            Meu Perfil
+          </a>
+          <a href="#" onclick="openHelp()">
+            <i class="fas fa-question-circle"></i>
+            Ajuda
+          </a>
+          <hr>
+          <a href="#" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+            Sair
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>Menu Principal</h3>
+        <button class="sidebar-close" onclick="closeSidebar()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="../dashboard-empresa/dashboard-empresa.html">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="../criar-treinamento/criar-treinamento.html">
+              <i class="fas fa-plus-circle"></i>
+              <span>Criação de Treinamentos</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="../meus-treinamentos/meus-treinamentos.html">
+              <i class="fas fa-folder-open"></i>
+              <span>Meus Treinamentos</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="../departamentos/departamentos.html">
+              <i class="fas fa-building"></i>
+              <span>Departamentos</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="../funcionarios_empresa/funcionarios_empresa.html">
+              <i class="fas fa-users"></i>
+              <span>Controle de Funcionários</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="../ranking-funcionario/ranking-funcionario.html">
+              <i class="fas fa-trophy"></i>
+              <span>Ranking Interno</span>
+            </a>
+          </li>
+          <li class="nav-item active" onclick="setActiveMenuItem(this)">
+            <a href="../gerenciar-recompensas/gerenciar-recompensas.html">
+              <i class="fas fa-store"></i>
+              <span>Mercado de Pontos</span>
+            </a>
+          </li>
+          <li class="nav-item" onclick="setActiveMenuItem(this)">
+            <a href="../estatisticas/estatisiticas.html">
+              <i class="fas fa-chart-bar"></i>
+              <span>Estatísticas</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="company-info">
+          <div class="company-logo">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="company-details">
+            <h4 id="footer_empresa_name">TechCorp Solutions</h4>
+            <p>Plano Professional</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <section class="content-section active" id="criar-recompensa">
+        <div class="page-header">
+          <h1><i class="fas fa-gift"></i> Criar Nova Recompensa</h1>
+          <p>Crie e configure novas recompensas para o mercado de pontos</p>
+        </div>
+
+        <div class="reward-form-container">
+          <div class="form-card">
+            <div class="form-card-header">
+              <h3><i class="fas fa-info-circle"></i> Informações da Recompensa</h3>
+            </div>
+            <div class="form-card-content">
+              <form id="form-recompensa" novalidate>
+                <div class="form-group">
+                  <label for="nome">
+                    <i class="fas fa-tag"></i>
+                    Nome da Recompensa
+                  </label>
+                  <input type="text" id="nome" class="form-input" placeholder="Ex: Vale-presente iFood R$ 50" required />
+                  <div class="field-error"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="descricao">
+                    <i class="fas fa-align-left"></i>
+                    Descrição
+                  </label>
+                  <textarea id="descricao" class="form-textarea" placeholder="Descreva os detalhes, regras e como resgatar a recompensa..." required></textarea>
+                  <div class="field-error"></div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="pontos">
+                      <i class="fas fa-coins"></i>
+                      Preço em Pontos
+                    </label>
+                    <input type="number" id="pontos" class="form-input" placeholder="1500" min="1" required />
+                    <div class="field-error"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="quantidade">
+                      <i class="fas fa-box"></i>
+                      Quantidade em Estoque
+                    </label>
+                    <input type="number" id="quantidade" class="form-input" placeholder="50" min="1" required />
+                    <div class="field-error"></div>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <a href="../gerenciar-recompensas/gerenciar-recompensas.html" class="btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Cancelar
+                  </a>
+                  <button type="submit" class="btn-primary" id="submit-btn">
+                    <span class="btn-text">
+                      <i class="fas fa-plus"></i>
+                      Cadastrar Recompensa
+                    </span>
+                    <div class="btn-loader">
+                      <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Preview Card -->
+          <div class="form-card preview-card" id="previewCard" style="display: none;">
+            <div class="form-card-header">
+              <h3><i class="fas fa-eye"></i> Pré-visualização</h3>
+            </div>
+            <div class="form-card-content">
+              <div class="reward-preview">
+                <div class="reward-icon">
+                  <i class="fas fa-gift"></i>
+                </div>
+                <div class="reward-info">
+                  <h4 id="previewNome">Nome da Recompensa</h4>
+                  <p id="previewDescricao">Descrição da recompensa...</p>
+                  <div class="reward-details">
+                    <span class="reward-points" id="previewPontos">
+                      <i class="fas fa-coins"></i>
+                      0 pontos
+                    </span>
+                    <span class="reward-stock" id="previewQuantidade">
+                      <i class="fas fa-box"></i>
+                      0 em estoque
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Carregando...</p>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-icon success">
+          <i class="fas fa-check"></i>
+        </div>
+        <h3>Recompensa Criada!</h3>
+      </div>
+      <div class="modal-content">
+        <p>A recompensa foi cadastrada com sucesso no mercado de pontos.</p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="redirectToManagement()">
+          <i class="fas fa-store"></i>
+          Ver Mercado de Pontos
+        </button>
+        <button class="btn-secondary" onclick="closeModal()">
+          Criar Outra Recompensa
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="criar-recompensa.js"></script>
+</body>
+</html>
+
