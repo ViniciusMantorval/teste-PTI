@@ -78,7 +78,7 @@ function setupEventListeners() {
 async function loadUserData() {
   const id_empresa = sessionStorage.getItem("id_empresa")
   try {
-    const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`); // rota do backend
+    const response = await fetch(`/empresa_data?id=${id_empresa}`); // rota do backend
 
     const data = await response.json();
     console.log(data.nome)
@@ -433,7 +433,7 @@ form.addEventListener('submit', async (e) => {
     senha: data.senha,
     nome: data.nome
   };
-  url = 'http://traineasy.selfip.com:3000/funcionarios';
+  url = '/funcionarios';
 
   try {
     const response = await fetch(url, {
@@ -477,7 +477,7 @@ async function loadEmployees() {
   lista.innerHTML = '';
 
   try {
-    const response = await fetch('http://traineasy.selfip.com:3000/list_funcionarios', {
+    const response = await fetch('/list_funcionarios', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: id })
@@ -583,7 +583,7 @@ async function deleteEmployee(id, nome) {
   showLoadingOverlay();
   
   try {
-    const response = await fetch('http://traineasy.selfip.com:3000/deletar_funcionario', {
+    const response = await fetch('/deletar_funcionario', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: id })
@@ -624,7 +624,7 @@ async function salvarEdicaoFuncionario(event) {
   if (senha) userData.senha = senha;
 
   try {
-    const response = await fetch('http://traineasy.selfip.com:3000/editar_funcionario', {
+    const response = await fetch('/editar_funcionario', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData)
@@ -655,7 +655,7 @@ async function loadDepartmentInfo() {
   }
 
   try {
-    const response = await fetch('http://traineasy.selfip.com:3000/get_departamento', {
+    const response = await fetch('/get_departamento', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: id_departamento })
@@ -814,4 +814,5 @@ function showNotification(message, type = 'info') {
     }, 300);
   }, 5000);
 }
+
 
