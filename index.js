@@ -20,7 +20,7 @@ const { MercadoPagoConfig, Preference } = require("mercadopago");
 
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const cors = require('cors');
 
@@ -28,18 +28,12 @@ app.use(cors());
 app.use(express.json());
 
 // Conexão com o banco
-const db = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'sktec',               // seu usuário do MySQL
-  password: 'tootsi',               // coloque sua senha correta
-  database: 'traineasy'
-});
-db.connect(err => {
-  if (err) {
-    console.error('Erro ao conectar ao MySQL:', err);
-    return;
-  }
-  console.log('Conectado ao banco de dados traineasy');
+const db = mysql.createPool({
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,               // seu usuário do MySQL
+  password: process.env.MYSQLPASSWORD,               // coloque sua senha correta
+  database: process.env.MYSQLDATABASE,
+  port:process.env.MYSQLPORT
 });
 
 const client = new MercadoPagoConfig({  accessToken: 'APP_USR-2928981499637538-092919-3eaf76c176ec9c729470321c73c8758b-2716220221'})
@@ -138,12 +132,16 @@ app.post('/departamentos', (req, res) => {
   });
 });
 
+
+const frontendPath = path.join(__dirname, 'frontend');
+
+app.use(express.static(frontendPath));
+app.use(express.static(path.join(frontendPath, 'index')));
 app.get('/', (req, res) => {
-  res.send('root')
   console.error('ACESSOU ROOT');
-
-
+  res.sendFile(path.join(frontendPath, 'index', 'index.html'));
 })
+
 
 // list empresas
 app.post('/list_empresas', (req, res) => {
