@@ -30,7 +30,7 @@ let notifications = [
 
 // Configuração da API (mantendo a original)
 const API_CONFIG = {
-  baseURL: 'http://traineasy.selfip.com:3000',
+  baseURL: '',
   endpoints: {
     ranking: '/ranking'
   },
@@ -113,7 +113,7 @@ function setupEventListeners() {
 async function loadUserData() {
   const id_empresa = sessionStorage.getItem("id_empresa")
   try {
-    const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`); // rota do backend
+    const response = await fetch(`/empresa_data?id=${id_empresa}`); // rota do backend
 
     const data = await response.json();
     console.log(data.nome)
@@ -882,4 +882,5 @@ if (window.location.hostname === 'localhost' || window.location.hostname === '12
   window.RankingApp = RankingApp;
   window.Utils = Utils;
 }
+
 
