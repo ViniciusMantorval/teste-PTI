@@ -64,7 +64,7 @@ function setupEventListeners() {
 async function loadUserData() {
   const id_empresa = sessionStorage.getItem("id_empresa")
   try {
-    const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`); // rota do backend
+    const response = await fetch(`/empresa_data?id=${id_empresa}`); // rota do backend
 
     const data = await response.json();
     console.log(data.nome)
@@ -382,7 +382,7 @@ async function carregarRecompensas() {
       </div>
     `;
 
-    const res = await fetch(`http://traineasy.selfip.com:3000/recompensas?id_empresa=${id_empresa}`);
+    const res = await fetch(`/recompensas?id_empresa=${id_empresa}`);
     const recompensas = await res.json();
 
     lista.innerHTML = "";
@@ -464,7 +464,7 @@ async function carregarRecompensas() {
 
           try {
             showLoadingOverlay();
-            const res = await fetch(`http://traineasy.selfip.com:3000/recompensas/${r.id_recompensa}`, {
+            const res = await fetch(`/recompensas/${r.id_recompensa}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(atualizados)
@@ -491,7 +491,7 @@ async function carregarRecompensas() {
 
           try {
             showLoadingOverlay();
-            const res = await fetch(`http://traineasy.selfip.com:3000/recompensas/${r.id_recompensa}`, {
+            const res = await fetch(`/recompensas/${r.id_recompensa}`, {
               method: "DELETE"
             });
 
@@ -596,7 +596,7 @@ async function carregarRecompensas() {
         showLoadingOverlay();
         listaContainer.innerHTML = ''; // Limpa completamente o container
 
-        const res = await fetch(`http://traineasy.selfip.com:3000/recompensas?id_empresa=${id_empresa}` );
+        const res = await fetch(`/recompensas?id_empresa=${id_empresa}` );
         const recompensas = await res.json();
 
         // 1. Renderiza os cards de recompensas existentes
@@ -700,7 +700,7 @@ function setupCardButtons(card, recompensaData, id_empresa) {
     // As funções de salvar e deletar continuam iguais...
     btnDelete.onclick = async () => {
         if (!confirm(`Tem certeza que deseja excluir a recompensa "${recompensaData.nome}"?`)) return;
-        await fetch(`http://traineasy.selfip.com:3000/recompensas/${recompensaData.id_recompensa}`, { method: "DELETE" } );
+        await fetch(`/recompensas/${recompensaData.id_recompensa}`, { method: "DELETE" } );
         carregarRecompensas();
     };
 
@@ -712,7 +712,7 @@ function setupCardButtons(card, recompensaData, id_empresa) {
             quantidade_disponivel: parseInt(card.querySelectorAll('input[type="number"]')[1].value),
             id_empresa: id_empresa
         };
-        await fetch(`http://traineasy.selfip.com:3000/recompensas/${recompensaData.id_recompensa}`, {
+        await fetch(`/recompensas/${recompensaData.id_recompensa}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(atualizados )
@@ -720,4 +720,5 @@ function setupCardButtons(card, recompensaData, id_empresa) {
         carregarRecompensas();
     };
 }
+
 
