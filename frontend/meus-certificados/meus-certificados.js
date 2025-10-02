@@ -104,7 +104,7 @@ async function loadUserData() {
   const footer_empresa_name = document.getElementById('footer_empresa_name');
   const id = sessionStorage.getItem("id_funcionario")
   const tipo = sessionStorage.getItem("tipo")
-  const res = await fetch(`http://traineasy.selfip.com:3000/fill_profile?id=${id}&tipo=${tipo}`);
+  const res = await fetch(`/fill_profile?id=${id}&tipo=${tipo}`);
   const data = await res.json();
   if (welcomeText) welcomeText.textContent = `Bem-vindo, ${data.nome}`;
   if (companyName) companyName.textContent = `${data.empresa}`;
@@ -406,7 +406,7 @@ function handleWindowResize() {
 async function carregarCertificados() {
   const userId = sessionStorage.getItem("id_funcionario");
 
-  const res = await fetch(`http://traineasy.selfip.com:3000/certificados/${userId}`);
+  const res = await fetch(`/certificados/${userId}`);
   const certificados = await res.json();
 
   const container = document.getElementById("lista-certificados");
@@ -421,7 +421,7 @@ async function carregarCertificados() {
     titulo.innerText = cert.nomeTreinamento;
 
     const imagem = document.createElement("img");
-    imagem.src = `http://traineasy.selfip.com:3000${cert.imagem}`; // já contém /uploads/
+    imagem.src = `${cert.imagem}`; // já contém /uploads/
     imagem.alt = "Certificado";
     imagem.style.maxWidth = "200px";
     imagem.style.display = "block";
@@ -429,11 +429,11 @@ async function carregarCertificados() {
 
     const btnVisualizar = document.createElement("button");
     btnVisualizar.innerText = "Visualizar";
-    btnVisualizar.addEventListener("click", () => visualizarCertificado(`http://traineasy.selfip.com:3000${cert.imagem}`));
+    btnVisualizar.addEventListener("click", () => visualizarCertificado(`${cert.imagem}`));
 
     const btnBaixar = document.createElement("button");
     btnBaixar.innerText = "Baixar";
-    btnBaixar.addEventListener("click", () => baixarCertificado(`http://traineasy.selfip.com:3000${cert.imagem}`, cert.nomeTreinamento));
+    btnBaixar.addEventListener("click", () => baixarCertificado(`${cert.imagem}`, cert.nomeTreinamento));
 
     // Adiciona elementos ao card
     card.appendChild(titulo);
@@ -452,7 +452,7 @@ function visualizarCertificado(src) {
 function baixarCertificado(src, nome) {
   // src vem como "/uploads/arquivo.png"
   const filename = src.split("/").pop();
-  window.location.href = `http://traineasy.selfip.com:3000/download/${filename}`;
+  window.location.href = `/download/${filename}`;
 }
 
 
@@ -468,7 +468,7 @@ function baixarCertificado(src, nome) {
 //   try {
 //     showLoadingOverlay();
 
-//     const res = await fetch(`http://traineasy.selfip.com:3000/certificados?id_funcionario=${userId}`);
+//     const res = await fetch(`/certificados?id_funcionario=${userId}`);
 //     const certificados = await res.json();
 
 //     container.innerHTML = ''; // Limpar container
