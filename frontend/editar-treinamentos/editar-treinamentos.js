@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function loadUserData() {
   const id_empresa = sessionStorage.getItem("id_empresa")
   try {
-    const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`); // rota do backend
+    const response = await fetch(`/empresa_data?id=${id_empresa}`); // rota do backend
 
     const data = await response.json();
     console.log(data.nome)
@@ -78,7 +78,7 @@ async function loadTraining() {
     try {
         showLoadingState();
         
-        const res = await fetch(`http://traineasy.selfip.com:3000/list_edit_treinamento/${id_treinamento}`);
+        const res = await fetch(`/list_edit_treinamento/${id_treinamento}`);
         const treinamentos = await res.json();
         
         hideLoadingState();
@@ -244,7 +244,7 @@ async function salvarTreinamentoGerado() {
             quiz: quiz
         };
 
-        const res = await fetch(`http://traineasy.selfip.com:3000/update_treinamento/${id_treinamento}`, {
+        const res = await fetch(`/update_treinamento/${id_treinamento}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -761,4 +761,5 @@ function closeNotification(button) {
     }, 300);
   }
 }
+
 
