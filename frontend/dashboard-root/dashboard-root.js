@@ -8,7 +8,7 @@ e.preventDefault();
 
   try {
 
-    const response = await fetch('http://traineasy.selfip.com:3000/list_empresas', {
+    const response = await fetch('/list_empresas', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -110,7 +110,7 @@ async function salvarEdicao(event) {
   };
 
   try {
-    const response = await fetch('http://traineasy.selfip.com:3000/editarEmpresa', {
+    const response = await fetch('/editarEmpresa', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -131,4 +131,5 @@ async function salvarEdicao(event) {
 
 function cancelarEdicao() {
   document.getElementById("linha-edicao").style.display = "none";
+
 }
