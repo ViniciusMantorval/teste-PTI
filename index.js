@@ -346,7 +346,7 @@ app.post('/login', (req, res) => {
         if (err) return res.status(500).send('Erro ao comparar senhas.');
         if (!isMatch) return res.status(401).send('Senha incorreta.');
         //var id = empresa.id
-        return res.json({ usuario: empresa.nome_fantasia, tipo: 'empresa', id: empresa.id_empresa});
+        return res.json({ usuario: empresa.nome_fantasia, tipo: 'empresa', id: empresa.id});
 
       });
     });
@@ -1101,10 +1101,10 @@ app.get("/recompensas", async (req, res) => {
 });
 
 app.put("/recompensas/:id", async (req, res) => {
-  const { nome, descricao, preco_pontos,id_empresa, quantidade_disponivel } = req.body;
+  const { nome, descricao, preco_pontos,, quantidade_disponivel } = req.body;
   const id = req.params.id;
 
-  if (!id || !nome || !descricao || !preco_pontos || !id_empresa || !quantidade_disponivel) {
+  if (!id || !nome || !descricao || !preco_pontos || ! || !quantidade_disponivel) {
     return res.status(400).json({ error: "Dados inválidos." });
   }
 
@@ -1240,12 +1240,12 @@ app.get('/fill_profile', (req, res) => {
       SELECT f.nome, e.nome_fantasia AS empresa, f.email AS email , d.nome AS funcao
 FROM funcionarios f
 INNER JOIN departamentos d ON f.id_departamento = d.id
-INNER JOIN empresas e ON d.id_empresa = e.id_empresa
+INNER JOIN empresas e ON d.id_empresa = e.id
 WHERE f.id_funcionario = ?;
     `;
   } else if (tipo === 'empresa') {
     sql = `
-      SELECT * FROM empresas WHERE id_empresa = ?;
+      SELECT * FROM empresas WHERE id = ?;
     `;
   } else {
     return res.status(400).json({ error: "Tipo de usuário inválido." });
@@ -1283,7 +1283,7 @@ WHERE p.id_funcionario = ?;
     `;
   } else if (tipo === 'empresa') {
     sql = `
-      SELECT * FROM empresas WHERE id_empresa = ?;
+      SELECT * FROM empresas WHERE id = ?;
     `;
   } else {
     return res.status(400).json({ error: "Tipo de usuário inválido." });
@@ -1323,7 +1323,7 @@ app.get('/courses_statistics', (req, res) => {
     `;
   } else if (tipo === 'empresa') {
     sql = `
-      SELECT * FROM empresas WHERE id_empresa = ?;
+      SELECT * FROM empresas WHERE id = ?;
     `;
   } else {
     return res.status(400).json({ error: "Tipo de usuário inválido." });
@@ -1350,7 +1350,7 @@ app.get('/empresa_data', (req, res) => {
   const {id} = req.query;
   console.log(id)
     sql = `
-      SELECT nome_fantasia as nome FROM empresas WHERE id_empresa = ?;
+      SELECT nome_fantasia as nome FROM empresas WHERE id = ?;
     `;
 
   db.query(sql, [id], (err, result) => {
@@ -1376,13 +1376,13 @@ app.get("/fill_dashboard_empresa", (req, res) => {
   (SELECT COUNT(*)
      FROM funcionarios f
      JOIN departamentos d ON f.id_departamento = d.id
-    WHERE d.id_empresa = e.id_empresa and status = 1
+    WHERE d.id_empresa = e.id and status = 1
   ) AS funcionarios_ativos,
 
   /* Treinamentos Ativos */
   (SELECT COUNT(*)
      FROM treinamentos t
-    WHERE t.id_empresa = e.id_empresa
+    WHERE t.id_empresa = e.id
       AND (t.data_inicio IS NULL OR t.data_inicio <= NOW())
       AND (t.data_encerramento IS NULL OR t.data_encerramento > NOW())
   ) AS treinamentos_ativos,
@@ -1393,8 +1393,8 @@ app.get("/fill_dashboard_empresa", (req, res) => {
      JOIN funcionarios f2  ON pf.id_funcionario = f2.id_Funcionario
      JOIN departamentos d2 ON f2.id_departamento = d2.id
      JOIN treinamentos t2  ON pf.id_treinamento = t2.id_treinamento
-    WHERE d2.id_empresa = e.id_empresa
-      AND t2.id_empresa = e.id_empresa
+    WHERE d2.id_empresa = e.id
+      AND t2.id_empresa = e.id
       AND pf.status = 'concluido'
       AND pf.certificado_url IS NOT NULL
   ) AS certificados_emitidos,
@@ -1408,12 +1408,12 @@ app.get("/fill_dashboard_empresa", (req, res) => {
      JOIN funcionarios f3  ON pf.id_funcionario = f3.id_Funcionario
      JOIN departamentos d3 ON f3.id_departamento = d3.id
      JOIN treinamentos t3  ON pf.id_treinamento = t3.id_treinamento
-    WHERE d3.id_empresa = e.id_empresa
-      AND t3.id_empresa = e.id_empresa
+    WHERE d3.id_empresa = e.id
+      AND t3.id_empresa = e.id
   ) AS taxa_conclusao
 
 FROM empresas e
-WHERE e.id_empresa = ?;
+WHERE e.id = ?;
   `;
 
   db.query(sql, [id], (err, result) => {
@@ -1594,4 +1594,5 @@ app.get("/pagamento/pendente", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
