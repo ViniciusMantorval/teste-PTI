@@ -162,7 +162,7 @@ function updateOrderSummary() {
 async function loadUserData() {
   const id_empresa = sessionStorage.getItem("id_empresa");
   try {
-    const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`);
+    const response = await fetch(`/empresa_data?id=${id_empresa}`);
     const data = await response.json();
 
     const welcomeText = document.getElementById('boasVindas'); 
@@ -408,9 +408,9 @@ async function processPayment(event) {
     },
     // URLs de retorno
     back_urls: {
-      success: 'http://traineasy.selfip.com:3000/pagamento/sucesso',
-      failure: 'http://traineasy.selfip.com:3000/pagamento/falha',
-      pending: 'http://traineasy.selfip.com:3000/pagamento/pendente'
+      success: '/pagamento/sucesso',
+      failure: '/pagamento/falha',
+      pending: '/pagamento/pendente'
     },
     // auto_return: 'approved',// funciona somente com server HTTPS
     external_reference: `order_${Date.now()}`,
@@ -423,7 +423,7 @@ async function processPayment(event) {
   try {
     // Chamar API do backend para criar preferência no Mercado Pago
     console.log(paymentData)
-    const response = await fetch('http://traineasy.selfip.com:3000/create-mercadopago-preference', {
+    const response = await fetch('/create-mercadopago-preference', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -669,3 +669,4 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
+
