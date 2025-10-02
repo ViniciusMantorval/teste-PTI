@@ -22,7 +22,7 @@ let notifications = [
 
 // Configuração da API
 const API_CONFIG = {
-  baseURL: 'http://traineasy.selfip.com:3000',
+  baseURL: '',
   endpoints: {
     criarRecompensa: '/criar-recompensas'
   },
@@ -437,7 +437,7 @@ class RecompensaApp {
   async loadUserData() {
     const id_empresa = sessionStorage.getItem("id_empresa") || 1;
     try {
-      const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`);
+      const response = await fetch(`/empresa_data?id=${id_empresa}`);
       const data = await response.json();
       
       const welcomeText = document.getElementById('boasVindas');
@@ -764,4 +764,5 @@ style.textContent = `
 `;
 
 document.head.appendChild(style);
+
 
