@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         senha: data.senha,
         cnpj: data.cnpj
       };
-      url = 'http://traineasy.selfip.com:3000/empresas';
+      url = '/empresas';
 
     try {
       const response = await fetch(url, {
@@ -50,3 +50,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
