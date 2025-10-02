@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let dadosTreinamento = null;
   
         try {
-            const response = await fetch('http://traineasy.selfip.com:3000/upload-video', {
+            const response = await fetch('/upload-video', {
                 method: 'POST',
                 body: formData
             });
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Carregar departamentos
     async function carregarDepartamentos(id_empresa) {
       try {
-        const response = await fetch('http://traineasy.selfip.com:3000/list_departamento', {
+        const response = await fetch('/list_departamento', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id_empresa })
@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 formData.append('video_manual', videoInput.files[0]);
             }
     
-            const res = await fetch("http://traineasy.selfip.com:3000/salvar-treinamento", {
+            const res = await fetch("/salvar-treinamento", {
                 method: "POST",
                 body: formData
             });
@@ -550,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 id_departamento
             };
   
-            fetch("http://traineasy.selfip.com:3000/salvar-treinamento", {
+            fetch("/salvar-treinamento", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
@@ -589,7 +589,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadUserData() {
     const id_empresa = sessionStorage.getItem("id_empresa")
     try {
-      const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`); // rota do backend
+      const response = await fetch(`/empresa_data?id=${id_empresa}`); // rota do backend
   
       const data = await response.json();
       console.log(data.nome)
@@ -605,3 +605,4 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Falha ao carregar dados:", error);
     }
   }
+
