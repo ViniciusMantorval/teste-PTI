@@ -1101,10 +1101,10 @@ app.get("/recompensas", async (req, res) => {
 });
 
 app.put("/recompensas/:id", async (req, res) => {
-  const { nome, descricao, preco_pontos, quantidade_disponivel } = req.body;
+  const { nome, descricao, preco_pontos,id_empresa, quantidade_disponivel } = req.body;
   const id = req.params.id;
 
-  if (!id || !nome || !descricao || !preco_pontos || ! || !quantidade_disponivel) {
+  if (!id || !nome || !descricao || !preco_pontos || !id_empresa || !quantidade_disponivel) {
     return res.status(400).json({ error: "Dados inválidos." });
   }
 
@@ -1594,6 +1594,7 @@ app.get("/pagamento/pendente", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
