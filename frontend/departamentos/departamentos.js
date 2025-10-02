@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   lista.innerHTML = '';
 
   try {
-    const response = await fetch('http://traineasy.selfip.com:3000/list_departamento', {
+    const response = await fetch('/list_departamento', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id_empresa })
@@ -155,7 +155,7 @@ async function salvarEdicao(event) {
   const userData = { id, nome, descritivo };
 
   try {
-    const response = await fetch('http://traineasy.selfip.com:3000/editarDepartamento', {
+    const response = await fetch('/editarDepartamento', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData)
@@ -203,7 +203,7 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    const response = await fetch('http://traineasy.selfip.com:3000/departamentos', {
+    const response = await fetch('/departamentos', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData)
@@ -294,7 +294,7 @@ function setupEventListeners() {
 async function loadUserData() {
   const id_empresa = sessionStorage.getItem("id_empresa")
   try {
-    const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`); // rota do backend
+    const response = await fetch(`/empresa_data?id=${id_empresa}`); // rota do backend
 
     const data = await response.json();
     console.log(data.nome)
@@ -780,4 +780,5 @@ function showConfirmModal(title, message, onConfirm) {
     }
   });
 }
+
 
