@@ -1592,7 +1592,7 @@ app.put("/empresa/update/:id", async (req, res) => {
   try {
     const id_empresa = req.params.id;
     const { razaoSocial, nomeFantasia, email, cnpj } = req.body;
-
+    console.log(razaoSocial, nomeFantasia, email, cnpj)
     if (!id_empresa) {
       return res.status(400).json({ error: "ID da empresa é obrigatório." });
     }
@@ -1623,6 +1623,7 @@ app.put("/empresa/update/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
