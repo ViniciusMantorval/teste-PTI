@@ -64,7 +64,7 @@ function setupEventListeners() {
 async function loadUserData() {
   const id_empresa = sessionStorage.getItem("id_empresa")
   try {
-    const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`); // rota do backend
+    const response = await fetch(`/empresa_data?id=${id_empresa}`); // rota do backend
 
     const data = await response.json();
     console.log(data.nome)
@@ -378,7 +378,7 @@ async function loadTrainings() {
   try {
     showLoadingOverlay();
     
-    const res = await fetch(`http://traineasy.selfip.com:3000/treinamentos_empresa?id_empresa=${userId}`);
+    const res = await fetch(`/treinamentos_empresa?id_empresa=${userId}`);
     const treinamentos = await res.json();
     
     console.log(treinamentos);
@@ -446,7 +446,7 @@ async function removerTreinamento(id) {
   try {
     showLoadingOverlay();
     
-    const response = await fetch('http://traineasy.selfip.com:3000/removerTreinamento', {
+    const response = await fetch('/removerTreinamento', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
