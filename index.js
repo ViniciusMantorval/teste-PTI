@@ -1598,8 +1598,8 @@ app.put("/empresa/update/:id", async (req, res) => {
     }
 
     // Verifica se a empresa existe
-    const [check] = await db.execute("SELECT id FROM empresas WHERE id = ?", [id_empresa]);
-    if (check.length === 0) {
+    const [rows] = await db.execute("SELECT id FROM empresas WHERE id = ?", [id_empresa]);
+    if (rows.length === 0) {
       return res.status(404).json({ error: "Empresa não encontrada." });
     }
 
@@ -1623,6 +1623,7 @@ app.put("/empresa/update/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
