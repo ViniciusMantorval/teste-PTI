@@ -288,7 +288,7 @@ function handleFormSubmit(event) {
 async function saveCompanyData() {
     const formData = getCurrentFormData();
     const id_empresa = sessionStorage.getItem("id_empresa")
-    const response = await fetch(`$/empresa/update/${id_empresa}`, {
+    const response = await fetch(`/empresa/update/${id_empresa}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
