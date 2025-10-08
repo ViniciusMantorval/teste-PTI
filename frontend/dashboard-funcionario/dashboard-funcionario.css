@@ -380,6 +380,11 @@ body {
   color: var(--primary-color);
   text-decoration: none;
 }
+.logo-img {
+  height: 30px;  /* controla a altura da logo */
+  width: auto;   /* mantém proporção */
+  margin-right: 8px; /* espaço entre logo e texto */
+}
 
 .logo i {
   font-size: 1.75rem;
@@ -1226,3 +1231,4 @@ body.dark .view-all-notifications {
 body.dark .view-all-notifications:hover {
     background: #4b5563;
 }
+
