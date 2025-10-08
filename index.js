@@ -1588,34 +1588,29 @@ app.get("/pagamento/pendente", (req, res) => {
   res.send("Pagamento está pendente, aguarde a confirmação.");
 });
 
-app.put("/empresa/update/:id", async (req, res) => {
-  try {
-    const id_empresa = req.params.id;
-    const { razaoSocial, nomeFantasia, email, cnpj } = req.body;
-    console.log(razaoSocial, nomeFantasia, email, cnpj)
-    if (!id_empresa) {
-      return res.status(400).json({ error: "ID da empresa é obrigatório." });
-    }
+app.put("/empresa/update/:id", (req, res) => {
+  const id_empresa = req.params.id;
+  const { razaoSocial, nomeFantasia, email, cnpj } = req.body;
 
-    // Verifica se a empresa existe
-    const [rows] = await db.execute("SELECT id FROM empresas WHERE id = ?", [id_empresa]);
-    if (rows.length === 0) {
-      return res.status(404).json({ error: "Empresa não encontrada." });
-    }
+  if (!id_empresa) {
+    return res.status(400).json({ error: "ID da empresa é obrigatório." });
+  }
 
-    // Atualiza a empresa
-    await db.execute(
+  db.execute("SELECT id FROM empresas WHERE id = ?", [id_empresa], (err, rows) => {
+    if (err) return res.status(500).json({ error: "Erro no banco." });
+    if (rows.length === 0) return res.status(404).json({ error: "Empresa não encontrada." });
+
+    db.execute(
       `UPDATE empresas 
        SET razao_social = ?, nome_fantasia = ?, email = ?, cnpj = ?
        WHERE id = ?`,
-      [razaoSocial, nomeFantasia, email, cnpj, id_empresa]
+      [razaoSocial, nomeFantasia, email, cnpj, id_empresa],
+      (err2) => {
+        if (err2) return res.status(500).json({ error: "Erro ao atualizar empresa." });
+        res.status(200).json({ message: "Empresa atualizada com sucesso!" });
+      }
     );
-
-    res.status(200).json({ message: "Empresa atualizada com sucesso!" });
-  } catch (err) {
-    console.error("Erro ao atualizar empresa:", err);
-    res.status(500).json({ error: "Erro interno ao atualizar empresa." });
-  }
+  });
 });
 
 
@@ -1623,6 +1618,7 @@ app.put("/empresa/update/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
