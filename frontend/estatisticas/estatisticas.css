@@ -866,26 +866,34 @@ body {
   visibility: visible;
 }
 
-.loading-overlay .loading-spinner {
+.loading-overlay .loading-container {
   background: var(--bg-primary);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-xl);
   text-align: center;
   box-shadow: var(--shadow-xl);
-  /* A animação de rotação foi removida daqui */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
 }
 
-.loading-overlay .loading-spinner i {
-  font-size: 2rem;
+/* Este é o ícone do spinner que DEVE girar */
+.loading-overlay .loading-container i.fa-spinner {
+  font-size: 2.5rem; /* Aumentei um pouco para melhor visualização */
   color: var(--primary-color);
-  margin-bottom: var(--spacing-lg);
-  /* A animação foi movida para cá */
-  animation: spin 1s linear infinite; 
+  /* A animação é aplicada diretamente aqui! */
+  animation: spin 1s linear infinite;
 }
 
-.loading-overlay .loading-spinner p {
+/* O texto "Carregando..." */
+.loading-overlay .loading-container p {
   color: var(--gray-600);
+  font-weight: 500;
   margin: 0;
+}
+body.dark .loading-overlay .loading-container {
+  background: var(--bg-secondary);
 }
 
 /* Responsive Design */
@@ -1071,4 +1079,5 @@ body.dark .view-all-notifications {
 body.dark .view-all-notifications:hover {
     background: #4b5563;
 }
+
 
