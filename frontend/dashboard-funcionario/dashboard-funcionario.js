@@ -426,7 +426,6 @@ async function loadTrainings() {
         card.innerHTML = `
           <h4>${treinamento.titulo}</h4>
           <p class="curso-desc">${treinamento.descricao}</p>
-          <p class="progresso">Progresso: 0%</p>
           <p class="data-inicio">Início: ${new Date(treinamento.data_inicio).toLocaleDateString('pt-BR')}</p>
           <button onclick="abrirTreinamento(${treinamento.id_treinamento})">Acessar</button>
         `;
@@ -481,5 +480,6 @@ function abrirTreinamento(id) {
   showNotification('Abrindo treinamento...', 'info');
   window.location.href = `../treinamento/treinamento.html?id=${id}`;
 }
+
 
 
