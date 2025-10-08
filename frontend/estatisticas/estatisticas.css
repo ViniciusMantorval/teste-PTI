@@ -872,12 +872,15 @@ body {
   border-radius: var(--radius-xl);
   text-align: center;
   box-shadow: var(--shadow-xl);
+  /* A animação de rotação foi removida daqui */
 }
 
 .loading-overlay .loading-spinner i {
   font-size: 2rem;
   color: var(--primary-color);
   margin-bottom: var(--spacing-lg);
+  /* A animação foi movida para cá */
+  animation: spin 1s linear infinite; 
 }
 
 .loading-overlay .loading-spinner p {
@@ -1068,3 +1071,4 @@ body.dark .view-all-notifications {
 body.dark .view-all-notifications:hover {
     background: #4b5563;
 }
+
