@@ -285,15 +285,15 @@ function handleFormSubmit(event) {
 }
 
 // Salvar dados da empresa
-function saveCompanyData() {
+async function saveCompanyData() {
     const formData = getCurrentFormData();
+    const id_empresa = sessionStorage.getItem("id_empresa")
+    const response = await fetch(`$/empresa/update/${id_empresa}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
     
-    // Salvar no localStorage (em produção, seria enviado para API)
-    localStorage.setItem("razao_social", formData.razaoSocial);
-    localStorage.setItem("nome_fantasia", formData.nomeFantasia);
-    localStorage.setItem("email_empresa", formData.email);
-    localStorage.setItem("cnpj", formData.cnpj);
-    localStorage.setItem("plano", formData.plano);
     
     // Atualizar elementos de exibição
     document.getElementById("displayNomeFantasia").textContent = formData.nomeFantasia;
