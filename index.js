@@ -1575,10 +1575,11 @@ app.post("/create-mercadopago-preference", async (req, res) => {
     });
   }
 });
-// talvez remover ou fazer alguma coisa melhor
+
 app.get("/pagamento/sucesso", (req, res) => {
-  res.send("Pagamento aprovado com sucesso!");
+  res.sendFile(path.join(frontendPath, 'dashboard-empresa', 'dashboard-empresa.html'));
 });
+
 
 app.get("/pagamento/falha", (req, res) => {
   res.send("Pagamento falhou. Tente novamente.");
@@ -1618,6 +1619,7 @@ app.put("/empresa/update/:id", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
