@@ -1588,12 +1588,42 @@ app.get("/pagamento/pendente", (req, res) => {
   res.send("Pagamento está pendente, aguarde a confirmação.");
 });
 
+app.put("/empresa/update/:id", async (req, res) => {
+  try {
+    const id_empresa = req.params.id;
+    const { razaoSocial, nomeFantasia, email, cnpj } = req.body;
+
+    if (!id_empresa) {
+      return res.status(400).json({ error: "ID da empresa é obrigatório." });
+    }
+
+    // Verifica se a empresa existe
+    const [check] = await db.execute("SELECT id FROM empresas WHERE id = ?", [id_empresa]);
+    if (check.length === 0) {
+      return res.status(404).json({ error: "Empresa não encontrada." });
+    }
+
+    // Atualiza a empresa
+    await db.execute(
+      `UPDATE empresas 
+       SET razao_social = ?, nome_fantasia = ?, email = ?, cnpj = ?
+       WHERE id = ?`,
+      [razaoSocial, nomeFantasia, email, cnpj, id_empresa]
+    );
+
+    res.status(200).json({ message: "Empresa atualizada com sucesso!" });
+  } catch (err) {
+    console.error("Erro ao atualizar empresa:", err);
+    res.status(500).json({ error: "Erro interno ao atualizar empresa." });
+  }
+});
 
 
 // Iniciar servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
