@@ -1350,7 +1350,7 @@ app.get('/empresa_data', (req, res) => {
   const {id} = req.query;
   console.log(id)
     sql = `
-      SELECT nome_fantasia as nome FROM empresas WHERE id = ?;
+      SELECT razao_social, email, cnpj, nome_fantasia as nome FROM empresas WHERE id_empresa = ?;
     `;
 
   db.query(sql, [id], (err, result) => {
@@ -1594,6 +1594,7 @@ app.get("/pagamento/pendente", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
