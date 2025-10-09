@@ -1620,21 +1620,17 @@ app.put("/empresa/update/:id", (req, res) => {
 app.post("/webhook-mercadopago", express.json(), async (req, res) => {
   try {
     const data = req.body;
-
     console.log("Webhook recebido:", data);
 
-    // Faz uma requisição à API do Mercado Pago para buscar detalhes do pagamento
-    let paymentId;
-    if (data.type === "payment" && data.data?.id) {
-      paymentId = data.data.id;
-    } else if (data.type === "merchant_order" && data.data?.id) {
-      // Se quiser lidar com merchant_order
-      paymentId = data.data.id;
-    } else {
+    // Só processa se for um evento de pagamento
+    if (!data.data || !data.data.id) {
       console.log("Webhook sem paymentId válido. Ignorando.");
-      return res.sendStatus(200); // responder 200 mesmo assim
+      return res.sendStatus(200);
     }
 
+    const paymentId = data.data.id;
+
+    // Usa o token do sandbox
     const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
       headers: {
         Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`,
@@ -1644,20 +1640,22 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
     const payment = await response.json();
     console.log("Detalhes do pagamento:", payment);
 
-    // Extraia os dados importantes
-    const status = payment.status; // "approved", "pending", etc.
-    const valor = payment.transaction_amount;
-    const id_empresa = payment.external_reference; // você passa isso na criação da preferência
-    const data_pagamento = payment.date_approved;
-    
-    // Salve no banco
-    if(payment.status === "approved"){
+    // Se o pagamento existir e estiver aprovado, salva no banco
+    if (payment.status === "approved") {
       const sql = `
-      INSERT INTO pagamentos (id_empresa, pagamento_id, status, valor, data_pagamento)
-      VALUES (?, ?, ?, ?, ?)
-    `;
-
-    await db.query(sql, [id_empresa, paymentId, status, valor, data_pagamento]);
+        INSERT INTO pagamentos (id_empresa, pagamento_id, status, valor, data_pagamento)
+        VALUES (?, ?, ?, ?, ?)
+      `;
+      await db.query(sql, [
+        payment.external_reference,
+        paymentId,
+        payment.status,
+        payment.transaction_amount,
+        payment.date_approved
+      ]);
+      console.log("Pagamento registrado no banco.");
+    } else {
+      console.log("Pagamento não aprovado ainda. Ignorando.");
     }
 
     res.sendStatus(200);
@@ -1671,6 +1669,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
