@@ -400,7 +400,7 @@ app.post('/upload-video', upload.single('video'), async (req, res) => {
     const response = await axios.post(
       'https://openrouter.ai/api/v1/chat/completions',
       {
-        model: 'deepseek/deepseek-chat-v3.1:free',
+        model: 'tngtech/deepseek-r1t2-chimera:free',
         messages: [
           {
             role: "user",
@@ -1698,6 +1698,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
