@@ -198,167 +198,32 @@ body {
   position: relative;
 }
 
-.notification-btn {
-  position: relative;
-  background: none;
-  border: none;
-  color: var(--gray-600);
-  font-size: 1.25rem;
-  cursor: pointer;
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-}
 
-.notification-btn:hover {
-  background: var(--gray-100);
-  color: var(--primary-color);
-}
 
-.notif-count {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  background: var(--error-color);
-  color: white;
-  border-radius: var(--radius-full);
-  padding: 2px 6px;
-  font-size: 0.625rem;
-  font-weight: 600;
-  min-width: 16px;
-  text-align: center;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-/* Notifications Dropdown */
-.notifications-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 350px;
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
-  border: 1px solid var(--gray-200);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all var(--transition-normal);
-  z-index: 1001;
-  margin-top: var(--spacing-sm);
-}
-
-.notifications-dropdown.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.notifications-header {
+/* Logo */
+.logo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.notifications-header h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--gray-900);
-}
-
-.mark-all-read {
-  background: none;
-  border: none;
+  gap: var(--spacing-sm);
+  font-size: 1.5rem;
+  font-weight: 800;
   color: var(--primary-color);
-  cursor: pointer;
-  padding: var(--spacing-xs);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
+  text-decoration: none;
 }
 
-.mark-all-read:hover {
-  background: var(--gray-100);
+.logo i {
+  font-size: 1.75rem;
 }
-
-.notifications-list {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.notification-item {
+.logo {
   display: flex;
-  gap: var(--spacing-md);
-  padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--gray-100);
-  transition: all var(--transition-fast);
+  align-items: center; /* alinha logo e texto no centro vertical */
 }
 
-.notification-item:hover {
-  background: var(--gray-50);
+.logo-img {
+  height: 30px;  /* controla a altura da logo */
+  width: auto;   /* mantém proporção */
+  margin-right: 8px; /* espaço entre logo e texto */
 }
-
-.notification-item.unread {
-  background: rgba(99, 102, 241, 0.05);
-}
-
-.notification-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary-color);
-  color: white;
-  font-size: 0.875rem;
-}
-
-.notification-content h4 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--gray-900);
-  margin-bottom: var(--spacing-xs);
-}
-
-.notification-content p {
-  font-size: 0.75rem;
-  color: var(--gray-600);
-  margin-bottom: var(--spacing-xs);
-}
-
-.notification-time {
-  font-size: 0.625rem;
-  color: var(--gray-500);
-}
-
-.notifications-footer {
-  padding: var(--spacing-lg);
-  border-top: 1px solid var(--gray-200);
-}
-
-.view-all-notifications {
-  width: 100%;
-  background: var(--gray-100);
-  border: none;
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-md);
-  color: var(--gray-700);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.view-all-notifications:hover {
-  background: var(--gray-200);
-}
-
 /* Logo */
 .logo {
   display: flex;
@@ -381,7 +246,7 @@ body {
   gap: var(--spacing-md);
 }
 
-.search-btn, .theme-btn, .user-menu-btn {
+.theme-btn, .user-menu-btn {
   background: none;
   border: none;
   color: var(--gray-600);
@@ -397,46 +262,6 @@ body {
   color: var(--primary-color);
 }
 
-/* Search Container */
-.search-container {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  background: var(--bg-primary);
-  border: 1px solid var(--gray-300);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-xs) var(--spacing-md);
-  opacity: 0;
-  visibility: hidden;
-  width: 0;
-  transition: all var(--transition-normal);
-}
-
-.search-container.show {
-  opacity: 1;
-  visibility: visible;
-  width: 300px;
-}
-
-.search-container input {
-  border: none;
-  outline: none;
-  background: none;
-  flex: 1;
-  padding: var(--spacing-sm);
-  font-size: 0.875rem;
-}
-
-.search-close {
-  background: none;
-  border: none;
-  color: var(--gray-500);
-  cursor: pointer;
-  padding: var(--spacing-xs);
-}
 
 /* User Menu */
 .user-menu {
@@ -487,6 +312,7 @@ body {
   background: var(--gray-200);
   margin: var(--spacing-sm) 0;
 }
+
 
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
@@ -1244,4 +1070,29 @@ body.dark .view-all-notifications {
 
 body.dark .view-all-notifications:hover {
     background: #4b5563;
+}
+/* Aplica o estilo ao scrollbar da página ou do container desejado */
+body::-webkit-scrollbar {
+  width: 8px; /* Largura do scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #2c2f4a; /* Cor do trilho (fundo) */
+  border-radius: 8px; /* Cantos arredondados */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #7b63ff; /* Cor da barra em si */
+  border-radius: 8px; /* Cantos arredondados */
+  border: 2px solid #2c2f4a; /* Espaço entre a barra e o trilho */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #9b85ff; /* Cor da barra quando o mouse está em cima */
+}
+
+/* Para Firefox, que usa outra propriedade */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #7b63ff #2c2f4a;
 }

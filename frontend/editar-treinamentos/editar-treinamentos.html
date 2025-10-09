@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edição de Treinamentos - TrainEasy</title>
-  <link rel="icon" type="image/png" href="../logo/logo.png">
   <link rel="stylesheet" href="editar-treinamentos.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,74 +21,12 @@
           <span class="company-name" id="nome_empresa">TechCorp Solutions</span>
         </div>
       </div>
-      <div class="header-actions">
-        <button class="notification-btn" onclick="toggleNotifications()">
-          <i class="fas fa-bell"></i>
-          <span class="notif-count">5</span>
-        </button>
-        <div class="notifications-dropdown" id="notificationsDropdown">
-          <div class="notifications-header">
-            <h3>Notificações</h3>
-            <button class="mark-all-read" onclick="markAllAsRead()">
-              <i class="fas fa-check-double"></i>
-            </button>
-          </div>
-          <div class="notifications-list">
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-graduation-cap"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Treinamento atualizado</h4>
-                <p>O treinamento "JavaScript Avançado" foi modificado</p>
-                <span class="notification-time">5 min atrás</span>
-              </div>
-            </div>
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Novo funcionário</h4>
-                <p>Maria Silva foi adicionada ao departamento</p>
-                <span class="notification-time">1 hora atrás</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-icon">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Relatório disponível</h4>
-                <p>Relatório mensal de progresso está pronto</p>
-                <span class="notification-time">2 horas atrás</span>
-              </div>
-            </div>
-          </div>
-          <div class="notifications-footer">
-            <button class="view-all-notifications" onclick="viewAllNotifications()">
-              Ver todas as notificações
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
     
     <div class="logo" id="logo">
       <i><img src="../logo/logo.png" alt="Logo da Empresa" class="logo-img"></i>
       <span>TrainEasy</span>
     </div>
-    
-    <div class="header-controls">
-      <button class="search-btn" onclick="toggleSearch()">
-        <i class="fas fa-search"></i>
-      </button>
-      <div class="search-container" id="searchContainer">
-        <input type="text" placeholder="Buscar..." id="searchInput" onkeyup="handleSearch(event)">
-        <button class="search-close" onclick="closeSearch()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
       <div class="theme-toggle">
         <button class="theme-btn" onclick="toggleTheme()">
           <i class="fas fa-moon" id="themeIcon"></i>
@@ -159,18 +96,14 @@
               <span>Departamentos</span>
             </a>
           </li>
-          <li class="nav-item" onclick="setActiveMenuItem(this)">
-            <a href="../funcionarios_empresa/funcionarios_empresa.html">
-              <i class="fas fa-users"></i>
-              <span>Controle de Funcionários</span>
-            </a>
-          </li>
+          
           <li class="nav-item" onclick="setActiveMenuItem(this)">
             <a href="../ranking-funcionario/ranking-funcionario.html">
               <i class="fas fa-trophy"></i>
               <span>Ranking Interno</span>
             </a>
           </li>
+          
           <li class="nav-item" onclick="setActiveMenuItem(this)">
             <a href="../gerenciar-recompensas/gerenciar-recompensas.html">
               <i class="fas fa-store"></i>
@@ -322,5 +255,4 @@
   <script src="editar-treinamentos.js"></script>
 </body>
 </html>
-
 
