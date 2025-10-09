@@ -1577,9 +1577,29 @@ app.post("/create-mercadopago-preference", async (req, res) => {
   }
 });
 
-app.get("/pagamento/sucesso", (req, res) => {
-  console.log("Pagamento aprovado! Dados recebidos:", req.query);
-  res.redirect("/dashboard-empresa/dashboard-empresa.html");
+app.get("/pagamento/sucesso", async (req, res) => {
+  try {
+    const { collection_id, collection_status, external_reference, payment_type, merchant_order_id } = req.query;
+
+    console.log("Pagamento aprovado! Dados recebidos:", req.query);
+
+    if (collection_status === "approved") {
+      const data_pagamento = new Date().toISOString(); // ou usar a data recebida se houver
+      const sql = `
+        INSERT INTO pagamentos (id_empresa, pagamento_id, status, valor, data_pagamento)
+        VALUES (?, ?, ?, ?, ?)
+      `;
+      const valor = 0; // você pode passar o valor real se tiver no query ou buscar via API
+
+      await db.query(sql, [external_reference, collection_id, collection_status, valor, data_pagamento]);
+    }
+
+    // redireciona para a dashboard
+    res.redirect("/dashboard-empresa/dashboard-empresa.html");
+  } catch (error) {
+    console.error("Erro ao processar pagamento de sucesso:", error);
+    res.sendStatus(500);
+  }
 });
 
 
@@ -1669,6 +1689,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
