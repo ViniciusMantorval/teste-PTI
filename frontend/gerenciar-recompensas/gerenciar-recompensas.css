@@ -509,8 +509,7 @@ body {
 /* Container */
 .container {
   display: flex;
-  min-height: 100vh;
-  padding-top: var(--topbar-height);
+  margin-top: var(--topbar-height);
 }
 
 /* Sidebar */
@@ -549,9 +548,9 @@ body {
   color: var(--gray-500);
   cursor: pointer;
   padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
 }
 
-/* Sidebar Navigation */
 .sidebar-nav {
   flex: 1;
   padding: var(--spacing-lg);
@@ -573,7 +572,7 @@ body {
   padding: var(--spacing-md);
   color: var(--gray-700);
   text-decoration: none;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   font-weight: 500;
 }
@@ -584,13 +583,11 @@ body {
   color: white;
   transform: translateX(4px);
 }
-
-.nav-item a i {
+.nav-item i {
   width: 20px;
   text-align: center;
 }
 
-/* Sidebar Footer */
 .sidebar-footer {
   padding: var(--spacing-lg);
   border-top: 1px solid var(--gray-200);
@@ -600,28 +597,23 @@ body {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  padding: var(--spacing-md);
-  background: var(--gray-50);
-  border-radius: var(--radius-md);
 }
 
 .company-logo {
   width: 40px;
   height: 40px;
   background: var(--primary-color);
+  color: white;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 1.125rem;
 }
 
 .company-details h4 {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--gray-900);
-  margin-bottom: 2px;
 }
 
 .company-details p {
@@ -1182,4 +1174,29 @@ body.dark .view-all-notifications {
 
 body.dark .view-all-notifications:hover {
     background: #4b5563;
+}
+/* Aplica o estilo ao scrollbar da página ou do container desejado */
+body::-webkit-scrollbar {
+  width: 8px; /* Largura do scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #2c2f4a; /* Cor do trilho (fundo) */
+  border-radius: 8px; /* Cantos arredondados */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #7b63ff; /* Cor da barra em si */
+  border-radius: 8px; /* Cantos arredondados */
+  border: 2px solid #2c2f4a; /* Espaço entre a barra e o trilho */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #9b85ff; /* Cor da barra quando o mouse está em cima */
+}
+
+/* Para Firefox, que usa outra propriedade */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #7b63ff #2c2f4a;
 }
