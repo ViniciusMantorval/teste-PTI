@@ -16,7 +16,7 @@ const AssemblyClient = new AssemblyAI({
 
 const { MercadoPagoConfig, Preference } = require("mercadopago");
 
-cont MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN
+const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN
 
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const app = express();
@@ -1662,6 +1662,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
