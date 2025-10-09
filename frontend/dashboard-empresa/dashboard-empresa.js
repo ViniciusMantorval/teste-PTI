@@ -171,6 +171,9 @@ async function loadUserData() {
     if (welcomeText) welcomeText.innerText = `Bem-vindo ${data.nome}`;
     if (companyName) companyName.innerText = data.nome;
     if (footer_empresa_name) footer_empresa_name.textContent = `${data.nome}`;
+      if (data.status !== 1) {
+      showAlert(`O status da sua empresa é ${data.status}. Por favor, verifique suas configurações.`, 'warning');
+    }
   } catch (error) {
     console.error("Falha ao carregar dados:", error);
   }
@@ -850,3 +853,4 @@ setTimeout(() => {
 
 
   
+
