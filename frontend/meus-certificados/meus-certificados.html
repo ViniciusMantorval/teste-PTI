@@ -26,71 +26,12 @@
     
     <div class="topbar-center">
       <div class="logo" id="logo">
-        <i><img src="../logo/logo.png" alt="Logo da Empresa" class="logo-img"></i>
+        <i class="fas fa-graduation-cap"></i>
         <span>TrainEasy</span>
       </div>
     </div>
 
     <div class="topbar-right">
-      <div class="header-controls">
-        <button class="search-btn" onclick="toggleSearch()">
-          <i class="fas fa-search"></i>
-        </button>
-        <div class="search-container" id="searchContainer">
-          <input type="text" placeholder="Buscar..." id="searchInput" onkeyup="handleSearch(event)">
-          <button class="search-close" onclick="closeSearch()">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <button class="notification-btn" onclick="toggleNotifications()">
-          <i class="fas fa-bell"></i>
-          <span class="notif-count">3</span>
-        </button>
-        <div class="notifications-dropdown" id="notificationsDropdown">
-          <div class="notifications-header">
-            <h3>Notificações</h3>
-            <button class="mark-all-read" onclick="markAllAsRead()">
-              <i class="fas fa-check-double"></i>
-            </button>
-          </div>
-          <div class="notifications-list">
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-graduation-cap"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Novo treinamento disponível</h4>
-                <p>JavaScript Avançado foi adicionado à sua lista</p>
-                <span class="notification-time">1 hora atrás</span>
-              </div>
-            </div>
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-trophy"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Parabéns!</h4>
-                <p>Você completou 5 treinamentos este mês</p>
-                <span class="notification-time">2 horas atrás</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-icon">
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Pontuação atualizada</h4>
-                <p>Você ganhou 150 pontos no último quiz</p>
-                <span class="notification-time">1 dia atrás</span>
-              </div>
-            </div>
-          </div>
-          <div class="notifications-footer">
-            <button class="view-all-notifications" onclick="viewAllNotifications()">
-              Ver todas as notificações
-            </button>
-          </div>
-        </div>
         <div class="theme-toggle">
           <button class="theme-btn" onclick="toggleTheme()">
             <i class="fas fa-moon" id="themeIcon"></i>
@@ -198,4 +139,3 @@
   <script src="meus-certificados.js"></script>
 </body>
 </html>
-
