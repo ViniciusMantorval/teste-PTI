@@ -422,7 +422,7 @@ async function loadTrainingData() {
       
       if (treinamento.video_url) {
         const videoPlayer = document.querySelector("#video");
-        const link = `..${treinamento.video_url}`;
+        const link = `${treinamento.video_url}`;
         videoPlayer.src = link;  
         console.log(link);
         console.log(treinamento.video_url);
