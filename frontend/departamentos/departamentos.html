@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Painel do Funcionário - TrainEasy</title>
-  <link rel="icon" type="image/png" href="../logo/logo.png">
   <link rel="stylesheet" href="departamentos.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,47 +21,6 @@
           <span class="company-name" id="nome_empresa">TechCorp Solutions</span>
         </div>
       </div>
-      <div class="header-actions">
-        <button class="notification-btn" onclick="toggleNotifications()">
-          <i class="fas fa-bell"></i>
-          <span class="notif-count">3</span>
-        </button>
-        <div class="notifications-dropdown" id="notificationsDropdown">
-          <div class="notifications-header">
-            <h3>Notificações</h3>
-            <button class="mark-all-read" onclick="markAllAsRead()">
-              <i class="fas fa-check-double"></i>
-            </button>
-          </div>
-          <div class="notifications-list">
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-building"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Novo departamento criado</h4>
-                <p>O departamento "Marketing" foi criado com sucesso</p>
-                <span class="notification-time">2 min atrás</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Funcionário adicionado</h4>
-                <p>João Silva foi adicionado ao departamento de TI</p>
-                <span class="notification-time">1 hora atrás</span>
-              </div>
-            </div>
-          </div>
-          <div class="notifications-footer">
-            <button class="view-all-notifications" onclick="viewAllNotifications()">
-              Ver todas as notificações
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
     
     <div class="logo" id="logo">
@@ -71,15 +29,6 @@
     </div>
     
     <div class="header-controls">
-      <button class="search-btn" onclick="toggleSearch()">
-        <i class="fas fa-search"></i>
-      </button>
-      <div class="search-container" id="searchContainer">
-        <input type="text" placeholder="Buscar departamentos..." id="searchInput" onkeyup="filterDepartments()">
-        <button class="search-close" onclick="closeSearch()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
       <div class="theme-toggle">
         <button class="theme-btn" onclick="toggleTheme()">
           <i class="fas fa-moon" id="themeIcon"></i>
@@ -153,6 +102,7 @@
               <span>Departamentos</span>
             </a>
           </li>
+        
           <li class="nav-item" onclick="setActiveMenuItem(this)">
             <a href="../ranking-funcionario/ranking-funcionario.html">
               <i class="fas fa-trophy"></i>
@@ -205,10 +155,6 @@
             <div class="stat-content">
               <h3 id="totalDepartments">3</h3>
               <p>Departamentos</p>
-              <span class="stat-change positive">
-                <i class="fas fa-arrow-up"></i>
-                +12% este mês
-              </span>
             </div>
           </div>
           
@@ -219,10 +165,6 @@
             <div class="stat-content">
               <h3 id="totalEmployees">4</h3>
               <p>Funcionários</p>
-              <span class="stat-change positive">
-                <i class="fas fa-arrow-up"></i>
-                +23% este mês
-              </span>
             </div>
           </div>
           
@@ -233,10 +175,6 @@
             <div class="stat-content">
               <h3>12</h3>
               <p>Novos Funcionários</p>
-              <span class="stat-change positive">
-                <i class="fas fa-arrow-up"></i>
-                +8% este mês
-              </span>
             </div>
           </div>
           
@@ -247,10 +185,6 @@
             <div class="stat-content">
               <h3>85%</h3>
               <p>Taxa de Atividade</p>
-              <span class="stat-change negative">
-                <i class="fas fa-arrow-down"></i>
-                -2% este mês
-              </span>
             </div>
           </div>
         </div>
@@ -465,6 +399,4 @@
   <script src="departamentos.js"></script>
 </body>
 </html>
-
-
 

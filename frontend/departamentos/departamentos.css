@@ -547,9 +547,9 @@ body {
   color: var(--gray-500);
   cursor: pointer;
   padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
 }
 
-/* Sidebar Navigation */
 .sidebar-nav {
   flex: 1;
   padding: var(--spacing-lg);
@@ -571,7 +571,7 @@ body {
   padding: var(--spacing-md);
   color: var(--gray-700);
   text-decoration: none;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   font-weight: 500;
 }
@@ -582,13 +582,11 @@ body {
   color: white;
   transform: translateX(4px);
 }
-
-.nav-item a i {
+.nav-item i {
   width: 20px;
   text-align: center;
 }
 
-/* Sidebar Footer */
 .sidebar-footer {
   padding: var(--spacing-lg);
   border-top: 1px solid var(--gray-200);
@@ -598,18 +596,17 @@ body {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
 }
 
 .company-logo {
   width: 40px;
   height: 40px;
   background: var(--primary-color);
-  border-radius: var(--radius-lg);
+  color: white;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
 }
 
 .company-details h4 {
@@ -676,7 +673,7 @@ body {
   color: var(--gray-600);
 }
 
-/* Stats Grid */
+/* Stats Grid - Versão usando CSS Grid para layout interno */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -693,6 +690,12 @@ body {
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  
+  /* Layout grid para ícone e conteúdo lado a lado */
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-lg);
+  align-items: center;
 }
 
 .stat-card::before {
@@ -720,21 +723,31 @@ body {
   justify-content: center;
   color: white;
   font-size: 1.5rem;
-  margin-bottom: var(--spacing-lg);
+  
+  /* Remover margin-bottom */
+  margin-bottom: 0;
+}
+
+/* Estilos para o conteúdo das estatísticas */
+.stat-content {
+  margin-bottom: 0;
 }
 
 .stat-content h3 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--gray-900);
   margin-bottom: var(--spacing-xs);
+  margin-top: 0;
+  line-height: 1.2;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .stat-content p {
-  font-size: 1rem;
-  color: var(--gray-600);
-  margin-bottom: var(--spacing-md);
+  margin: 0;
+  line-height: 1.3;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
+
 
 .stat-change {
   display: flex;
@@ -1286,4 +1299,29 @@ body.dark .view-all-notifications {
 
 body.dark .view-all-notifications:hover {
     background: #4b5563;
+}
+/* Aplica o estilo ao scrollbar da página ou do container desejado */
+body::-webkit-scrollbar {
+  width: 8px; /* Largura do scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #2c2f4a; /* Cor do trilho (fundo) */
+  border-radius: 8px; /* Cantos arredondados */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #7b63ff; /* Cor da barra em si */
+  border-radius: 8px; /* Cantos arredondados */
+  border: 2px solid #2c2f4a; /* Espaço entre a barra e o trilho */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #9b85ff; /* Cor da barra quando o mouse está em cima */
+}
+
+/* Para Firefox, que usa outra propriedade */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #7b63ff #2c2f4a;
 }
