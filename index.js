@@ -1577,7 +1577,8 @@ app.post("/create-mercadopago-preference", async (req, res) => {
 });
 
 app.get("/pagamento/sucesso", (req, res) => {
-  res.sendFile(path.join(frontendPath, 'dashboard-empresa', 'dashboard-empresa.html'));
+  console.log("Pagamento aprovado! Dados recebidos:", req.query);
+  res.redirect(path.join(frontendPath, 'dashboard-empresa', 'dashboard-empresa.html'));
 });
 
 
@@ -1619,6 +1620,7 @@ app.put("/empresa/update/:id", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
