@@ -1591,7 +1591,7 @@ app.get("/pagamento/sucesso", async (req, res) => {
       `;
       const valor = 0; // você pode passar o valor real se tiver no query ou buscar via API
 
-      await db.query(sql, [external_reference, collection_id, collection_status, valor, data_pagamento]);
+      db.query(sql, [external_reference, collection_id, collection_status, valor, data_pagamento]);
     }
 
     // redireciona para a dashboard
@@ -1689,6 +1689,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
