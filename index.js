@@ -457,7 +457,6 @@ Texto do vídeo:
         headers: {
           'Authorization': `Bearer ${API_KEY}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': 'http://10.0.0.87:3000' // opcional
         }
       }
     );
