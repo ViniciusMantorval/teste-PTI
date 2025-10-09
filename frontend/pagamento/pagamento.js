@@ -408,9 +408,9 @@ async function processPayment(event) {
     },
     // URLs de retorno
     back_urls: {
-      success: '/pagamento/sucesso',
-      failure: '/pagamento/falha',
-      pending: '/pagamento/pendente'
+      success: 'https://traineasy.up.railway.app/pagamento/sucesso',
+      failure: 'https://traineasy.up.railway.app/pagamento/falha',
+      pending: 'https://traineasy.up.railway.app/pagamento/pendente'
     },
     // auto_return: 'approved',// funciona somente com server HTTPS
     external_reference: `order_${Date.now()}`,
@@ -669,4 +669,5 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
+
 
