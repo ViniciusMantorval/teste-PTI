@@ -1624,7 +1624,16 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
     console.log("Webhook recebido:", data);
 
     // Faz uma requisição à API do Mercado Pago para buscar detalhes do pagamento
-    const paymentId = data.data.id;
+    let paymentId;
+    if (data.type === "payment" && data.data?.id) {
+      paymentId = data.data.id;
+    } else if (data.type === "merchant_order" && data.data?.id) {
+      // Se quiser lidar com merchant_order
+      paymentId = data.data.id;
+    } else {
+      console.log("Webhook sem paymentId válido. Ignorando.");
+      return res.sendStatus(200); // responder 200 mesmo assim
+    }
 
     const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
       headers: {
@@ -1662,6 +1671,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
