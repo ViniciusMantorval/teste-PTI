@@ -1543,9 +1543,9 @@ app.get('/download/:filename', (req, res) => {
 
 app.post("/create-mercadopago-preference", async (req, res) => {
   try {
-    const { payer, items, payment_methods, back_urls, external_reference } =
+    const { payer, items, payment_methods, back_urls, external_reference, id_empresa } =
       req.body;
-      console.log(payer, items, payment_methods, back_urls, external_reference)
+      console.log(payer, items, payment_methods, back_urls, external_reference,id_empresa)
     const preferenceData = {
       items,
       payer,
@@ -1561,6 +1561,16 @@ app.post("/create-mercadopago-preference", async (req, res) => {
 
     const response = await preference.create({body: preferenceData});
     console.log(response);
+
+    const data_pagamento = new Date().toISOString(); // ou usar a data recebida se houver
+      const sql = `
+        INSERT INTO pagamentos (id_empresa, pagamento_id, status, itens., data_pagamento)
+        VALUES (?, ?, ?, ?, ?)
+      `;
+      const valor = 0; // você pode passar o valor real se tiver no query ou buscar via API
+
+      db.query(sql, [id_empresa, 0, "succsess", preferenceData.items[o].unit_price, data_pagamento]);
+    }
     
     res.json({
       success: true,
@@ -1689,6 +1699,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
