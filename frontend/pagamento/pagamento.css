@@ -73,35 +73,31 @@
   --border-color: var(--gray-200);
 }
 
-/* Tema escuro (corrigido) */
+/* Tema escuro */
 body.dark {
-  /* Cores principais */
-  --primary-color: #6366f1;
-  --primary-dark: #4f46e5;
-  --primary-light: #8b5cf6;
-  --secondary-color: #06b6d4;
-  --accent-color: #f59e0b;
-
-  /* Cores de status */
-  --success-color: #10b981;
-  --warning-color: #f59e0b;
-  --error-color: #ef4444;
-  --info-color: #3b82f6;
-
-  /* Backgrounds */
-  --bg-primary: #111827; /* Cor de fundo principal escura */
-  --bg-secondary: #1f2937; /* Cor de fundo secundária escura */
-  --bg-tertiary: #374151; /* Cor de fundo terciária escura */
-
-  /* Cores de texto */
-  --text-primary: #f9fafb; /* Texto principal claro */
-  --text-secondary: #d1d5db; /* Texto secundário claro */
-  --text-muted: #9ca3af; /* Texto "muted" claro */
-
-  /* Bordas */
-  --border-color: #374151; /* Cor da borda escura */
-
-  /* Sombras */
+  --bg-primary: var(--gray-900);
+  --bg-secondary: var(--gray-800);
+  --bg-tertiary: var(--gray-700);
+  --gray-50: var(--gray-800);
+  --gray-100: var(--gray-700);
+  --gray-200: var(--gray-600);
+  --gray-300: var(--gray-500);
+  --gray-400: var(--gray-400);
+  --gray-500: var(--gray-300);
+  --gray-600: var(--gray-200);
+  --gray-700: var(--gray-100);
+  --gray-800: var(--gray-50);
+  --gray-900: #ffffff;
+  
+  /* Cores de texto no tema escuro */
+  --text-primary: #ffffff;
+  --text-secondary: var(--gray-300);
+  --text-muted: var(--gray-400);
+  
+  /* Bordas no tema escuro */
+  --border-color: var(--gray-700);
+  
+  /* Sombras no tema escuro */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
