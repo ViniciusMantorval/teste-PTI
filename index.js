@@ -449,7 +449,7 @@ Formato esperado:
 
 Texto do vídeo:
 "${transcriptionSafe}"
-    `
+            `
           }
         ]
       },
@@ -457,7 +457,9 @@ Texto do vídeo:
         headers: {
           'Authorization': `Bearer ${API_KEY}`,
           'Content-Type': 'application/json',
-        }
+          'Accept': 'application/json'
+        },
+        timeout: 60000 // 60 segundos
       }
     );
 
