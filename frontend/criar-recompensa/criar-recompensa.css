@@ -199,168 +199,10 @@ body {
   gap: var(--spacing-md);
   position: relative;
 }
-
-.notification-btn {
-  position: relative;
-  background: none;
-  border: none;
-  color: var(--gray-600);
-  font-size: 1.25rem;
-  cursor: pointer;
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-}
-
-.notification-btn:hover {
-  background: var(--gray-100);
-  color: var(--primary-color);
-}
-
-.notif-count {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  background: var(--error-color);
-  color: white;
-  border-radius: var(--radius-full);
-  padding: 2px 6px;
-  font-size: 0.625rem;
-  font-weight: 600;
-  min-width: 16px;
-  text-align: center;
-  animation: pulse 2s infinite;
-}
-
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
-
-/* Notifications Dropdown */
-.notifications-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 350px;
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
-  border: 1px solid var(--gray-200);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all var(--transition-normal);
-  z-index: 1001;
-  margin-top: var(--spacing-sm);
-}
-
-.notifications-dropdown.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.notifications-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.notifications-header h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--gray-900);
-}
-
-.mark-all-read {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  cursor: pointer;
-  padding: var(--spacing-xs);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-}
-
-.mark-all-read:hover {
-  background: var(--gray-100);
-}
-
-.notifications-list {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.notification-item {
-  display: flex;
-  gap: var(--spacing-md);
-  padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--gray-100);
-  transition: all var(--transition-fast);
-}
-
-.notification-item:hover {
-  background: var(--gray-50);
-}
-
-.notification-item.unread {
-  background: rgba(99, 102, 241, 0.05);
-}
-
-.notification-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary-color);
-  color: white;
-  font-size: 0.875rem;
-}
-
-.notification-content h4 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--gray-900);
-  margin-bottom: var(--spacing-xs);
-}
-
-.notification-content p {
-  font-size: 0.75rem;
-  color: var(--gray-600);
-  margin-bottom: var(--spacing-xs);
-}
-
-.notification-time {
-  font-size: 0.625rem;
-  color: var(--gray-500);
-}
-
-.notifications-footer {
-  padding: var(--spacing-lg);
-  border-top: 1px solid var(--gray-200);
-}
-
-.view-all-notifications {
-  width: 100%;
-  background: var(--gray-100);
-  border: none;
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-md);
-  color: var(--gray-700);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.view-all-notifications:hover {
-  background: var(--gray-200);
-}
-
 /* Logo */
 .logo {
   display: flex;
@@ -639,6 +481,11 @@ body {
 .content-section.active {
   display: block;
   animation: fadeInUp 0.5s ease-out;
+}
+/* Arquivo criar-recompensa.css (Linha 484) */
+.field-error::before {
+  content: "⚠"; /* Este ícone aparece sempre que .field-error existe */
+  font-size: 0.75rem;
 }
 
 @keyframes fadeInUp {
@@ -1132,11 +979,6 @@ body {
     font-size: 1.5rem;
   }
   
-  .notifications-dropdown {
-    width: 300px;
-    right: -50px;
-  }
-  
   .form-row {
     grid-template-columns: 1fr;
   }
@@ -1193,10 +1035,7 @@ body {
     padding: var(--spacing-lg);
   }
   
-  .notifications-dropdown {
-    width: calc(100vw - 2rem);
-    right: -1rem;
-  }
+  
   
   .modal {
     width: 95%;
@@ -1205,30 +1044,6 @@ body {
   .modal-actions {
     flex-direction: column;
   }
-}
-
-/* Ajustes específicos para o modo escuro */
-body.dark .notifications-dropdown,
-body.dark .user-menu-dropdown {
-  background: #1f2937;
-}
-
-body.dark .notification-item.unread {
-  background: rgba(139, 92, 246, 0.15);
-}
-
-body.dark .notification-item:hover,
-body.dark .user-menu-dropdown a:hover {
-  background: #374151;
-}
-
-body.dark .view-all-notifications {
-  background: var(--bg-tertiary);
-  color: var(--gray-100);
-}
-
-body.dark .view-all-notifications:hover {
-  background: #4b5563;
 }
 
 /* Estados de foco para acessibilidade */
@@ -1257,3 +1072,118 @@ a:focus {
 .form-card:nth-child(1) { animation-delay: 0.1s; }
 .form-card:nth-child(2) { animation-delay: 0.2s; }
 
+/* Aplica o estilo ao scrollbar da página ou do container desejado */
+body::-webkit-scrollbar {
+  width: 8px; /* Largura do scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #2c2f4a; /* Cor do trilho (fundo) */
+  border-radius: 8px; /* Cantos arredondados */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #7b63ff; /* Cor da barra em si */
+  border-radius: 8px; /* Cantos arredondados */
+  border: 2px solid #2c2f4a; /* Espaço entre a barra e o trilho */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #9b85ff; /* Cor da barra quando o mouse está em cima */
+}
+
+/* Para Firefox, que usa outra propriedade */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #7b63ff #2c2f4a;
+}
+/* =================================== */
+/* ESTILOS PARA O MODO ESCURO (DARK)   */
+/* =================================== */
+
+body.dark {
+  --bg-primary: #111827; /* Fundo principal (era branco) */
+  --bg-secondary: #1f2937; /* Fundo do corpo da página (era cinza claro) */
+  --bg-tertiary: #374151; /* Fundo de elementos terciários */
+  
+  /* Invertendo as cores de texto */
+  --gray-900: #f9fafb; /* Texto principal (era preto, agora é quase branco) */
+  --gray-800: #f3f4f6;
+  --gray-700: #e5e7eb; /* Texto secundário */
+  --gray-600: #d1d5db; /* Texto mais sutil */
+  --gray-500: #9ca3af;
+  
+  /* Invertendo as cores de borda e fundo de inputs */
+  --gray-200: #374151; /* Bordas (eram claras, agora são escuras) */
+  --gray-100: #1f2937; /* Fundos sutis (hover, etc) */
+  --gray-50: #111827;
+}
+
+/* Ajustes específicos para o modo escuro */
+
+/* Corrigir a cor do placeholder nos inputs */
+body.dark .form-input::placeholder,
+body.dark .form-textarea::placeholder {
+  color: var(--gray-500);
+}
+
+/* Corrigir o fundo do botão de adicionar */
+body.dark .btn-add {
+  background: var(--gray-700);
+  color: var(--gray-50);
+}
+
+body.dark .btn-add:hover {
+  background: var(--gray-600);
+}
+
+
+/* Corrigir o fundo do spinner de loading */
+body.dark .loading-spinner {
+  background: var(--bg-secondary);
+}
+
+/* Estados de foco para acessibilidade */
+button:focus,
+a:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+/* Aplica o estilo ao scrollbar da página ou do container desejado */
+body::-webkit-scrollbar {
+  width: 8px; /* Largura do scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #2c2f4a; /* Cor do trilho (fundo) */
+  border-radius: 8px; /* Cantos arredondados */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #7b63ff; /* Cor da barra em si */
+  border-radius: 8px; /* Cantos arredondados */
+  border: 2px solid #2c2f4a; /* Espaço entre a barra e o trilho */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #9b85ff; /* Cor da barra quando o mouse está em cima */
+}
+
+/* Para Firefox, que usa outra propriedade */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #7b63ff #2c2f4a;
+}
+
+
+/* Adicione este código ao seu arquivo criar-recompensa.css */
+
+.field-error::before {
+  content: ""; /* Oculta o ícone por padrão */
+}
+
+.form-group.has-error .field-error::before {
+  content: "⚠"; /* Mostra o ícone apenas quando há erro */
+  font-size: 0.75rem;
+  margin-right: 4px; /* Adiciona um pequeno espaço */
+}
