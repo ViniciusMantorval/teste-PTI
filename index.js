@@ -16,7 +16,7 @@ const AssemblyClient = new AssemblyAI({
 
 const { MercadoPagoConfig, Preference } = require("mercadopago");
 
-
+cont MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN
 
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const app = express();
@@ -36,7 +36,7 @@ const db = mysql.createPool({
   port:process.env.MYSQLPORT
 });
 
-const client = new MercadoPagoConfig({  accessToken: 'APP_USR-2928981499637538-092919-3eaf76c176ec9c729470321c73c8758b-2716220221'})
+const client = new MercadoPagoConfig({  accessToken: MP_ACCESS_TOKEN})
 const preference = new Preference(client);
 
 // Configurando onde salvar o vídeo
@@ -1552,6 +1552,7 @@ app.post("/create-mercadopago-preference", async (req, res) => {
       payment_methods,
       back_urls,
       auto_return: "approved",
+      notification_url: "https://traineasy.up.railway.app/webhook-mercadopago",
       external_reference,
       expires: true,
       expiration_date_from: new Date().toISOString(),
@@ -1616,10 +1617,52 @@ app.put("/empresa/update/:id", (req, res) => {
 });
 
 
+app.post("/webhook-mercadopago", express.json(), async (req, res) => {
+  try {
+    const data = req.body;
+
+    console.log("Webhook recebido:", data);
+
+    // Faz uma requisição à API do Mercado Pago para buscar detalhes do pagamento
+    const paymentId = data.data.id;
+
+    const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`,
+      },
+    });
+
+    const payment = await response.json();
+    console.log("Detalhes do pagamento:", payment);
+
+    // Extraia os dados importantes
+    const status = payment.status; // "approved", "pending", etc.
+    const valor = payment.transaction_amount;
+    const id_empresa = payment.external_reference; // você passa isso na criação da preferência
+    const data_pagamento = payment.date_approved;
+    
+    // Salve no banco
+    if(payment.status === "approved"){
+      const sql = `
+      INSERT INTO pagamentos (id_empresa, pagamento_id, status, valor, data_pagamento)
+      VALUES (?, ?, ?, ?, ?)
+    `;
+
+    await db.query(sql, [id_empresa, paymentId, status, valor, data_pagamento]);
+    }
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Erro no webhook do Mercado Pago:", error);
+    res.sendStatus(500);
+  }
+});
+
 // Iniciar servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
