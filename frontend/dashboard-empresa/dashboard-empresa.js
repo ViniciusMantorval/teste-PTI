@@ -162,7 +162,7 @@ async function loadUserData() {
     const response = await fetch(`/empresa_data?id=${id_empresa}`); // rota do backend
 
     const data = await response.json();
-    console.log(data.nome)
+    console.log(data)
 
     const welcomeText = document.getElementById('boasVindas'); 
     const companyName = document.getElementById('nome_empresa');
@@ -863,6 +863,7 @@ setTimeout(() => {
 
 
   
+
 
 
 
