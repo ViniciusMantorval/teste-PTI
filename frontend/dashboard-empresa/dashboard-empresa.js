@@ -178,6 +178,15 @@ async function loadUserData() {
     console.error("Falha ao carregar dados:", error);
   }
 }
+function showAlert(message, type) {
+  const alertContainer = document.getElementById('statusAlert');
+  const alertMessage = document.getElementById('alertMessage');
+  if (alertContainer && alertMessage) {
+    alertMessage.textContent = message;
+    alertContainer.className = `alert-container show ${type}`;
+    alertContainer.style.display = 'flex';
+  }
+}
 
 // Verificar preferência de tema
 function checkThemePreference() {
@@ -853,4 +862,5 @@ setTimeout(() => {
 
 
   
+
 
