@@ -1551,7 +1551,7 @@ app.post("/create-mercadopago-preference", async (req, res) => {
       payer,
       payment_methods,
       back_urls,
-      // auto_return: "approved",
+      auto_return: "approved",
       external_reference,
       expires: true,
       expiration_date_from: new Date().toISOString(),
@@ -1619,6 +1619,7 @@ app.put("/empresa/update/:id", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
