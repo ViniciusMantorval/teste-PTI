@@ -199,23 +199,6 @@ body {
   position: relative;
 }
 
-.notification-btn {
-  position: relative;
-  background: none;
-  border: none;
-  color: var(--gray-600);
-  font-size: 1.25rem;
-  cursor: pointer;
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-}
-
-.notification-btn:hover {
-  background: var(--gray-100);
-  color: var(--primary-color);
-}
-
 .notif-count {
   position: absolute;
   top: -2px;
@@ -234,130 +217,6 @@ body {
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
-}
-
-/* Notifications Dropdown */
-.notifications-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 350px;
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
-  border: 1px solid var(--gray-200);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all var(--transition-normal);
-  z-index: 1001;
-  margin-top: var(--spacing-sm);
-}
-
-.notifications-dropdown.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.notifications-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.notifications-header h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--gray-900);
-}
-
-.mark-all-read {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  cursor: pointer;
-  padding: var(--spacing-xs);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-}
-
-.mark-all-read:hover {
-  background: var(--gray-100);
-}
-
-.notifications-list {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.notification-item {
-  display: flex;
-  gap: var(--spacing-md);
-  padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--gray-100);
-  transition: all var(--transition-fast);
-}
-
-.notification-item:hover {
-  background: var(--gray-50);
-}
-
-.notification-item.unread {
-  background: rgba(99, 102, 241, 0.05);
-}
-
-.notification-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary-color);
-  color: white;
-  font-size: 0.875rem;
-}
-
-.notification-content h4 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--gray-900);
-  margin-bottom: var(--spacing-xs);
-}
-
-.notification-content p {
-  font-size: 0.75rem;
-  color: var(--gray-600);
-  margin-bottom: var(--spacing-xs);
-}
-
-.notification-time {
-  font-size: 0.625rem;
-  color: var(--gray-500);
-}
-
-.notifications-footer {
-  padding: var(--spacing-lg);
-  border-top: 1px solid var(--gray-200);
-}
-
-.view-all-notifications {
-  width: 100%;
-  background: var(--gray-100);
-  border: none;
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-md);
-  color: var(--gray-700);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.view-all-notifications:hover {
-  background: var(--gray-200);
 }
 
 /* Logo */
@@ -549,9 +408,9 @@ body {
   color: var(--gray-500);
   cursor: pointer;
   padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
 }
 
-/* Sidebar Navigation */
 .sidebar-nav {
   flex: 1;
   padding: var(--spacing-lg);
@@ -573,7 +432,7 @@ body {
   padding: var(--spacing-md);
   color: var(--gray-700);
   text-decoration: none;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   font-weight: 500;
 }
@@ -584,20 +443,14 @@ body {
   color: white;
   transform: translateX(4px);
 }
-
-.nav-item a i {
+.nav-item i {
   width: 20px;
   text-align: center;
 }
 
 .sidebar-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: var(--spacing-lg);
   border-top: 1px solid var(--gray-200);
-  background: var(--bg-primary);
 }
 
 .company-info {
@@ -610,24 +463,24 @@ body {
   width: 40px;
   height: 40px;
   background: var(--primary-color);
-  border-radius: var(--radius-lg);
+  color: white;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
 }
 
 .company-details h4 {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--gray-900);
-  margin-bottom: var(--spacing-xs);
 }
 
 .company-details p {
   font-size: 0.75rem;
   color: var(--gray-500);
 }
+
 
 /* Main Content */
 .main-content {
@@ -663,60 +516,88 @@ body {
   color: var(--gray-600);
 }
 
-/* Stats Grid */
+/* Stats Grid - Versão usando CSS Grid para layout interno */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-lg);
+  gap: var(--spacing-xl);
   margin-bottom: var(--spacing-2xl);
 }
 
 .stat-card {
   background: var(--bg-primary);
   border-radius: var(--radius-xl);
-  padding: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
   border: 1px solid var(--gray-200);
   transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  
+  /* Layout grid para ícone e conteúdo lado a lado */
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
 }
 
 .stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
 }
 
-.stat-icon {
-  width: 48px;
-  height: 48px;
+.stat-card .stat-icon {
+  width: 60px;
+  height: 60px;
   background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 1.25rem;
-  margin-bottom: var(--spacing-lg);
+  font-size: 1.5rem;
+  
+  /* Remover margin-bottom */
+  margin-bottom: 0;
+}
+
+/* Estilos para o conteúdo das estatísticas */
+.stat-content {
+  margin-bottom: 0;
 }
 
 .stat-content h3 {
+  margin-bottom: var(--spacing-xs);
+  margin-top: 0;
+  line-height: 1.2;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--gray-900);
-  margin-bottom: var(--spacing-xs);
 }
 
 .stat-content p {
-  font-size: 0.875rem;
-  color: var(--gray-600);
-  margin-bottom: var(--spacing-md);
+  margin: 0;
+  line-height: 1.3;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
+
 
 .stat-change {
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .stat-change.positive {
@@ -726,7 +607,6 @@ body {
 .stat-change.negative {
   color: var(--error-color);
 }
-
 
 /* Chart Section */
 .chart-section {
@@ -866,34 +746,23 @@ body {
   visibility: visible;
 }
 
-.loading-overlay .loading-container {
+.loading-overlay .loading-spinner {
   background: var(--bg-primary);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-xl);
   text-align: center;
   box-shadow: var(--shadow-xl);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-lg);
 }
 
-/* Este é o ícone do spinner que DEVE girar */
-.loading-overlay .loading-container i.fa-spinner {
-  font-size: 2.5rem; /* Aumentei um pouco para melhor visualização */
+.loading-overlay .loading-spinner i {
+  font-size: 2rem;
   color: var(--primary-color);
-  /* A animação é aplicada diretamente aqui! */
-  animation: spin 1s linear infinite;
+  margin-bottom: var(--spacing-lg);
 }
 
-/* O texto "Carregando..." */
-.loading-overlay .loading-container p {
+.loading-overlay .loading-spinner p {
   color: var(--gray-600);
-  font-weight: 500;
   margin: 0;
-}
-body.dark .loading-overlay .loading-container {
-  background: var(--bg-secondary);
 }
 
 /* Responsive Design */
@@ -998,10 +867,7 @@ body.dark .loading-overlay .loading-container {
     padding: var(--spacing-sm);
   }
   
-  .notifications-dropdown {
-    width: calc(100vw - 2rem);
-    right: -1rem;
-  }
+  
   
   .user-menu-dropdown {
     right: -1rem;
@@ -1048,36 +914,80 @@ body.dark .btn-add {
 body.dark .btn-add:hover {
   background: var(--gray-600);
 }
-
-/* Corrigir o fundo do dropdown de notificações e menu de usuário */
-body.dark .notifications-dropdown,
-body.dark .user-menu-dropdown {
-  background: #1f2937; /* Um fundo mais escuro para os dropdowns */
+/* Aplica o estilo ao scrollbar da página ou do container desejado */
+body::-webkit-scrollbar {
+  width: 8px; /* Largura do scrollbar */
 }
 
-/* Corrigir o fundo dos itens de notificação */
-body.dark .notification-item.unread {
-  background: rgba(99, 102, 241, 0.15); /* Um pouco mais de opacidade para destacar */
+body::-webkit-scrollbar-track {
+  background: #2c2f4a; /* Cor do trilho (fundo) */
+  border-radius: 8px; /* Cantos arredondados */
 }
 
-body.dark .notification-item:hover,
-body.dark .user-menu-dropdown a:hover {
-  background: #374151; /* Fundo do hover */
+body::-webkit-scrollbar-thumb {
+  background: #7b63ff; /* Cor da barra em si */
+  border-radius: 8px; /* Cantos arredondados */
+  border: 2px solid #2c2f4a; /* Espaço entre a barra e o trilho */
 }
 
-/* Corrigir o fundo do spinner de loading */
-body.dark .loading-spinner {
+body::-webkit-scrollbar-thumb:hover {
+  background: #9b85ff; /* Cor da barra quando o mouse está em cima */
+}
+
+/* Para Firefox, que usa outra propriedade */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #7b63ff #2c2f4a;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.loading-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading-overlay .loading-container {
+  background: var(--bg-primary);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+/* Este é o ícone do spinner que DEVE girar */
+.loading-overlay .loading-container i.fa-spinner {
+  font-size: 2.5rem; /* Aumentei um pouco para melhor visualização */
+  color: var(--primary-color);
+  /* A animação é aplicada diretamente aqui! */
+  animation: spin 1s linear infinite;
+}
+
+/* O texto "Carregando..." */
+.loading-overlay .loading-container p {
+  color: var(--gray-600);
+  font-weight: 500;
+  margin: 0;
+}
+body.dark .loading-overlay .loading-container {
   background: var(--bg-secondary);
 }
-
-/* Corrigir a cor do texto do botão "Ver todas as notificações" */
-body.dark .view-all-notifications {
-    background: var(--bg-tertiary);
-    color: var(--gray-100);
-}
-
-body.dark .view-all-notifications:hover {
-    background: #4b5563;
-}
-
-
