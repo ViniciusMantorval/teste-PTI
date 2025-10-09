@@ -514,16 +514,17 @@ body {
 
 /* Sidebar */
 .sidebar {
+  position: fixed;
+  top: var(--topbar-height);
+  left: 0;
   width: var(--sidebar-width);
+  height: calc(100vh - var(--topbar-height));
   background: var(--bg-primary);
   border-right: 1px solid var(--gray-200);
-  height: calc(100vh - var(--topbar-height));
-  position: fixed;
-  left: 0;
-  top: var(--topbar-height);
-  overflow-y: auto;
-  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
   z-index: 999;
+  transition: all var(--transition-normal);
 }
 
 .sidebar-header {
@@ -535,7 +536,7 @@ body {
 }
 
 .sidebar-header h3 {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--gray-900);
 }
@@ -546,35 +547,34 @@ body {
   border: none;
   color: var(--gray-500);
   cursor: pointer;
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
 }
 
-.sidebar-close:hover {
-  background: var(--gray-100);
-  color: var(--gray-700);
+.sidebar-nav {
+  flex: 1;
+  padding: var(--spacing-lg);
+  overflow-y: auto;
 }
 
 .sidebar-nav ul {
   list-style: none;
-  padding: var(--spacing-lg) 0;
 }
 
 .nav-item {
-  margin: var(--spacing-xs) 0;
+  margin-bottom: var(--spacing-sm);
 }
 
 .nav-item a {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md);
   color: var(--gray-700);
   text-decoration: none;
-  transition: all var(--transition-fast);
   border-radius: var(--radius-md);
-  margin: 0 var(--spacing-md);
+  transition: all var(--transition-fast);
+  font-weight: 500;
 }
 
 .nav-item:hover a,
@@ -583,20 +583,14 @@ body {
   color: white;
   transform: translateX(4px);
 }
-
-.nav-item a i {
+.nav-item i {
   width: 20px;
   text-align: center;
 }
 
 .sidebar-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: var(--spacing-lg);
   border-top: 1px solid var(--gray-200);
-  background: var(--bg-primary);
 }
 
 .company-info {
@@ -609,24 +603,134 @@ body {
   width: 40px;
   height: 40px;
   background: var(--primary-color);
-  border-radius: var(--radius-lg);
+  color: white;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.company-details h4 {
+  font-size: 0.875rem;
+  font-weight: 600;/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: var(--topbar-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--topbar-height));
+  background: var(--bg-primary);
+  border-right: 1px solid var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  transition: all var(--transition-normal);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.sidebar-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--gray-500);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+
+.nav-item {
+  margin-bottom: var(--spacing-sm);
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  color: var(--gray-700);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.nav-item:hover a,
+.nav-item.active a {
+  background: var(--primary-color);
   color: white;
+  transform: translateX(4px);
+}
+.nav-item i {
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-footer {
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--gray-200);
+}
+
+.company-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.company-logo {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .company-details h4 {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--gray-900);
-  margin-bottom: var(--spacing-xs);
 }
 
 .company-details p {
   font-size: 0.75rem;
   color: var(--gray-500);
 }
+
+
+  color: var(--gray-900);
+}
+
+.company-details p {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+
 
 /* Main Content */
 .main-content {
@@ -1486,4 +1590,29 @@ body.dark .view-all-notifications {
 
 body.dark .view-all-notifications:hover {
     background: #4b5563;
+}
+/* Aplica o estilo ao scrollbar da página ou do container desejado */
+body::-webkit-scrollbar {
+  width: 8px; /* Largura do scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #2c2f4a; /* Cor do trilho (fundo) */
+  border-radius: 8px; /* Cantos arredondados */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #7b63ff; /* Cor da barra em si */
+  border-radius: 8px; /* Cantos arredondados */
+  border: 2px solid #2c2f4a; /* Espaço entre a barra e o trilho */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #9b85ff; /* Cor da barra quando o mouse está em cima */
+}
+
+/* Para Firefox, que usa outra propriedade */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #7b63ff #2c2f4a;
 }
