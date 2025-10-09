@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard do Funcionário - TrainEasy</title>
-  <link rel="icon" type="image/png" href="../logo/logo.png">
   <link rel="stylesheet" href="dashboard-funcionario.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,71 +25,12 @@
     
     <div class="topbar-center">
       <div class="logo" id="logo">
-        <i><img src="../logo/logo.png" alt="Logo da Empresa" class="logo-img"></i>
+        <i class="fas fa-graduation-cap"></i>
         <span>TrainEasy</span>
       </div>
     </div>
 
     <div class="topbar-right">
-      <div class="header-controls">
-        <button class="search-btn" onclick="toggleSearch()">
-          <i class="fas fa-search"></i>
-        </button>
-        <div class="search-container" id="searchContainer">
-          <input type="text" placeholder="Buscar..." id="searchInput" onkeyup="handleSearch(event)">
-          <button class="search-close" onclick="closeSearch()">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <button class="notification-btn" onclick="toggleNotifications()">
-          <i class="fas fa-bell"></i>
-          <span class="notif-count">3</span>
-        </button>
-        <div class="notifications-dropdown" id="notificationsDropdown">
-          <div class="notifications-header">
-            <h3>Notificações</h3>
-            <button class="mark-all-read" onclick="markAllAsRead()">
-              <i class="fas fa-check-double"></i>
-            </button>
-          </div>
-          <div class="notifications-list">
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-graduation-cap"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Novo treinamento disponível</h4>
-                <p>JavaScript Avançado foi adicionado à sua lista</p>
-                <span class="notification-time">1 hora atrás</span>
-              </div>
-            </div>
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-trophy"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Parabéns!</h4>
-                <p>Você completou 5 treinamentos este mês</p>
-                <span class="notification-time">2 horas atrás</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-icon">
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Pontuação atualizada</h4>
-                <p>Você ganhou 150 pontos no último quiz</p>
-                <span class="notification-time">1 dia atrás</span>
-              </div>
-            </div>
-          </div>
-          <div class="notifications-footer">
-            <button class="view-all-notifications" onclick="viewAllNotifications()">
-              Ver todas as notificações
-            </button>
-          </div>
-        </div>
         <div class="theme-toggle">
           <button class="theme-btn" onclick="toggleTheme()">
             <i class="fas fa-moon" id="themeIcon"></i>
@@ -187,10 +127,7 @@
           <div class="stat-content">
             <h3 id="totalTrainings">0</h3>
             <p>Treinamentos Concluídos</p>
-            <span class="stat-change positive">
-              <i class="fas fa-arrow-up"></i>
-              +15% este mês
-            </span>
+  
           </div>
         </div>
         <div class="stat-card">
@@ -200,10 +137,6 @@
           <div class="stat-content">
             <h3 id="totalCertificates">0</h3>
             <p>Certificados Emitidos</p>
-            <span class="stat-change positive">
-              <i class="fas fa-arrow-up"></i>
-              +5% este mês
-            </span>
           </div>
         </div>
         <div class="stat-card">
@@ -213,10 +146,6 @@
           <div class="stat-content">
             <h3 id="totalPoints">0</h3>
             <p>Pontos Acumulados</p>
-            <span class="stat-change positive">
-              <i class="fas fa-arrow-up"></i>
-              +200 este mês
-            </span>
           </div>
         </div>
         <div class="stat-card">
@@ -226,10 +155,6 @@
           <div class="stat-content">
             <h3 id="completionRate">0%</h3>
             <p>Taxa de Conclusão</p>
-            <span class="stat-change negative">
-              <i class="fas fa-arrow-down"></i>
-              -2% este mês
-            </span>
           </div>
         </div>
       </section>
@@ -257,7 +182,5 @@
   <script src="dashboard-funcionario.js"></script>
 </body>
 </html>
-
-
 
 
