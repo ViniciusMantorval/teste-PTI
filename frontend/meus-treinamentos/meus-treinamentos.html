@@ -4,14 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meus Treinamentos - TrainEasy</title>
-  <link rel="icon" type="image/png" href="../logo/logo.png">
   <link rel="stylesheet" href="meus-treinamentos.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header/Topbar -->
-  <header class="topbar">
+   <!-- Header/Topbar -->
+   <header class="topbar">
     <div class="user-section">
       <div class="user-info">
         <div class="user-avatar">
@@ -21,57 +20,8 @@
           <span class="welcome-text" id="boasVindas">Bem-vindo, Admin</span>
           <span class="company-name" id="nome_empresa">TechCorp Solutions</span>
         </div>
-      </div>
-      <div class="header-actions">
-        <button class="notification-btn" onclick="toggleNotifications()">
-          <i class="fas fa-bell"></i>
-          <span class="notif-count">5</span>
-        </button>
-        <div class="notifications-dropdown" id="notificationsDropdown">
-          <div class="notifications-header">
-            <h3>Notificações</h3>
-            <button class="mark-all-read" onclick="markAllAsRead()">
-              <i class="fas fa-check-double"></i>
-            </button>
-          </div>
-          <div class="notifications-list">
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-plus-circle"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Novo treinamento criado</h4>
-                <p>Treinamento "React Avançado" foi criado com sucesso</p>
-                <span class="notification-time">5 min atrás</span>
-              </div>
-            </div>
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-edit"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Treinamento editado</h4>
-                <p>Conteúdo do curso JavaScript foi atualizado</p>
-                <span class="notification-time">1 hora atrás</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <div class="notification-content">
-                <h4>Funcionários inscritos</h4>
-                <p>25 funcionários se inscreveram em novos treinamentos</p>
-                <span class="notification-time">2 horas atrás</span>
-              </div>
-            </div>
-          </div>
-          <div class="notifications-footer">
-            <button class="view-all-notifications" onclick="viewAllNotifications()">
-              Ver todas as notificações
-            </button>
-          </div>
-        </div>
+      
+        
       </div>
     </div>
     
@@ -81,15 +31,6 @@
     </div>
     
     <div class="header-controls">
-      <button class="search-btn" onclick="toggleSearch()">
-        <i class="fas fa-search"></i>
-      </button>
-      <div class="search-container" id="searchContainer">
-        <input type="text" placeholder="Buscar..." id="searchInput" onkeyup="handleSearch(event)">
-        <button class="search-close" onclick="closeSearch()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
       <div class="theme-toggle">
         <button class="theme-btn" onclick="toggleTheme()">
           <i class="fas fa-moon" id="themeIcon"></i>
@@ -100,11 +41,11 @@
           <i class="fas fa-cog"></i>
         </button>
         <div class="user-menu-dropdown" id="userMenuDropdown">
-          <a href="#" onclick="openProfile()">
+          <a href="../perfil/perfil.html">
             <i class="fas fa-user"></i>
             Meu Perfil
           </a>
-          
+    
           <a href="#" onclick="openHelp()">
             <i class="fas fa-question-circle"></i>
             Ajuda
@@ -179,13 +120,6 @@
               <span>Estatísticas</span>
             </a>
           </li>
-          
-          <li class="nav-item active" onclick="setActiveMenuItem(this)">
-            <a href="../pagamento/pagamento.html">
-              <i class="fas fa-credit-card"></i>
-              <span>Pagamento</span>
-            </a>
-          </li>
         </ul>
       </nav>
 
@@ -230,6 +164,4 @@
   <script src="meus-treinamentos.js"></script>
 </body>
 </html>
-
-
 
