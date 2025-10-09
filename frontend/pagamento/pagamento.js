@@ -374,7 +374,7 @@ async function processPayment(event) {
   // Coletar dados do formulário
   const formData = new FormData(form);
   const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'credit_card';
-  
+  const id_empresa = sessionStorage.getItem("id_empresa")
   const paymentData = {
     // Dados do cliente
     payer: {
@@ -414,7 +414,8 @@ async function processPayment(event) {
     },
     // auto_return: 'approved',// funciona somente com server HTTPS
     external_reference: `order_${Date.now()}`,
-    notification_url: 'https://your-backend.com/webhooks/mercadopago'
+    notification_url: 'https://your-backend.com/webhooks/mercadopago',
+    id_empresa: id_empresa
   };
   
   // Mostrar loading
@@ -669,5 +670,6 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
+
 
 
