@@ -1564,12 +1564,13 @@ app.post("/create-mercadopago-preference", async (req, res) => {
 
     const data_pagamento = new Date().toISOString(); // ou usar a data recebida se houver
       const sql = `
-        INSERT INTO pagamentos (id_empresa, pagamento_id, status, itens., data_pagamento)
-        VALUES (?, ?, ?, ?, ?)
+        UPDATE empresas
+SET status = 'ativo' -- ou 'inativo', conforme o valor que quiser definir
+WHERE id = ?;
       `;
       const valor = 0; // você pode passar o valor real se tiver no query ou buscar via API
 
-      db.query(sql, [id_empresa, 0, "succsess", preferenceData.items[0].unit_price, data_pagamento]);
+      db.query(sql, [id_empresa]);
     
     
     res.json({
@@ -1699,6 +1700,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
