@@ -552,7 +552,7 @@ app.post("/salvar-treinamento", upload.single('video_manual'),(req, res) => {
   });
 
   // Verifica se o video url está vindo dentro do body- sendo exclusivo do modo automático
-  if (video_url){
+  if (!video_url){
 
     if (req.file) {
       const nomeArquivo = req.file.filename
