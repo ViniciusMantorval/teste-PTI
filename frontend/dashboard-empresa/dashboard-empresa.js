@@ -173,8 +173,8 @@ async function loadUserData() {
     if (footer_empresa_name) footer_empresa_name.textContent = `${data.nome}`;
       if (data.status !== 1) {
           console.log("alert")
-          alert("Pagamento aprovado com sucesso!");
-          window.location.href = "/dashboard-empresa/dashboard-empresa.html";
+          alert("A conta não ainda não concluiu pagamento. Redirecionando para pagamento ...!");
+          window.location.href = "/pagamento/pagamento.html";
       showAlert(`O status da sua empresa é ${data.status}. Por favor, verifique suas configurações.`, 'warning');
     }
   } catch (error) {
@@ -865,6 +865,7 @@ setTimeout(() => {
 
 
   
+
 
 
 
