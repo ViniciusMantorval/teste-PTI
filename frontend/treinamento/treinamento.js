@@ -424,6 +424,7 @@ async function loadTrainingData() {
         const videoPlayer = document.querySelector("#video");
         const link = `${treinamento.video_url}`;
         videoPlayer.src = link;  
+        videoPlayer.preload = "metadata";
         console.log(link);
         console.log(treinamento.video_url);
         videoPlayer.load();
@@ -627,5 +628,6 @@ async function loadTrainingData() {
     showNotification('Erro ao carregar dados do treinamento', 'error');
   }
 }
+
 
 
