@@ -1058,8 +1058,8 @@ app.post("/resgatar", (req, res) => {
         }
 
         // 5️⃣ Registrar resgate
-        const sqlInsert = "INSERT INTO recompensas_resgatadas (id_funcionario, id_recompensa) VALUES (?, ?)";
-        db.query(sqlInsert, [id_funcionario, id_recompensa], (err) => {
+        const sqlInsert = "INSERT INTO recompensas_resgatadas (id_funcionario, id_recompensa,data_resgate) VALUES (?, ?, ?)";
+        db.query(sqlInsert, [id_funcionario, id_recompensa, new Date()], (err) => {
           if (err) {
             console.error("Erro ao registrar resgate:", err);
             return res.status(500).json({ error: "Erro ao registrar resgate" });
@@ -1779,6 +1779,7 @@ app.get("/teste-mp", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
