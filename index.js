@@ -141,6 +141,82 @@ app.post('/funcionarios', (req, res) => {
   });
 });
 
+app.post("/importar-funcionarios", upload.single("arquivoExcel"), (req, res) => {
+  const file = req.file;
+  const { id_departamento } = req.body;
+
+  if (!file) return res.status(400).send("Nenhum arquivo foi enviado.");
+  if (!id_departamento) return res.status(400).send("O campo 'id_departamento' é obrigatório.");
+
+  try {
+    // Lê o Excel
+    const workbook = xlsx.readFile(file.path);
+    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    const data = xlsx.utils.sheet_to_json(sheet);
+
+    if (data.length === 0) {
+      fs.unlinkSync(file.path); // remove o arquivo
+      return res.status(400).send("A planilha está vazia.");
+    }
+
+    let index = 0;
+
+    function processNext() {
+      if (index >= data.length) {
+        // terminou o processamento — apaga o arquivo
+        try {
+          fs.unlinkSync(file.path);
+          console.log("Arquivo Excel removido com sucesso!");
+        } catch (e) {
+          console.error("Erro ao remover arquivo temporário:", e);
+        }
+        return res.send("Funcionários cadastrados com sucesso!");
+      }
+
+      const row = data[index];
+      const nome = row.nome || row.Nome;
+      const email = row.email || row.Email;
+      const senha = row.senha || row.Senha;
+
+      if (!nome || !email || !senha) {
+        console.warn(`Linha ${index + 1} ignorada (faltando campos).`);
+        index++;
+        return processNext();
+      }
+
+      bcrypt.hash(senha, 10, (err, hashedPassword) => {
+        if (err) {
+          console.error("Erro ao criptografar senha:", err);
+          index++;
+          return processNext();
+        }
+
+        const sql = `
+          INSERT INTO funcionarios (email, senha, id_departamento, nome, status)
+          VALUES (?, ?, ?, ?, 1)
+        `;
+
+        db.query(sql, [email, hashedPassword, id_departamento, nome], (err) => {
+          if (err) console.error(`Erro ao inserir linha ${index + 1}:`, err);
+          else console.log(`Funcionário ${nome} inserido com sucesso.`);
+
+          index++;
+          processNext();
+        });
+      });
+    }
+
+    processNext();
+  } catch (err) {
+    console.error("Erro ao processar planilha:", err);
+    // Se der erro, tenta remover o arquivo mesmo assim
+    try {
+      fs.unlinkSync(file.path);
+    } catch {}
+    res.status(500).send("Erro ao processar o arquivo Excel.");
+  }
+});
+
 
 // Rota POST - adiciona uma novo deparamento
 app.post('/departamentos', (req, res) => {
@@ -1779,6 +1855,7 @@ app.get("/teste-mp", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
