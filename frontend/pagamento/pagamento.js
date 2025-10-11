@@ -441,8 +441,8 @@ async function processPayment(event) {
       showSuccessModal();
       
       setTimeout(() => {
-        if (result.sandbox_init_point) {
-          window.location.href = result.sandbox_init_point;
+        if (result.init_point) {
+          window.location.href = result.init_point;
         } else {
           // Fallback: usar SDK do Mercado Pago
           initMercadoPagoCheckout(result.preference_id);
@@ -670,6 +670,7 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
+
 
 
 
