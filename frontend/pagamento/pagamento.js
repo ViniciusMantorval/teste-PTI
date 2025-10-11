@@ -18,7 +18,7 @@ const plans = {
   basic: {
     id: 'basic',
     name: 'Plano Básico',
-    price: 1499.90,
+    price: 49.90,
     description: 'Ideal para pequenas empresas',
     features: [
       'Até 50 funcionários',
@@ -30,7 +30,7 @@ const plans = {
   professional: {
     id: 'professional',
     name: 'Plano Professional',
-    price: 4499.90,
+    price: 99.90,
     description: 'Perfeito para empresas em crescimento',
     features: [
       'Até 200 funcionários',
@@ -43,7 +43,7 @@ const plans = {
   enterprise: {
     id: 'enterprise',
     name: 'Plano Enterprise',
-    price: 9999.90,
+    price: 199.90,
     description: 'Para grandes corporações',
     features: [
       'Funcionários ilimitados',
@@ -162,7 +162,7 @@ function updateOrderSummary() {
 async function loadUserData() {
   const id_empresa = sessionStorage.getItem("id_empresa");
   try {
-    const response = await fetch(`/empresa_data?id=${id_empresa}`);
+    const response = await fetch(`http://traineasy.selfip.com:3000/empresa_data?id=${id_empresa}`);
     const data = await response.json();
 
     const welcomeText = document.getElementById('boasVindas'); 
@@ -374,7 +374,7 @@ async function processPayment(event) {
   // Coletar dados do formulário
   const formData = new FormData(form);
   const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'credit_card';
-  const id_empresa = sessionStorage.getItem("id_empresa")
+  
   const paymentData = {
     // Dados do cliente
     payer: {
@@ -408,14 +408,13 @@ async function processPayment(event) {
     },
     // URLs de retorno
     back_urls: {
-      success: 'https://traineasy.up.railway.app/pagamento/sucesso',
-      failure: 'https://traineasy.up.railway.app/pagamento/falha',
-      pending: 'https://traineasy.up.railway.app/pagamento/pendente'
+      success: 'http://traineasy.selfip.com:3000/pagamento/sucesso',
+      failure: 'http://traineasy.selfip.com:3000/pagamento/falha',
+      pending: 'http://traineasy.selfip.com:3000/pagamento/pendente'
     },
     // auto_return: 'approved',// funciona somente com server HTTPS
     external_reference: `order_${Date.now()}`,
-    notification_url: 'https://your-backend.com/webhooks/mercadopago',
-    id_empresa: id_empresa
+    notification_url: 'https://your-backend.com/webhooks/mercadopago'
   };
   
   // Mostrar loading
@@ -424,7 +423,7 @@ async function processPayment(event) {
   try {
     // Chamar API do backend para criar preferência no Mercado Pago
     console.log(paymentData)
-    const response = await fetch('/create-mercadopago-preference', {
+    const response = await fetch('http://traineasy.selfip.com:3000/create-mercadopago-preference', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -670,6 +669,3 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
-
-
-
