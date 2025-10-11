@@ -510,7 +510,7 @@ body {
   display: flex;
   margin-top: var(--topbar-height);
   height: calc(100vh - var(--topbar-height));
-  overflow: hidden;
+  /* Removido overflow: hidden; para permitir scroll no body se necessário, mas o main-content já tem overflow-y */
 }
 
 .sidebar {
@@ -530,17 +530,25 @@ body {
   padding: var(--spacing-xl);
   overflow-y: auto;
   background-color: var(--bg-secondary);
-  /* Adicionado para garantir que o conteúdo principal não se sobreponha à sidebar */
-  width: calc(100% - var(--sidebar-width)); 
+  /* Adicionado overflow-x: auto; para permitir rolagem horizontal no conteúdo principal se a tabela for muito larga */
+  overflow-x: auto;
+  /* Definir uma largura mínima para o main-content para evitar que ele encolha demais */
+  min-width: 0; 
+  /* Adicionado para garantir que o main-content não force a largura da sidebar */
+  width: 100%;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  width: 100%; /* Garante que o container da tabela ocupe 100% da largura disponível */
+}
+
+.resgates-table {
+  width: 100%; /* A tabela deve ocupar 100% do seu container */
+  min-width: 700px; /* Garante que a tabela tenha uma largura mínima para exibir todas as colunas */
 }
 
 
-/* Media query para ajustar o layout em telas menores */
-@media (max-width: 1024px) {
-  .main-content {
-    width: 100%; /* Ocupa toda a largura quando a sidebar está oculta ou sobreposta */
-  }
-}
   border-bottom: 1px solid var(--gray-200);
 }
 
@@ -1272,14 +1280,31 @@ body {
 
 
 
-/* Ajustes para a tabela de resgates */
-.resgates-table {
-  min-width: 700px; /* Garante que a tabela tenha uma largura mínima para exibir todas as colunas */
+
+
+/* Media queries para responsividade */
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    left: -var(--sidebar-width);
+    top: var(--topbar-height);
+    height: calc(100vh - var(--topbar-height));
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.show {
+    transform: translateX(var(--sidebar-width));
+  }
+
+  .main-content {
+    margin-left: 0; /* Remove o margin-left quando a sidebar está oculta */
+    width: 100%; /* Ocupa toda a largura disponível */
+  }
 }
 
-/* Media query para telas menores, ajustando o padding do main-content */
 @media (max-width: 768px) {
-  .main-content {
-    padding: var(--spacing-lg); /* Reduz o padding em telas menores */
+  .resgates-table {
+    min-width: 600px; /* Reduz a largura mínima da tabela para telas menores */
   }
 }
