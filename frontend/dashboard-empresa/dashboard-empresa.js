@@ -95,10 +95,10 @@ let notifications = [
 // Dados simulados
 const dashboardData = {
   stats: {
-    employees: 248,
-    trainings: 42,
-    certificates: 1847,
-    completionRate: 87
+    employees: 0,
+    trainings: 0,
+    certificates: 0,
+    completionRate: 0
   },
   recentActivities: [
     {
@@ -397,7 +397,7 @@ async function animateStats() {
   
   statElements.forEach((element, index) => {
     const targetValue = stats[index];
-    const isPercentage = index === 3; // Taxa de conclusão
+    const isPercentage = index === 2; // Taxa de conclusão
     animateNumber(element, 0, targetValue, 2000, isPercentage);
   });
 }
@@ -865,6 +865,7 @@ setTimeout(() => {
 
 
   
+
 
 
 
