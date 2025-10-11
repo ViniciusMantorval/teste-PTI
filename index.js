@@ -1725,10 +1725,34 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
   }
 });
 
+
+// teste mercado pago, remover posteriormente
+app.get("/teste-mp", async (req, res) => {
+  try {
+    const response = await mercadopago.preferences.create({
+      body: {
+        items: [{ title: "Teste", quantity: 1, currency_id: "BRL", unit_price: 10 }],
+        back_urls: {
+          success: "https://traineasy.up.railway.app/pagamento/sucesso",
+          failure: "https://traineasy.up.railway.app/pagamento/falha",
+          pending: "https://traineasy.up.railway.app/pagamento/pendente"
+        },
+        auto_return: "approved"
+      }
+    });
+    res.json(response);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: err });
+  }
+});
+
+
 // Iniciar servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
