@@ -220,6 +220,36 @@
               <i class="fas fa-plus"></i>
               Adicionar Funcionário
             </button>
+			<button id="importar_excel_btn" class="btn-secondary">
+				<i class="fas fa-file-excel"></i>
+				Importar do Excel
+			</button>
+          </div>
+        </div>
+
+        <!-- Modal de Importação de Excel -->
+        <div id="excelImportModal" class="modal">
+          <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Importar Funcionários via Excel</h2>
+            <p>Baixe o modelo, preencha com os dados dos funcionários e faça o upload.</p>
+            <div class="modal-actions">
+              <button id="download_template_btn" class="btn-secondary">
+                <i class="fas fa-download"></i>
+                Baixar Modelo Excel
+              </button>
+              <label for="excel_file_input" class="btn-primary">
+                <i class="fas fa-upload"></i>
+                Selecionar Arquivo Excel
+              </label>
+              <input type="file" id="excel_file_input" accept=".xlsx, .xls" style="display: none;">
+              <button id="upload_excel_btn" class="btn-primary" style="display: none;">
+                <i class="fas fa-cloud-upload-alt"></i>
+                Fazer Upload
+              </button>
+            </div>
+            <div id="file_name_display" class="file-name-display">Nenhum arquivo selecionado.</div>
+            <div id="upload_progress" class="upload-progress" style="display: none;"></div>
           </div>
         </div>
         
@@ -278,7 +308,7 @@
                     placeholder="Escolha uma senha segura" 
                     required
                   />
-                  <button type="button" class="password-toggle" onclick="togglePassword('funcionario_senha')">
+                  <button type="button" class="password-toggle" onclick="togglePassword(\'funcionario_senha\')">
                     <i class="fas fa-eye"></i>
                   </button>
                 </div>
@@ -361,7 +391,7 @@
           </div>
           <h4>Nenhum funcionário encontrado</h4>
           <p>Adicione o primeiro funcionário para começar a gerenciar sua equipe</p>
-          <button class="btn-primary" onclick="document.getElementById('adicionar_funcionario').click()">
+          <button class="btn-primary" onclick="document.getElementById(\'adicionar_funcionario\').click()">
             <i class="fas fa-plus"></i>
             Adicionar Primeiro Funcionário
           </button>
