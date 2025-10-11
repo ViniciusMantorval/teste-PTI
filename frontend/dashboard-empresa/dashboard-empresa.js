@@ -393,7 +393,7 @@ async function animateStats() {
 
   const data = await response.json();
   console.log(data);
-  const stats = [data.funcionarios_ativos, data.treinamentos_ativos, data.certificados_emitidos, data.taxa_conclusao];
+  const stats = [data.funcionarios_ativos, data.treinamentos_ativos, data.taxa_conclusao, data.taxa_conclusao];
   
   statElements.forEach((element, index) => {
     const targetValue = stats[index];
@@ -865,6 +865,7 @@ setTimeout(() => {
 
 
   
+
 
 
 
