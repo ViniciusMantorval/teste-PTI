@@ -816,3 +816,124 @@ function showNotification(message, type = 'info') {
 }
 
 
+
+
+
+// ==========================================
+// FUNCIONALIDADES DE IMPORTAÇÃO DE EXCEL
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const excelImportModal = document.getElementById("excelImportModal");
+  const importarExcelBtn = document.getElementById("importar_excel_btn");
+  const closeButton = excelImportModal.querySelector(".close-button");
+  const downloadTemplateBtn = document.getElementById("download_template_btn");
+  const excelFileInput = document.getElementById("excel_file_input");
+  const uploadExcelBtn = document.getElementById("upload_excel_btn");
+  const fileNameDisplay = document.getElementById("file_name_display");
+  const uploadProgress = document.getElementById("upload_progress");
+
+  let selectedFile = null;
+
+  // Abrir modal
+  if (importarExcelBtn) {
+    importarExcelBtn.addEventListener("click", () => {
+      excelImportModal.style.display = "block";
+    });
+  }
+
+  // Fechar modal
+  if (closeButton) {
+    closeButton.addEventListener("click", () => {
+      excelImportModal.style.display = "none";
+      resetExcelImportForm();
+    });
+  }
+
+  // Fechar modal ao clicar fora
+  window.addEventListener("click", (event) => {
+    if (event.target == excelImportModal) {
+      excelImportModal.style.display = "none";
+      resetExcelImportForm();
+    }
+  });
+
+  // Baixar modelo
+  if (downloadTemplateBtn) {
+    downloadTemplateBtn.addEventListener("click", () => {
+      const link = document.createElement("a");
+      link.href = "/modelo_funcionarios.xlsx"; // Rota para o modelo Excel
+      link.download = "modelo_funcionarios.xlsx";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showNotification("Modelo Excel baixado com sucesso!", "success");
+    });
+  }
+
+  // Selecionar arquivo
+  if (excelFileInput) {
+    excelFileInput.addEventListener("change", (event) => {
+      selectedFile = event.target.files[0];
+      if (selectedFile) {
+        fileNameDisplay.textContent = `Arquivo selecionado: ${selectedFile.name}`;
+        uploadExcelBtn.style.display = "inline-block";
+      } else {
+        fileNameDisplay.textContent = "Nenhum arquivo selecionado.";
+        uploadExcelBtn.style.display = "none";
+      }
+    });
+  }
+
+  // Fazer upload do arquivo
+  if (uploadExcelBtn) {
+    uploadExcelBtn.addEventListener("click", async () => {
+      if (!selectedFile) {
+        showNotification("Por favor, selecione um arquivo Excel para upload.", "warning");
+        return;
+      }
+
+      showLoadingOverlay();
+      uploadProgress.style.display = "block";
+      uploadProgress.value = 0;
+
+      const formData = new FormData();
+      formData.append("arquivoExcel", selectedFile);
+      formData.append("id_departamento", localStorage.getItem("id_departamento"));
+
+      try {
+        const response = await fetch("/importar-funcionarios", {
+          method: "POST",
+          body: formData,
+          // Não defina Content-Type para FormData, o navegador faz isso automaticamente
+        });
+
+        if (response.ok) {
+          showNotification("Funcionários importados com sucesso!", "success");
+          excelImportModal.style.display = "none";
+          resetExcelImportForm();
+          await loadEmployees(); // Recarregar lista de funcionários
+        } else {
+          const errorText = await response.text();
+          showNotification(`Erro ao importar funcionários: ${errorText}`, "error");
+        }
+      } catch (error) {
+        console.error("Erro ao fazer upload do arquivo Excel:", error);
+        showNotification("Erro de rede ou servidor ao importar funcionários.", "error");
+      } finally {
+        hideLoadingOverlay();
+        uploadProgress.style.display = "none";
+      }
+    });
+  }
+
+  function resetExcelImportForm() {
+    selectedFile = null;
+    excelFileInput.value = "";
+    fileNameDisplay.textContent = "Nenhum arquivo selecionado.";
+    uploadExcelBtn.style.display = "none";
+    uploadProgress.style.display = "none";
+    uploadProgress.value = 0;
+  }
+});
+
