@@ -1852,45 +1852,19 @@ app.get("/teste-mp", async (req, res) => {
 });
 
 
+app.get("/modelo_funcionarios.xlsx", (req, res) => {
+  const filePath = path.join(__dirname, "frontend", "modelo_funcionarios.xlsx");
+
+  res.download(filePath, "modelo_funcionarios.xlsx", (err) => {
+    if (err) {
+      console.error("Erro ao enviar modelo:", err);
+      res.status(500).send("Erro ao baixar o modelo Excel.");
+    }
+  });
+});
+
 // Iniciar servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
