@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   loadUserData();
   checkThemePreference();
   carregarRecompensas(); // Função original para carregar recompensas
+  carregarResgates(); // Nova função para carregar resgates
 });
 
 // Inicializar dashboard
@@ -721,4 +722,74 @@ function setupCardButtons(card, recompensaData, id_empresa) {
     };
 }
 
+
+
+
+
+// Função para carregar e exibir os resgates de recompensas
+async function carregarResgates() {
+  const listaResgates = document.getElementById("lista-resgates");
+  const id_empresa = sessionStorage.getItem("id_empresa");
+
+  if (!id_empresa) {
+    showNotification("ID da empresa não encontrado para carregar resgates.", "error");
+    return;
+  }
+
+  try {
+    showLoadingOverlay();
+    listaResgates.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align: center; padding: 20px;">
+          <i class="fas fa-spinner fa-spin" style="font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+          <p style="color: var(--gray-600);">Carregando histórico de resgates...</p>
+        </td>
+      </tr>
+    `;
+
+    const res = await fetch(`/resgates/${id_empresa}`);
+    if (!res.ok) {
+      throw new Error(`Erro HTTP: ${res.status}`);
+    }
+    const resgates = await res.json();
+
+    listaResgates.innerHTML = ""; // Limpa o estado de carregamento
+
+    if (resgates.length === 0) {
+      listaResgates.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 20px;">
+            <i class="fas fa-box-open" style="font-size: 2rem; color: var(--gray-400); margin-bottom: 0.5rem;"></i>
+            <p style="color: var(--gray-500);">Nenhum resgate encontrado para esta empresa.</p>
+          </td>
+        </tr>
+      `;
+    } else {
+      resgates.forEach(resgate => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${resgate.id_recompensas_resgatadas}</td>
+          <td>${resgate.nome_funcionario}</td>
+          <td>${resgate.nome_recompensa}</td>
+          <td>${resgate.descricao_recompensa}</td>
+          <td>${new Date(resgate.data_resgate).toLocaleDateString()}</td>
+        `;
+        listaResgates.appendChild(tr);
+      });
+    }
+  } catch (error) {
+    console.error("Erro ao carregar resgates:", error);
+    showNotification("Erro ao carregar histórico de resgates.", "error");
+    listaResgates.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align: center; padding: 20px; color: var(--error-color);">
+          <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+          <p>Não foi possível carregar os resgates. Tente novamente mais tarde.</p>
+        </td>
+      </tr>
+    `;
+  } finally {
+    hideLoadingOverlay();
+  }
+}
 

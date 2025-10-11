@@ -1200,3 +1200,64 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #7b63ff #2c2f4a;
 }
+
+
+/* Seção de Resgates */
+.resgates-section {
+  background-color: var(--bg-primary);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-top: var(--spacing-xl);
+}
+
+.resgates-section h3 {
+  font-size: 1.25rem;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.resgates-section h3 i {
+  color: var(--primary-color);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.resgates-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spacing-md);
+}
+
+.resgates-table thead th {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-align: left;
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.resgates-table tbody tr {
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.resgates-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.resgates-table tbody tr:hover {
+  background-color: var(--gray-50);
+}
+
+.resgates-table tbody td {
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: var(--gray-700);
+  font-size: 0.875rem;
+}
+
