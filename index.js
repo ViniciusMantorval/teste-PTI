@@ -177,7 +177,7 @@ app.post("/importar-funcionarios", upload.single("arquivoExcel"), (req, res) => 
       const row = data[index];
       const nome = row.nome || row.Nome;
       const email = row.email || row.Email;
-      const senha = row.senha || row.Senha;
+      const senha = String(row.senha || row.Senha || "").trim();
 
       if (!nome || !email || !senha) {
         console.warn(`Linha ${index + 1} ignorada (faltando campos).`);
@@ -1856,6 +1856,7 @@ app.get("/teste-mp", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
