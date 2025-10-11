@@ -1523,6 +1523,33 @@ app.get("/certificados/:id_funcionario", async (req, res) => {
 });
 
 
+app.get("/resgates/:id_empresa", async (req, res) => {
+  const { id_empresa } = req.params;
+
+  const sql = `
+    SELECT 
+        rr.id_recompensas_resgatadas,
+        f.nome AS nome_funcionario,
+        r.nome AS nome_recompensa,
+        r.descricao AS descricao_recompensa,
+        rr.data_resgate
+    FROM recompensas_resgatadas rr
+    JOIN funcionarios f ON rr.id_funcionario = f.id_funcionario
+    JOIN recompensas r ON rr.id_recompensa = r.id_recompensa
+    WHERE r.id_empresa = ?
+    ORDER BY rr.data_resgate DESC
+  `;
+
+  db.query(sql, [id_empresa], (err, results) => {
+    if (err) {
+      console.error("Erro ao buscar resgates:", err);
+      return res.status(500).json({ erro: "Erro ao buscar resgates" });
+    }
+    res.json(results);
+  });
+});
+
+
 app.get("/fill_dashboard_funcionario", (req, res) => {
   const { id } = req.query;
  
@@ -1752,6 +1779,7 @@ app.get("/teste-mp", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
