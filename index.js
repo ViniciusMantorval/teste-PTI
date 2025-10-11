@@ -5,6 +5,7 @@ const multer = require('multer');
 const fs = require('fs');
 const axios = require('axios');
 const path = require('path');
+const xlsx = require("xlsx");
 
 require('dotenv').config(); 
 
@@ -1855,6 +1856,7 @@ app.get("/teste-mp", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
