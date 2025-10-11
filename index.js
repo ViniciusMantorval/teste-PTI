@@ -1729,7 +1729,7 @@ app.post("/webhook-mercadopago", express.json(), async (req, res) => {
 // teste mercado pago, remover posteriormente
 app.get("/teste-mp", async (req, res) => {
   try {
-    const response = await mercadopago.preferences.create({
+    const response = await preference.create({
       body: {
         items: [{ title: "Teste", quantity: 1, currency_id: "BRL", unit_price: 10 }],
         back_urls: {
@@ -1752,6 +1752,7 @@ app.get("/teste-mp", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
