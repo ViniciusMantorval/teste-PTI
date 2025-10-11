@@ -627,6 +627,16 @@ body {
   margin-left: var(--sidebar-width);
   padding: var(--spacing-xl);
   min-height: calc(100vh - var(--topbar-height));
+  width: calc(100% - var(--sidebar-width)); /* Garante que o main-content ocupe o espaço restante */
+  position: relative; /* Necessário para que o z-index funcione */
+  z-index: 1; /* Garante que o conteúdo principal esteja acima de outros elementos */
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 0; /* Remove o margin-left em telas menores */
+    width: 100%; /* Ocupa 100% da largura */
+  }
 }
 
 /* Page Header */
