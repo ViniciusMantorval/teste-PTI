@@ -466,6 +466,7 @@ function logout() {
         showLoading();
         setTimeout(() => {
             localStorage.clear();
+            sessionStorage.clear();
             window.location.href = "../login/login.html";
         }, 1000);
     }
