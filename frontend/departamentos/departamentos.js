@@ -656,7 +656,7 @@ function refreshDepartments() {
 }
 
 // Atualizar estatísticas
-function updateStats() {
+async function updateStats() {
   const id_empresa = sessionStorage.getItem("id_empresa");
   const response = await fetch(`/fill_departamentos?id =${id_empresa}`);
   const data = await response.json();
@@ -776,6 +776,7 @@ function showConfirmModal(title, message, onConfirm) {
     }
   });
 }
+
 
 
 
