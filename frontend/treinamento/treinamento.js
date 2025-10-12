@@ -61,21 +61,21 @@ function setupEventListeners() {
 }
 
 // Carregar dados do usuário
-function loadUserData() {//Atualizar para fetch
-  const welcomeText = document.getElementById('boasVindas');
-  const companyName = document.getElementById('nome_empresa');
-  
-  if (welcomeText) welcomeText.textContent = 'Bem-vindo, Funcionário';
-  if (companyName) companyName.textContent = 'TechCorp Solutions';
-}
+async function loadUserData() {
+  const id_empresa = sessionStorage.getItem("id_empresa");
+  try {
+    const response = await fetch(`/empresa_data?id=${id_empresa}`);
+    const data = await response.json();
 
-// Verificar preferência de tema
-function checkThemePreference() {
-  const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-    enableDarkMode();
+    const welcomeText = document.getElementById('boasVindas'); 
+    const companyName = document.getElementById('nome_empresa');
+    const footer_empresa_name = document.getElementById('footer_empresa_name');
+
+    if (welcomeText) welcomeText.innerText = `Bem-vindo, ${data.nome}`;
+    if (companyName) companyName.innerText = data.nome;
+    if (footer_empresa_name) footer_empresa_name.textContent = data.nome;
+  } catch (error) {
+    console.error("Falha ao carregar dados:", error);
   }
 }
 
@@ -628,6 +628,7 @@ async function loadTrainingData() {
     showNotification('Erro ao carregar dados do treinamento', 'error');
   }
 }
+
 
 
 
