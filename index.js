@@ -1668,7 +1668,7 @@ GROUP BY f.id_Funcionario;
   });
 });
 
-app.get("//fill_departamentos", (req, res) => {
+app.get("/fill_departamentos", (req, res) => {
   const { id } = req.query;
  
   const sql = `
@@ -1894,5 +1894,6 @@ app.get("/modelo_funcionarios.xlsx", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
