@@ -1668,6 +1668,33 @@ GROUP BY f.id_Funcionario;
   });
 });
 
+app.get("//fill_departamentos", (req, res) => {
+  const { id } = req.query;
+ 
+  const sql = `
+    SELECT 
+  (SELECT COUNT(*) 
+   FROM departamentos 
+   WHERE id_empresa = ?) AS total_departamentos,
+
+  (SELECT COUNT(*) 
+   FROM funcionarios f
+   JOIN departamentos d ON f.id_departamento = d.id
+   WHERE d.id_empresa = ?) AS total_funcionarios;
+  `;
+
+  db.query(sql, [id,id], (err, result) => {
+    if (err) {
+      console.error("Erro ao buscar dados do dashboard:", err);
+      return res.status(500).json({ error: "Erro no servidor" });
+    }
+
+    if (result.length > 0) {
+      res.json(result[0]);
+    } 
+  });
+});
+
 app.get('/download/:filename', (req, res) => {
   const file = path.join(__dirname, 'uploads', req.params.filename);
   res.download(file); // força o download
@@ -1867,4 +1894,5 @@ app.get("/modelo_funcionarios.xlsx", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
