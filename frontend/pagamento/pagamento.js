@@ -638,13 +638,13 @@ function openHelp() {
 }
 
 function logout() {
-  if (confirm('Tem certeza que deseja sair?')) {
-    showNotification('Fazendo logout...', 'info');
-    // Aqui você pode adicionar a lógica de logout
-    setTimeout(() => {
-      window.location.href = '../login/login.html';
-    }, 1000);
-  }
+  showLoadingOverlay();
+  
+  setTimeout(() => {
+    hideLoadingOverlay();
+    showNotification('Logout realizado com sucesso!', 'success');
+    window.location.href = '../index/index.html';
+  }, 2000);
 }
 
 // Utilitários para formatação
@@ -672,6 +672,7 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
+
 
 
 
