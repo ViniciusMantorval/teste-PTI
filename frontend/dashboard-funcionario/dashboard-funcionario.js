@@ -472,14 +472,22 @@ async function fillDashboarInfo() {
 
   totalTrainings.innerText = response.treinamentos_concluidos
   totalCertificates.innerText = response.certificados_emitidos
+  if(response.pontos_acumulados){
   totalPoints.innerText = response.pontos_acumulados
-  completionRate.innerText = `${response.taxa_conclusao_percentual}%`
+  }else{
+  totalPoints.innerText = "0"
+  }
+  if(response.taxa_conclusao_percentual){
+  completionRate.innerText = `${response.taxa_conclusao_percentual}%` 
+  }
+  completionRate.innerText = "0"
 }
 
 function abrirTreinamento(id) {
   showNotification('Abrindo treinamento...', 'info');
   window.location.href = `../treinamento/treinamento.html?id=${id}`;
 }
+
 
 
 
