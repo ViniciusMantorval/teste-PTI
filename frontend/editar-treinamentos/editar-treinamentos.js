@@ -518,15 +518,13 @@ function loadCompanyInfo() {
 
 // Logout
 function logout() {
-  showLoadingOverlay();
-  
-  setTimeout(() => {
-    hideLoadingOverlay();
-   
-    // Limpar dados locais
-    localStorage.clear();
-    sessionStorage.clear();
-  }, 2000);
+  if (confirm('Tem certeza que deseja sair?')) {
+    showNotification('Fazendo logout...', 'info');
+    // Aqui você pode adicionar a lógica de logout
+    setTimeout(() => {
+      window.location.href = '../login/login.html';
+    }, 1000);
+  }
 }
 
 // Voltar para página anterior
@@ -761,5 +759,6 @@ function closeNotification(button) {
     }, 300);
   }
 }
+
 
 
