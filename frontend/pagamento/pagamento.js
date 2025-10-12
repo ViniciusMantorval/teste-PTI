@@ -639,9 +639,11 @@ function openHelp() {
 
 function logout() {
   if (confirm('Tem certeza que deseja sair?')) {
-    console.log('Fazendo logout...');
-    // Implementar logout
-    window.location.href = '/login';
+    showNotification('Fazendo logout...', 'info');
+    // Aqui você pode adicionar a lógica de logout
+    setTimeout(() => {
+      window.location.href = '../login/login.html';
+    }, 1000);
   }
 }
 
@@ -670,6 +672,7 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
+
 
 
 
