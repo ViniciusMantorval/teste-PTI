@@ -380,6 +380,11 @@ body {
   color: var(--primary-color);
   text-decoration: none;
 }
+.logo-img {
+  height: 30px;
+  width: auto;
+  margin-right: 8px;
+}
 
 .logo i {
   font-size: 1.75rem;
@@ -1103,3 +1108,4 @@ body.dark .view-all-notifications {
 body.dark .view-all-notifications:hover {
     background: #4b5563;
 }
+
