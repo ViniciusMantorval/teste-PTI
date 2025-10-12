@@ -638,10 +638,7 @@ function openHelp() {
 }
 
 function logout() {
-  if (confirm('Tem certeza que deseja sair?')) {
-    showNotification('Fazendo logout...', 'info');
     window.location.href = '../login/login.html';
-  }
 }
 
 // Utilitários para formatação
@@ -669,6 +666,7 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
+
 
 
 
