@@ -62,21 +62,16 @@ function setupEventListeners() {
 
 // Carregar dados do usuário
 async function loadUserData() {
-  const id_empresa = sessionStorage.getItem("id_empresa");
-  try {
-    const response = await fetch(`/empresa_data?id=${id_empresa}`);
-    const data = await response.json();
-
-    const welcomeText = document.getElementById('boasVindas'); 
-    const companyName = document.getElementById('nome_empresa');
-    const footer_empresa_name = document.getElementById('footer_empresa_name');
-
-    if (welcomeText) welcomeText.innerText = `Bem-vindo, ${data.nome}`;
-    if (companyName) companyName.innerText = data.nome;
-    if (footer_empresa_name) footer_empresa_name.textContent = data.nome;
-  } catch (error) {
-    console.error("Falha ao carregar dados:", error);
-  }
+  const welcomeText = document.getElementById('boasVindas');
+  const companyName = document.getElementById('nome_empresa');
+  const footer_empresa_name = document.getElementById('footer_empresa_name');
+  const id = sessionStorage.getItem("id_funcionario")
+  const tipo = sessionStorage.getItem("tipo")
+  const res = await fetch(`/fill_profile?id=${id}&tipo=${tipo}`);
+  const data = await res.json();
+  if (welcomeText) welcomeText.textContent = `Bem-vindo, ${data.nome}`;
+  if (companyName) companyName.textContent = `${data.empresa}`;
+  if (footer_empresa_name) footer_empresa_name.textContent = `${data.empresa}`;
 }
 
 // Alternar tema
@@ -628,6 +623,7 @@ async function loadTrainingData() {
     showNotification('Erro ao carregar dados do treinamento', 'error');
   }
 }
+
 
 
 
