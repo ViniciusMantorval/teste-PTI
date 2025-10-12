@@ -260,13 +260,13 @@ function openHelp() {
 
 // Logout
 function logout() {
-  showLoadingOverlay();
-  
-  setTimeout(() => {
-    hideLoadingOverlay();
-    showNotification('Logout realizado com sucesso!', 'success');
-    window.location.href = '../index/index.html';
-  }, 2000);
+  if (confirm('Tem certeza que deseja sair?')) {
+    showNotification('Fazendo logout...', 'info');
+    // Aqui você pode adicionar a lógica de logout
+    setTimeout(() => {
+      window.location.href = '../login/login.html';
+    }, 1000);
+  }
 }
 
 // Mostrar overlay de carregamento
@@ -624,6 +624,7 @@ async function loadTrainingData() {
     showNotification('Erro ao carregar dados do treinamento', 'error');
   }
 }
+
 
 
 
