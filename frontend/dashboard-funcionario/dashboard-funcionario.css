@@ -235,6 +235,11 @@ body {
   color: var(--primary-color);
   text-decoration: none;
 }
+.logo-img {
+  height: 30px;
+  width: auto;
+  margin-right: 8px;
+}
 
 .logo i {
   font-size: 1.75rem;
@@ -1051,4 +1056,5 @@ body::-webkit-scrollbar-thumb:hover {
 body {
   scrollbar-width: thin;
   scrollbar-color: #7b63ff #2c2f4a;
+
 }
