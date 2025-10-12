@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     hideLoadingState();
 
     // Atualizar estatísticas
-    updateStats(texto.length);
+    updateStats();
 
     for (let x in texto) {
       const node = document.createElement("div");
@@ -656,9 +656,12 @@ function refreshDepartments() {
 }
 
 // Atualizar estatísticas
-function updateStats(totalDepartments = 0) {
-  document.getElementById('totalDepartments').textContent = totalDepartments;
-  document.getElementById('totalEmployees').textContent = totalDepartments * 4; // Estimativa
+function updateStats() {
+  const id_empresa = sessionStorage.getItem("id_empresa");
+  const response = await fetch(`/fill_departamentos?id =${id_empresa}`);
+  const data = await response.json();
+  document.getElementById('totalDepartments').textContent = data.total_departamentos;
+  document.getElementById('totalEmployees').textContent = data.total_funcionarios; 
 }
 
 // Estados da interface
@@ -773,6 +776,7 @@ function showConfirmModal(title, message, onConfirm) {
     }
   });
 }
+
 
 
 
