@@ -265,6 +265,7 @@ function logout() {
   setTimeout(() => {
     hideLoadingOverlay();
     showNotification('Logout realizado com sucesso!', 'success');
+    window.location.href = '../index/index.html';
   }, 2000);
 }
 
@@ -623,6 +624,7 @@ async function loadTrainingData() {
     showNotification('Erro ao carregar dados do treinamento', 'error');
   }
 }
+
 
 
 
