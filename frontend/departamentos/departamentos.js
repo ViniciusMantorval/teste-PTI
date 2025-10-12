@@ -592,20 +592,13 @@ function openHelp() {
 }
 
 function logout() {
-  showConfirmModal(
-    'Confirmar Logout',
-    'Tem certeza que deseja sair da sua conta?',
-    () => {
-      showLoadingOverlay();
-      // Limpar dados da sessão
-      sessionStorage.clear();
-      localStorage.removeItem('user_token');
-      
-      setTimeout(() => {
-        window.location.href = '../login/login.html';
-      }, 1000);
-    }
-  );
+  if (confirm('Tem certeza que deseja sair?')) {
+    showNotification('Fazendo logout...', 'info');
+    // Aqui você pode adicionar a lógica de logout
+    setTimeout(() => {
+      window.location.href = '../login/login.html';
+    }, 1000);
+  }
 }
 
 // Toggle de tema
@@ -780,5 +773,6 @@ function showConfirmModal(title, message, onConfirm) {
     }
   });
 }
+
 
 
