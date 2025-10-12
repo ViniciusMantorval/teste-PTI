@@ -446,8 +446,8 @@ function logout() {
   
   setTimeout(() => {
     hideLoadingOverlay();
-    
-    // Aqui você implementaria o logout real
+    showNotification('Logout realizado com sucesso!', 'success');
+    window.location.href = '../index/index.html';
   }, 2000);
 }
 
@@ -865,6 +865,7 @@ setTimeout(() => {
 
 
   
+
 
 
 
