@@ -394,7 +394,15 @@ function handleWindowResize() {
     }
   }
 }
-
+function logout() {
+  if (confirm('Tem certeza que deseja sair?')) {
+    showNotification('Fazendo logout...', 'info');
+    // Aqui você pode adicionar a lógica de logout
+    setTimeout(() => {
+      window.location.href = '../login/login.html';
+    }, 1000);
+  }
+}
 // ===== CÓDIGO ORIGINAL PARA CARREGAR TREINAMENTOS =====
 async function loadTrainings() {
   const container = document.querySelector(".cursos-container");
@@ -487,6 +495,7 @@ function abrirTreinamento(id) {
   showNotification('Abrindo treinamento...', 'info');
   window.location.href = `../treinamento/treinamento.html?id=${id}`;
 }
+
 
 
 
