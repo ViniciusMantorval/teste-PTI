@@ -271,7 +271,15 @@ function setActiveMenuItem(element) {
   element.classList.add('active');
 }
 
-
+function logout() {
+  if (confirm('Tem certeza que deseja sair?')) {
+    showNotification('Fazendo logout...', 'info');
+    // Aqui você pode adicionar a lógica de logout
+    setTimeout(() => {
+      window.location.href = '../login/login.html';
+    }, 1000);
+  }
+}
 
 // Mostrar overlay de carregamento
 function showLoadingOverlay() {
@@ -656,5 +664,6 @@ function viewTrainingDetails(id) {
 function editTraining(id) {
   showNotification(`Editando treinamento ${id}...`, 'info');
 }
+
 
 
