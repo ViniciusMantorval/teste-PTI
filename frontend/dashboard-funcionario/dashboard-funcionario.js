@@ -480,13 +480,14 @@ async function fillDashboarInfo() {
   if(response.taxa_conclusao_percentual){
   completionRate.innerText = `${response.taxa_conclusao_percentual}%` 
   }
-  completionRate.innerText = "0"
+  completionRate.innerText = "0%"
 }
 
 function abrirTreinamento(id) {
   showNotification('Abrindo treinamento...', 'info');
   window.location.href = `../treinamento/treinamento.html?id=${id}`;
 }
+
 
 
 
