@@ -779,7 +779,22 @@ function showConfirmModal(title, message, onConfirm) {
 
 
 
-
+document.addEventListener('DOMContentLoaded', function() {
+  // Encontra todos os itens do menu
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  // Remove a classe 'active' de todos
+  navItems.forEach(item => {
+    item.classList.remove('active');
+  });
+  
+  // Adiciona a classe 'active' apenas ao primeiro item (Dashboard)
+  // Ou ao item que corresponde à seção atual
+  const dashboardItem = document.querySelector('.nav-item a[href="#dashboard"]').parentElement; // Ajuste o seletor se necessário
+  if (dashboardItem) {
+    dashboardItem.classList.add('active');
+  }
+});
 
 
 
