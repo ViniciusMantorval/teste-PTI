@@ -406,55 +406,107 @@ function handleWindowResize() {
 async function carregarCertificados() {
   const userId = sessionStorage.getItem("id_funcionario");
 
-  const res = await fetch(`/certificados/${userId}`);
-  const certificados = await res.json();
+  // Adicionado para o caso de não encontrar o ID
+  if (!userId) {
+    console.error("ID do funcionário não encontrado na sessão.");
+    // Você pode querer mostrar uma mensagem de erro na tela aqui
+    return;
+  }
 
-  const container = document.getElementById("lista-certificados");
-  container.innerHTML = "";
+  try {
+    const res = await fetch(`/certificados/${userId}`);
+    if (!res.ok) {
+      throw new Error(`Erro na requisição: ${res.statusText}`);
+    }
+    const certificados = await res.json();
 
-  certificados.forEach(cert => {
-    const card = document.createElement("div");
-    card.classList.add("cert-card");
+    const container = document.getElementById("lista-certificados");
+    container.innerHTML = "";
 
-    // Criação dos elementos
-    const titulo = document.createElement("h3");
-    titulo.innerText = cert.nomeTreinamento;
+    if (certificados.length === 0) {
+        // Mostra uma mensagem amigável se não houver certificados
+        container.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-secondary);">
+              <i class="fas fa-certificate" style="font-size: 3rem; margin-bottom: 1rem; color: var(--text-tertiary);"></i>
+              <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">Nenhum certificado disponível</h3>
+              <p>Quando você concluir um treinamento, seu certificado aparecerá aqui.</p>
+            </div>
+        `;
+        return;
+    }
 
-    const imagem = document.createElement("img");
-    imagem.src = `${cert.imagem}`; // já contém /uploads/
-    imagem.alt = "Certificado";
-    imagem.style.maxWidth = "200px";
-    imagem.style.display = "block";
-    imagem.style.marginBottom = "10px";
+    certificados.forEach(cert => {
+      // Usando a classe CSS correta do seu arquivo .css
+      const card = document.createElement("div");
+      card.classList.add("certificate-card"); 
 
-    const btnVisualizar = document.createElement("button");
-    btnVisualizar.innerText = "Visualizar";
-    btnVisualizar.addEventListener("click", () => visualizarCertificado(`${cert.imagem}`));
+      // O título já estava bom
+      const titulo = document.createElement("h3");
+      titulo.innerText = cert.nomeTreinamento;
 
-    const btnBaixar = document.createElement("button");
-    btnBaixar.innerText = "Baixar";
-    btnBaixar.addEventListener("click", () => baixarCertificado(`${cert.imagem}`, cert.nomeTreinamento));
+      // A imagem também
+      const imagem = document.createElement("img");
+      imagem.src = cert.imagem; // já contém /uploads/
+      imagem.alt = `Certificado de ${cert.nomeTreinamento}`;
+      // Removendo estilos inline para deixar o CSS cuidar disso, se possível
+      // imagem.style.maxWidth = "200px"; 
+      // imagem.style.display = "block";
+      // imagem.style.marginBottom = "10px";
 
-    // Adiciona elementos ao card
-    card.appendChild(titulo);
-    card.appendChild(imagem);
-    card.appendChild(btnVisualizar);
-    card.appendChild(btnBaixar);
+      // --- INÍCIO DA CORREÇÃO ---
 
-    container.appendChild(card);
-  });
+      // 1. Criar um contêiner para os botões
+      const actionsContainer = document.createElement("div");
+      actionsContainer.classList.add("certificate-actions");
+
+      // 2. Criar o botão "Visualizar" com a classe e o ícone corretos
+      const btnVisualizar = document.createElement("button");
+      btnVisualizar.classList.add("view-btn"); // Classe CSS para estilização
+      btnVisualizar.innerHTML = `<i class="fas fa-eye"></i> Visualizar`; // Adiciona ícone e texto
+      btnVisualizar.addEventListener("click", () => visualizarCertificado(cert.imagem));
+
+      // 3. Criar o botão "Baixar" com a classe e o ícone corretos
+      const btnBaixar = document.createElement("button");
+      btnBaixar.classList.add("download-btn"); // Classe CSS para estilização
+      btnBaixar.innerHTML = `<i class="fas fa-download"></i> Baixar`; // Adiciona ícone e texto
+      btnBaixar.addEventListener("click", () => baixarCertificado(cert.imagem, cert.nomeTreinamento));
+
+      // 4. Adicionar os botões ao contêiner de ações
+      actionsContainer.appendChild(btnVisualizar);
+      actionsContainer.appendChild(btnBaixar);
+
+      // --- FIM DA CORREÇÃO ---
+
+      // Adiciona os elementos ao card
+      card.appendChild(titulo);
+      card.appendChild(imagem);
+      card.appendChild(actionsContainer); // Adiciona o contêiner com os botões estilizados
+
+      container.appendChild(card);
+    });
+  } catch (error) {
+      console.error("Erro ao carregar certificados:", error);
+      // Mostra uma mensagem de erro na tela
+      const container = document.getElementById("lista-certificados");
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--error-color);">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <h3>Ocorreu um erro ao buscar seus certificados</h3>
+            <p style="color: var(--text-secondary);">Por favor, tente recarregar a página.</p>
+        </div>
+      `;
+  }
 }
 
+// As outras funções permanecem as mesmas
 function visualizarCertificado(src) {
-  // Abre diretamente a imagem em uma nova aba
   window.open(src, "_blank");
 }
+
 function baixarCertificado(src, nome) {
-  // src vem como "/uploads/arquivo.png"
   const filename = src.split("/").pop();
   window.location.href = `/download/${filename}`;
 }
-
 
 // async function loadCertificates() {
 //   const container = document.getElementById("lista-certificados");

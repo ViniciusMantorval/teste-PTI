@@ -1686,3 +1686,10 @@ body {
   border-radius: 5px;
 }
 
+/* Container para alinhar os botões lado a lado */
+.button-container {
+  display: flex;
+  justify-content: center; /* Centraliza os botões no contêiner */
+  gap: var(--spacing-md);   /* Adiciona um espaço entre os botões */
+  margin-top: var(--spacing-lg); /* Mantém o espaçamento superior */
+}
