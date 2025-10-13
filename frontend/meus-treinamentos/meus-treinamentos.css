@@ -1603,24 +1603,39 @@ body.dark .btn-add:hover {
   color: var(--primary-color);
 }
 
+/* =================================== */
+/* ESTILOS APRIMORADOS PARA OS CARDS DE CURSO */
+/* =================================== */
+
+/* Container dos cursos */
 .cursos-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--spacing-xl);
 }
 
-/* Cards de curso */
+/* Card de curso individual */
 .curso-card {
   background: var(--bg-primary);
-  border-radius: var(--radius-2xl);
-  padding: var(--spacing-2xl);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
   border: 1px solid var(--gray-200);
   transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xl);
   position: relative;
   overflow: hidden;
 }
 
+/* Efeito de hover no card */
+.curso-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+/* Barra colorida no topo do card */
 .curso-card::before {
   content: '';
   position: absolute;
@@ -1628,41 +1643,125 @@ body.dark .btn-add:hover {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
 }
 
-.curso-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--primary-color);
-}
-
+/* Título do curso */
 .curso-card h4 {
-  font-size: 1.5rem;
+  font-size: 1.25rem; /* Tamanho ajustado para melhor leitura */
   font-weight: 700;
-  color: var(--primary-color);
-  margin-bottom: var(--spacing-lg);
-  line-height: 1.3;
+  color: var(--primary-light); /* Cor de destaque */
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.4;
 }
 
+/* Descrição do curso */
 .curso-desc {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--gray-600);
   margin-bottom: var(--spacing-lg);
   line-height: 1.6;
+  flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
 }
 
-.progresso, .data-inicio {
+/* Container para informações de progresso e data */
+.curso-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
   font-size: 0.875rem;
   color: var(--gray-500);
-  margin-bottom: var(--spacing-sm);
-  font-weight: 500;
+  border-top: 1px solid var(--gray-200);
+  padding-top: var(--spacing-md);
 }
 
 .progresso {
-  color: var(--success-color);
+  font-weight: 600;
+  color: var(--success-color); /* Cor verde para progresso */
 }
 
+.data-inicio {
+  font-weight: 500;
+}
+
+/* Container para os botões de ação */
+.curso-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: auto; /* Empurra os botões para o final do card */
+}
+
+/* Estilo base para os botões de ação */
+.curso-actions button {
+  flex: 1; /* Faz os botões ocuparem o mesmo espaço */
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+/* Botão de Editar */
+.btn-editar {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  border-color: var(--gray-300);
+}
+
+.btn-editar:hover {
+  background-color: var(--gray-200);
+  transform: translateY(-1px);
+}
+
+/* Botão de Remover */
+.btn-remover {
+  background-color: rgba(239, 68, 68, 0.1); /* Fundo sutil */
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+.btn-remover:hover {
+  background-color: var(--error-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Ajustes para o tema escuro (dark mode) */
+body.dark .btn-editar {
+  background-color: var(--gray-700);
+  color: var(--gray-50);
+  border-color: var(--gray-600);
+}
+
+body.dark .btn-editar:hover {
+  background-color: var(--gray-600);
+}
+
+body.dark .btn-remover {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: var(--error-color);
+  color: var(--error-color);
+}
+
+body.dark .btn-remover:hover {
+  background-color: var(--error-color);
+  color: white;
+}
+
+/* Mensagem para quando não há treinamentos */
+.no-trainings {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--gray-500);
+  grid-column: 1 / -1; /* Ocupa toda a largura do grid */
+}
 /* Aplica o estilo ao scrollbar da página ou do container desejado */
 body::-webkit-scrollbar {
   width: 8px; /* Largura do scrollbar */

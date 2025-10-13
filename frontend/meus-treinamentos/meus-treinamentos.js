@@ -396,14 +396,24 @@ async function loadTrainings() {
         const card = document.createElement("div");
         card.classList.add("curso-card");
 
-        card.innerHTML = `
-          <h4>${treinamento.titulo}</h4>
+        // Dentro da função loadTrainings, substitua o card.innerHTML por este:
+    card.innerHTML = `
+      <h4>${treinamento.titulo}</h4>
           <p class="curso-desc">${treinamento.descricao}</p>
-          <p class="progresso">Progresso: 0%</p>
-          <p class="data-inicio">Início: ${new Date(treinamento.data_inicio).toLocaleDateString('pt-BR')}</p>
-          <button onclick="editarTreinamento(${treinamento.id_treinamento})">Editar Treinamento</button>
-          <button onclick="removerTreinamento(${treinamento.id_treinamento})">Remover Treinamento</button>
+          <div class="curso-info">
+         <span class="progresso">Progresso: 0%</span>
+         <span class="data-inicio">Início: ${new Date(treinamento.data_inicio).toLocaleDateString('pt-BR')}</span>
+             </div>
+              <div class="curso-actions">
+        <button class="btn-editar" onclick="editarTreinamento(${treinamento.id_treinamento})">
+         <i class="fas fa-pencil-alt"></i> Editar
+         </button>
+          <button class="btn-remover" onclick="removerTreinamento(${treinamento.id_treinamento})">
+         <i class="fas fa-trash-alt"></i> Remover
+           </button>
+         </div>
         `;
+
 
         container.appendChild(card);
       });
