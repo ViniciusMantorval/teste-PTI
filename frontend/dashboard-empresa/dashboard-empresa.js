@@ -756,7 +756,6 @@ document.head.insertAdjacentHTML('beforeend', additionalCSS);
 
 
   
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', function() {
   // Encontra todos os itens do menu
   const navItems = document.querySelectorAll('.nav-item');
@@ -773,16 +772,3 @@ document.addEventListener('DOMContentLoaded', function() {
     dashboardItem.classList.add('active');
   }
 });
-=======
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> abbb7e6ce856aabdd5819ddbadea885389493cf5

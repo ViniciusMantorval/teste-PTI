@@ -82,6 +82,7 @@ body.dark {
   --gray-900: #ffffff;
 }
 
+
 /* Reset e configurações globais */
 * {
   margin: 0;
@@ -727,11 +728,11 @@ body {
 }
 
 /* Buttons */
-.primary-btn, .btn-primary {
+.btn-primary {
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   color: white;
   border: none;
-  padding: var(--spacing-md) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-lg);
   font-weight: 600;
   cursor: pointer;
@@ -740,6 +741,7 @@ body {
   gap: var(--spacing-sm);
   transition: all var(--transition-normal);
   text-decoration: none;
+  font-size: 0.875rem;
 }
 
 .primary-btn:hover, .btn-primary:hover {
@@ -1163,17 +1165,35 @@ body.dark .btn-add:hover {
   background: var(--gray-600);
 }
 
+/* Corrigir o fundo do dropdown de notificações e menu de usuário */
+body.dark .notifications-dropdown,
+body.dark .user-menu-dropdown {
+  background: #1f2937; /* Um fundo mais escuro para os dropdowns */
+}
+
+/* Corrigir o fundo dos itens de notificação */
+body.dark .notification-item.unread {
+  background: rgba(99, 102, 241, 0.15); /* Um pouco mais de opacidade para destacar */
+}
+
+body.dark .notification-item:hover,
+body.dark .user-menu-dropdown a:hover {
+  background: #374151; /* Fundo do hover */
+}
 
 /* Corrigir o fundo do spinner de loading */
 body.dark .loading-spinner {
   background: var(--bg-secondary);
 }
 
-/* Estados de foco para acessibilidade */
-button:focus,
-a:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
+/* Corrigir a cor do texto do botão "Ver todas as notificações" */
+body.dark .view-all-notifications {
+    background: var(--bg-tertiary);
+    color: var(--gray-100);
+}
+
+body.dark .view-all-notifications:hover {
+    background: #4b5563;
 }
 /* Aplica o estilo ao scrollbar da página ou do container desejado */
 body::-webkit-scrollbar {
