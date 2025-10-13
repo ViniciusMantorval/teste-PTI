@@ -97,7 +97,6 @@ function enableDarkMode() {
   }
   isDarkMode = true;
   localStorage.setItem('theme', 'dark');
-  showNotification('Modo escuro ativado', 'info');
 }
 
 // Desativar modo escuro
@@ -109,7 +108,6 @@ function disableDarkMode() {
   }
   isDarkMode = false;
   localStorage.setItem('theme', 'light');
-  showNotification('Modo claro ativado', 'info');
 }
 
 // Alternar notificações
@@ -617,7 +615,6 @@ async function loadTrainingData() {
               });
             });
             
-            showNotification(`Quiz concluído! Pontuação: ${pontuacao}/${quiz.length}`, 'success');
           });
           
         } else {

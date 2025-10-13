@@ -65,32 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Variáveis globais
 let currentSection = 'dashboard';
 let isDarkMode = false;
-let notifications = [
-  {
-    id: 1,
-    icon: 'fas fa-user-plus',
-    title: 'Novo funcionário cadastrado',
-    message: 'Maria Silva foi adicionada ao departamento de TI',
-    time: '2 min atrás',
-    unread: true
-  },
-  {
-    id: 2,
-    icon: 'fas fa-graduation-cap',
-    title: 'Treinamento concluído',
-    message: '15 funcionários concluíram o curso de JavaScript',
-    time: '1 hora atrás',
-    unread: true
-  },
-  {
-    id: 3,
-    icon: 'fas fa-trophy',
-    title: 'Meta atingida',
-    message: 'Departamento de vendas atingiu 90% de conclusão',
-    time: '3 horas atrás',
-    unread: false
-  }
-];
 
 // Dados simulados
 const dashboardData = {
@@ -232,60 +206,6 @@ function disableDarkMode() {
   localStorage.setItem('theme', 'light');
  
 }
-
-// Alternar notificações
-function toggleNotifications() {
-  const dropdown = document.getElementById('notificationsDropdown');
-  if (dropdown) {
-    dropdown.classList.toggle('show');
-  }
-}
-
-// Marcar todas as notificações como lidas
-function markAllAsRead() {
-  notifications.forEach(notification => {
-    notification.unread = false;
-  });
-  updateNotificationCount();
-  renderNotifications();
-  showNotification('Todas as notificações foram marcadas como lidas', 'success');
-}
-
-// Atualizar contador de notificações
-function updateNotificationCount() {
-  const unreadCount = notifications.filter(n => n.unread).length;
-  const countElement = document.querySelector('.notif-count');
-  
-  if (countElement) {
-    if (unreadCount > 0) {
-      countElement.textContent = unreadCount;
-      countElement.style.display = 'block';
-    } else {
-      countElement.style.display = 'none';
-    }
-  }
-}
-
-// Renderizar notificações
-function renderNotifications() {
-  const notificationsList = document.querySelector('.notifications-list');
-  if (!notificationsList) return;
-  
-  notificationsList.innerHTML = notifications.map(notification => `
-    <div class="notification-item ${notification.unread ? 'unread' : ''}">
-      <div class="notification-icon">
-        <i class="${notification.icon}"></i>
-      </div>
-      <div class="notification-content">
-        <h4>${notification.title}</h4>
-        <p>${notification.message}</p>
-        <span class="notification-time">${notification.time}</span>
-      </div>
-    </div>
-  `).join('');
-}
-
-
 
 // Alternar busca
 function toggleSearch() {
@@ -498,30 +418,6 @@ function hideLoadingOverlay() {
   }
 }
 
-// Fechar todos os dropdowns
-function closeAllDropdowns(event) {
-  const dropdowns = [
-    'notificationsDropdown',
-    'userMenuDropdown'
-  ];
-  
-  dropdowns.forEach(dropdownId => {
-    const dropdown = document.getElementById(dropdownId);
-    const trigger = event.target.closest(`[onclick*="${dropdownId.replace('Dropdown', '')}"]`);
-    
-    if (dropdown && !trigger && !dropdown.contains(event.target)) {
-      dropdown.classList.remove('show');
-    }
-  });
-  
-  // Fechar busca se clicar fora
-  const searchContainer = document.getElementById('searchContainer');
-  const searchTrigger = event.target.closest('[onclick*="toggleSearch"]');
-  
-  if (searchContainer && !searchTrigger && !searchContainer.contains(event.target)) {
-    closeSearch();
-  }
-}
 
 // Manipular atalhos do teclado
 function handleKeyboardShortcuts(event) {
@@ -857,14 +753,27 @@ body.dark .notification span {
 // Injetar CSS adicional
 document.head.insertAdjacentHTML('beforeend', additionalCSS);
 
-// Inicializar notificações
-setTimeout(() => {
-  renderNotifications();
-}, 100);
-
 
 
   
+<<<<<<< HEAD
+document.addEventListener('DOMContentLoaded', function() {
+  // Encontra todos os itens do menu
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  // Remove a classe 'active' de todos
+  navItems.forEach(item => {
+    item.classList.remove('active');
+  });
+  
+  // Adiciona a classe 'active' apenas ao primeiro item (Dashboard)
+  // Ou ao item que corresponde à seção atual
+  const dashboardItem = document.querySelector('.nav-item a[href="#dashboard"]').parentElement; // Ajuste o seletor se necessário
+  if (dashboardItem) {
+    dashboardItem.classList.add('active');
+  }
+});
+=======
 
 
 
@@ -875,3 +784,5 @@ setTimeout(() => {
 
 
 
+
+>>>>>>> abbb7e6ce856aabdd5819ddbadea885389493cf5

@@ -237,15 +237,14 @@ body {
   color: var(--primary-color);
   text-decoration: none;
 }
+.logo-img {
+  height: 30px;
+  width: auto;
+  margin-right: 8px;
+}
 
 .logo i {
   font-size: 1.75rem;
-}
-
-.logo-img {
-  height: 32px;
-  width: 32px;
-  border-radius: var(--radius-sm);
 }
 
 /* Header Controls */
