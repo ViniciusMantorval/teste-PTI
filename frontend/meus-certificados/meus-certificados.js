@@ -445,9 +445,9 @@ async function carregarCertificados() {
       titulo.innerText = cert.nomeTreinamento;
 
       // A imagem também
-      const imagem = document.createElement("img");
-      imagem.src = cert.imagem; // já contém /uploads/
-      imagem.alt = `Certificado de ${cert.nomeTreinamento}`;
+      // const imagem = document.createElement("img");
+      // imagem.src = cert.imagem; // já contém /uploads/
+      // imagem.alt = `Certificado de ${cert.nomeTreinamento}`;
       // Removendo estilos inline para deixar o CSS cuidar disso, se possível
       // imagem.style.maxWidth = "200px"; 
       // imagem.style.display = "block";
@@ -479,7 +479,7 @@ async function carregarCertificados() {
 
       // Adiciona os elementos ao card
       card.appendChild(titulo);
-      card.appendChild(imagem);
+      // card.appendChild(imagem);
       card.appendChild(actionsContainer); // Adiciona o contêiner com os botões estilizados
 
       container.appendChild(card);
