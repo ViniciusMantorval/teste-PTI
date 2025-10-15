@@ -148,69 +148,16 @@
         </div>
 
         <div class="training-form-container">
-          <!-- Informações Básicas -->
-          <!-- Informações Básicas -->
-          <div class="form-card" id="informacoes-basicas-card">
-            <div class="form-card-header">
-              <h3><i class="fas fa-info-circle"></i> Informações Básicas</h3>
-            </div>
-            <div class="form-card-content">
-              <div class="form-group">
-                <label for="nome">
-                  <i class="fas fa-tag"></i>
-                  Nome do Treinamento
-                </label>
-                <input type="text" id="nome" class="form-input" placeholder="Digite o nome do treinamento" required />
-              </div>
-              
-              <div class="form-group">
-                <label for="descricao">
-                  <i class="fas fa-align-left"></i>
-                  Descrição
-                </label>
-                <textarea id="descricao" class="form-textarea" placeholder="Descreva o objetivo e conteúdo do treinamento" required></textarea>
-              </div>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="data_inicio">
-                    <i class="fas fa-calendar-alt"></i>
-                    Data de Início
-                  </label>
-                  <input type="date" id="data_inicio" class="form-input" required />
-                </div>
-                
-                <div class="form-group">
-                  <label for="data_encerramento">
-                    <i class="fas fa-calendar-check"></i>
-                    Data de Término
-                  </label>
-                  <input type="date" id="data_encerramento" class="form-input" required />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="departamento">
-                  <i class="fas fa-building"></i>
-                  Selecionar departamento
-                </label>
-                <select id="departamento" class="form-select" required>
-                  <option value="">Selecione um departamento</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
           <!-- Escolha de modo -->
           <div class="form-card">
             <div class="form-card-header">
-              <h3><i class="fas fa-cog"></i> Modo de Criação</h3>
+              <h3><i class="fas fa-cog"></i> Configurações Gerais</h3>
             </div>
             <div class="form-card-content">
               <div class="form-group">
                 <label for="modo-criacao">
                   <i class="fas fa-tools"></i>
-                  Selecione o modo de criação:
+                  Modo de criação:
                 </label>
                 <select id="modo-criacao" class="form-select">
                   <option value="manual">Manual</option>
@@ -220,88 +167,135 @@
             </div>
           </div>
 
-          <!-- Formulário de Conteúdo -->
-          <div id="conteudo-treinamento">
-            <!-- Formulário manual -->
-            <form id="form-manual" style="display:block;">
-              <div class="form-card">
-                <div class="form-card-header">
-                  <h3><i class="fas fa-book-open"></i> Conteúdo do Treinamento</h3>
+          <!-- Formulário manual -->
+          <form id="form-manual" style="display:block;">
+            <div class="form-card">
+              <div class="form-card-header">
+                <h3><i class="fas fa-info-circle"></i> Informações Básicas</h3>
+              </div>
+              <div class="form-card-content">
+                <div class="form-group">
+                  <label for="nome">
+                    <i class="fas fa-tag"></i>
+                    Nome do Treinamento
+                  </label>
+                  <input type="text" id="nome" class="form-input" placeholder="Digite o nome do treinamento" required />
                 </div>
                 
-                <div class="form-card-content">
-                  <div class="form-group">
-                    <label for="video_manual">
-                      <i class="fas fa-video"></i>
-                      Anexar Vídeo (opcional)
-                    </label>
-                    <input type="file" id="video_manual" name="video_manual" accept="video/*" class="form-input" />
-                  </div>
+                <div class="form-group">
+                  <label for="descricao">
+                    <i class="fas fa-align-left"></i>
+                    Descrição
+                  </label>
+                  <textarea id="descricao" class="form-textarea" placeholder="Descreva o objetivo e conteúdo do treinamento" required></textarea>
+                </div>
                 
+                <div class="form-row">
                   <div class="form-group">
-                    <label for="introducao">
-                      <i class="fas fa-play-circle"></i>
-                      Introdução
+                    <label for="data_inicio">
+                      <i class="fas fa-calendar-alt"></i>
+                      Data de Início
                     </label>
-                    <textarea id="introducao" class="form-textarea" placeholder="Escreva uma introdução para o treinamento" required></textarea>
+                    <input type="date" id="data_inicio" class="form-input" required />
                   </div>
+                  
+                  <div class="form-group">
+                    <label for="data_encerramento">
+                      <i class="fas fa-calendar-check"></i>
+                      Data de Término
+                    </label>
+                    <input type="date" id="data_encerramento" class="form-input" required />
+                  </div>
+                </div>
 
-                  <div id="topicos" class="content-section">
-                    <div class="section-header">
-                      <h4><i class="fas fa-list"></i> Tópicos</h4>
-                      <button type="button" id="btnAdicionarTopico" class="btn-add">
-                        <i class="fas fa-plus"></i>
-                        Adicionar Tópico
-                      </button>
-                    </div>
-                    <div id="topicos-container"></div>
-                  </div>
-
-                  <div id="quiz" class="content-section">
-                    <div class="section-header">
-                      <h4><i class="fas fa-question-circle"></i> Quiz</h4>
-                      <button type="button" id="btnAdicionarPergunta" class="btn-add">
-                        <i class="fas fa-plus"></i>
-                        Adicionar Pergunta
-                      </button>
-                    </div>
-                    <div id="quiz-container"></div>
-                  </div>
+                <div class="form-group">
+                  <label for="departamento">
+                    <i class="fas fa-building"></i>
+                    Selecionar departamento
+                  </label>
+                  <select id="departamento" class="form-select" required>
+                    <option value="">Selecione um departamento</option>
+                  </select>
                 </div>
               </div>
+            </div>
 
-              <div class="form-actions">
-                <button type="button" id="btnSalvarManual" class="btn-primary">
-                  <i class="fas fa-save"></i>
-                  Salvar Treinamento
+            <div class="form-card">
+              <div class="form-card-header">
+                <h3><i class="fas fa-book-open"></i> Conteúdo do Treinamento</h3>
+              </div>
+              
+              <div class="form-card-content">
+                <div class="form-group">
+                  <label for="video_manual">
+                    <i class="fas fa-video"></i>
+                    Anexar Vídeo (opcional)
+                  </label>
+                  <input type="file" id="video_manual" name="video_manual" accept="video/*" class="form-input" />
+                </div>
+              
+                <div class="form-group">
+                  <label for="introducao">
+                    <i class="fas fa-play-circle"></i>
+                    Introdução
+                  </label>
+                  <textarea id="introducao" class="form-textarea" placeholder="Escreva uma introdução para o treinamento" required></textarea>
+                </div>
+
+                <div id="topicos" class="content-section">
+                  <div class="section-header">
+                    <h4><i class="fas fa-list"></i> Tópicos</h4>
+                    <button type="button" id="btnAdicionarTopico" class="btn-add">
+                      <i class="fas fa-plus"></i>
+                      Adicionar Tópico
+                    </button>
+                  </div>
+                  <div id="topicos-container"></div>
+                </div>
+
+                <div id="quiz" class="content-section">
+                  <div class="section-header">
+                    <h4><i class="fas fa-question-circle"></i> Quiz</h4>
+                    <button type="button" id="btnAdicionarPergunta" class="btn-add">
+                      <i class="fas fa-plus"></i>
+                      Adicionar Pergunta
+                    </button>
+                  </div>
+                  <div id="quiz-container"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" id="btnSalvarManual" class="btn-primary">
+                <i class="fas fa-save"></i>
+                Salvar Treinamento
+              </button>
+            </div>
+          </form>
+
+          <!-- Formulário automático -->
+          <form id="formVideo" enctype="multipart/form-data" style="display:none;">
+            <div class="form-card">
+              <div class="form-card-header">
+                <h3><i class="fas fa-video"></i> Upload de Vídeo</h3>
+              </div>
+              <div class="form-card-content">
+                <div class="upload-area">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <h4>Selecione um vídeo</h4>
+                  <p>Arraste e solte ou clique para selecionar</p>
+                  <input type="file" id="video" name="video" accept="video/*" required />
+                </div>
+                <button type="submit" class="btn-primary">
+                  <i class="fas fa-upload"></i>
+                  Enviar Vídeo
                 </button>
               </div>
-            </form>
+            </div>
+          </form>
 
-            <!-- Formulário automático -->
-            <form id="formVideo" enctype="multipart/form-data" style="display:none;">
-              <div class="form-card">
-                <div class="form-card-header">
-                  <h3><i class="fas fa-video"></i> Upload de Vídeo</h3>
-                </div>
-                <div class="form-card-content">
-                  <div class="upload-area">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <h4>Selecione um vídeo</h4>
-                    <p>Arraste e solte ou clique para selecionar</p>
-                    <input type="file" id="video" name="video" accept="video/*" required />
-                  </div>
-                  <button type="submit" class="btn-primary">
-                    <i class="fas fa-upload"></i>
-                    Enviar Vídeo
-                  </button>
-                </div>
-              </div>
-            </form>
-
-            <div id="conteudo"></div>
-          </div>
-
+          <div id="conteudo"></div>
         </div>
       </section>
     </main>
@@ -318,3 +312,4 @@
   <script src="criar-treinamento.js" defer></script>
 </body>
 </html>
+
