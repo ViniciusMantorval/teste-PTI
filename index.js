@@ -131,8 +131,8 @@ app.post('/funcionarios', (req, res) => {
     }
 
     // Inserindo os dados no banco de dados
-    const sql = 'INSERT INTO funcionarios (email, senha, id_departamento, nome, status ) VALUES (?, ?, ?, ?, 1)';
-    db.query(sql, [email, hashedPassword, id_departamento, nome], (err, result) => {
+    const sql = 'INSERT INTO funcionarios (email, senha, id_departamento, nome, status,pontos_carteira, total_pontos) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(sql, [email, hashedPassword, id_departamento, nome,1 , 0, 0], (err, result) => {
       if (err) {
         console.error('Erro ao cadastrar funcionario:', err);
         return res.status(500).json({ erro: err });
@@ -1894,6 +1894,7 @@ app.get("/modelo_funcionarios.xlsx", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
