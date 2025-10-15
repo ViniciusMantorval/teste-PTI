@@ -242,12 +242,7 @@ function handleSearch(event) {
   }
 }
 
-// Executar busca
-function performSearch(query) {
-  showNotification(`Buscando por: "${query}"`, 'info');
-  // Aqui você implementaria a lógica de busca real
 
-}
 
 // Alternar menu do usuário
 function toggleUserMenu() {
@@ -366,7 +361,7 @@ function logout() {
   
   setTimeout(() => {
     hideLoadingOverlay();
-    showNotification('Logout realizado com sucesso!', 'success');
+    //showNotification('Logout realizado com sucesso!', 'success');
     window.location.href = '../index/index.html';
   }, 2000);
 }
@@ -492,46 +487,7 @@ function closeModal(event) {
   }
 }
 
-// Função para mostrar notificações
-function showNotification(message, type = 'info', duration = 5000) {
-  const notification = document.createElement('div');
-  notification.className = `notification notification-${type}`;
-  
-  const icons = {
-    success: 'fas fa-check-circle',
-    error: 'fas fa-exclamation-circle',
-    warning: 'fas fa-exclamation-triangle',
-    info: 'fas fa-info-circle'
-  };
-  
-  notification.innerHTML = `
-    <i class="${icons[type]}"></i>
-    <span>${message}</span>
-    <button onclick="this.parentElement.remove()">
-      <i class="fas fa-times"></i>
-    </button>
-  `;
-  
-  // Adicionar estilos inline para a notificação
-  notification.style.cssText = `
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    background: white;
-    border-radius: 0.75rem;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-    border-left: 4px solid var(--primary-color);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    z-index: 10001;
-    transform: translateX(100%);
-    opacity: 0;
-    transition: all 0.3s ease;
-    max-width: 400px;
-    font-family: 'Inter', sans-serif;
-  `;
+
   
   // Cores específicas por tipo
   const colors = {
@@ -541,48 +497,7 @@ function showNotification(message, type = 'info', duration = 5000) {
     info: '#6366f1'
   };
   
-  notification.style.borderLeftColor = colors[type];
-  notification.querySelector('i').style.color = colors[type];
   
-  // Estilizar o texto e botão
-  const span = notification.querySelector('span');
-  span.style.cssText = `
-    flex: 1;
-    color: #374151;
-    font-weight: 500;
-    font-size: 0.875rem;
-  `;
-  
-  const button = notification.querySelector('button');
-  button.style.cssText = `
-    background: none;
-    border: none;
-    color: #9ca3af;
-    cursor: pointer;
-    padding: 0.25rem;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-  `;
-  
-  document.body.appendChild(notification);
-  
-  // Animar entrada
-  setTimeout(() => {
-    notification.style.transform = 'translateX(0)';
-    notification.style.opacity = '1';
-  }, 10);
-  
-  // Remover automaticamente
-  setTimeout(() => {
-    if (notification.parentElement) {
-      notification.style.transform = 'translateX(100%)';
-      notification.style.opacity = '0';
-      setTimeout(() => {
-        notification.remove();
-      }, 300);
-    }
-  }, duration);
-}
 
 // Adicionar estilos CSS adicionais dinamicamente
 const additionalCSS = `
@@ -703,11 +618,7 @@ const additionalCSS = `
 }
 
 @media (max-width: 768px) {
-  .notification {
-    right: 1rem;
-    left: 1rem;
-    max-width: none;
-  }
+  
   
   .upgrade-actions {
     flex-direction: column;
@@ -739,14 +650,6 @@ body.dark .upgrade-features li {
   color: #e5e7eb;
 }
 
-body.dark .notification {
-  background: #374151;
-  color: #f9fafb;
-}
-
-body.dark .notification span {
-  color: #f9fafb;
-}
 </style>
 `;
 
@@ -772,5 +675,6 @@ document.addEventListener('DOMContentLoaded', function() {
     dashboardItem.classList.add('active');
   }
 });
+
 
 
