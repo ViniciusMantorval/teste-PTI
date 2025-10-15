@@ -55,12 +55,14 @@ html {
 
 body {
   font-family: "DM Sans", sans-serif;
-  color: var(--gray-800);
+  color: var(--gray-800);.
   line-height: 1.7;
   background-color: var(--gray-50);
   overflow-x: hidden;
 }
-
+a {
+  text-decoration: none;
+}
 .container {
   width: 100%;
   max-width: 1280px;
@@ -1148,4 +1150,5 @@ body {
   background: var(--gray-100);
   color: var(--gray-600);
 }
+
 
