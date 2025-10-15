@@ -61,12 +61,17 @@ function setupEventListeners() {
 }
 
 // Carregar dados do usuário
-function loadUserData() {//Atualizar para fetch
+async function loadUserData() {
   const welcomeText = document.getElementById('boasVindas');
   const companyName = document.getElementById('nome_empresa');
-  
-  if (welcomeText) welcomeText.textContent = 'Bem-vindo, Funcionário';
-  if (companyName) companyName.textContent = 'TechCorp Solutions';
+  const footer_empresa_name = document.getElementById('footer_empresa_name');
+  const id = sessionStorage.getItem("id_funcionario")
+  const tipo = sessionStorage.getItem("tipo")
+  const res = await fetch(`/fill_profile?id=${id}&tipo=${tipo}`);
+  const data = await res.json();
+  if (welcomeText) welcomeText.textContent = `Bem-vindo, ${data.nome}`;
+  if (companyName) companyName.textContent = `${data.empresa}`;
+  if (footer_empresa_name) footer_empresa_name.textContent = `${data.empresa}`;
 }
 
 // Verificar preferência de tema
@@ -627,6 +632,7 @@ async function loadTrainingData() {
     showNotification('Erro ao carregar dados do treinamento', 'error');
   }
 }
+
 
 
 
