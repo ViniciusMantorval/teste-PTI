@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.getElementById("toggleDark");
+    const toggle = document.getElementById("theme-btn");
    
     // Verifica o modo salvo no localStorage
     if (localStorage.getItem("theme") === "dark") {
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Inicializar dashboard
 function initializeDashboard() {
   showSection('dashboard');
-  updateNotificationCount();
+  //updateNotificationCount();
   animateStats();
 }
 
@@ -772,3 +772,4 @@ document.addEventListener('DOMContentLoaded', function() {
     dashboardItem.classList.add('active');
   }
 });
+
