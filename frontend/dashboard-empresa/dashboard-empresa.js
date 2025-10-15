@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let nome = localStorage.getItem("idEMP");
   });
   document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.getElementById("toggleDark");
+    const toggle = document.getElementById("theme-btn");
   
     // Verifica o modo salvo no localStorage
     if (localStorage.getItem("theme") === "dark") {
@@ -78,7 +78,7 @@ const dashboardData = {
     {
       icon: 'fas fa-graduation-cap',
       title: 'Treinamento "JavaScript Avançado" foi concluído',
-      description: '15 funcionários completaram o curso com sucesso',
+      description: '1theme-btnm sucesso',
       time: '2 horas atrás'
     },
     {
@@ -772,4 +772,5 @@ document.addEventListener('DOMContentLoaded', function() {
     dashboardItem.classList.add('active');
   }
 });
+
 
