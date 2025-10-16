@@ -701,7 +701,7 @@ body {
 .info-header {
   padding: var(--spacing-lg);
   border-bottom: 1px solid var(--gray-200);
-  background: var(--gray-50);
+  background: var(--gray-900);
 }
 
 .info-header h3 {
@@ -755,7 +755,7 @@ body {
 .info-actions {
   padding: var(--spacing-lg);
   border-top: 1px solid var(--gray-200);
-  background: var(--gray-50);
+  background: var(--gray-900);
 }
 
 /* Loading Overlay */
