@@ -972,7 +972,7 @@ app.get("/api/estatisticas", async (req, res) => {
 
       const participantes = progresso.length;
       const concluidos = progresso.filter(p => p.status === 'concluido').length;
-      const totalPontuacao = progresso.reduce((acc, p) => acc + (p.pontuacao_final || 0), 0);
+      const totalPontuacao = progresso.reduce((acc, p) => acc + (Number(p.pontuacao_final) || 0), 0);
       const mediaPontuacao = participantes > 0 ? Math.round(totalPontuacao / participantes) : 0;
       const percentualConclusao = participantes > 0 ? Math.round((concluidos / participantes) * 100) : 0;
 
@@ -1894,6 +1894,7 @@ app.get("/modelo_funcionarios.xlsx", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
