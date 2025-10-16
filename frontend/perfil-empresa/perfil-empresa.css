@@ -67,24 +67,20 @@
 
 /* Tema escuro */
 body.dark {
-  /* Backgrounds escuros */
-  --bg-primary: #1f2937;
-  --bg-secondary: #111827;
-  --bg-tertiary: #374151;
-  
-  /* Cores neutras invertidas para tema escuro */
-  --gray-50: #374151;
-  --gray-100: #4b5563;
-  --gray-200: #6b7280;
-  --gray-300: #9ca3af;
-  --gray-400: #d1d5db;
-  --gray-500: #e5e7eb;
-  --gray-600: #f3f4f6;
-  --gray-700: #f9fafb;
-  --gray-800: #ffffff;
+  --bg-primary: var(--gray-900);
+  --bg-secondary: var(--gray-800);
+  --bg-tertiary: var(--gray-700);
+  --gray-50: var(--gray-800);
+  --gray-100: var(--gray-700);
+  --gray-200: var(--gray-600);
+  --gray-300: var(--gray-500);
+  --gray-400: var(--gray-400);
+  --gray-500: var(--gray-300);
+  --gray-600: var(--gray-200);
+  --gray-700: var(--gray-100);
+  --gray-800: var(--gray-50);
   --gray-900: #ffffff;
 }
-
 /* Reset e configurações globais */
 * {
   margin: 0;
