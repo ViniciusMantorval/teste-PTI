@@ -116,7 +116,7 @@ body {
   left: 0;
   right: 0;
   height: var(--topbar-height);
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--gray-200);
   display: flex;
@@ -251,7 +251,7 @@ body {
   top: 100%;
   right: 0;
   width: 200px;
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
@@ -308,7 +308,7 @@ body {
   left: 0;
   width: var(--sidebar-width);
   height: calc(100vh - var(--topbar-height));
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   border-right: 1px solid var(--gray-200);
   display: flex;
   flex-direction: column;
@@ -327,7 +327,7 @@ body {
 .sidebar-header h3 {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--gray-800);
 }
 
 .sidebar-close {
@@ -402,7 +402,7 @@ body {
 .company-details h4 {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--gray-800);
 }
 
 .company-details p {
@@ -466,7 +466,7 @@ body {
 }
 
 .profile-card {
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
   overflow: hidden;
@@ -577,7 +577,7 @@ body {
   border-radius: var(--radius-md);
   font-size: 14px;
   transition: var(--transition-fast);
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   color: var(--gray-900);
 }
 
@@ -597,7 +597,7 @@ body {
 
 .form-group input:not([readonly]):not([disabled]),
 .form-group select:not([disabled]) {
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   border-color: var(--primary-color);
 }
 
@@ -687,7 +687,7 @@ body {
 }
 
 .info-card {
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
   overflow: hidden;
@@ -778,7 +778,7 @@ body {
 }
 
 .loading-spinner {
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-xl);
   text-align: center;
@@ -816,7 +816,7 @@ body {
 }
 
 .modal {
-  background: var(--bg-primary);
+  background: var(--bg-tertiary);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
   max-width: 400px;
