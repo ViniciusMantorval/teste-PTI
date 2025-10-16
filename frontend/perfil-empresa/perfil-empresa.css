@@ -162,7 +162,7 @@ body {
 .welcome-text {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--gray-800);
 }
 
 .company-name {
@@ -710,7 +710,7 @@ body {
   gap: var(--spacing-sm);
   font-size: 16px;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--gray-800);
 }
 
 .info-header h3 i {
@@ -741,7 +741,7 @@ body {
 
 .stat-value {
   font-size: 14px;
-  color: var(--gray-900);
+  color: var(--gray-800);
   font-weight: 600;
 }
 
