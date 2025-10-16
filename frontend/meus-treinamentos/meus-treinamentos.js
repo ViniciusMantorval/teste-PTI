@@ -401,7 +401,7 @@ async function loadTrainings() {
       <h4>${treinamento.titulo}</h4>
           <p class="curso-desc">${treinamento.descricao}</p>
           <div class="curso-info">
-         <span class="progresso">Progresso: 0%</span>
+         
          <span class="data-inicio">Início: ${new Date(treinamento.data_inicio).toLocaleDateString('pt-BR')}</span>
              </div>
               <div class="curso-actions">
@@ -502,4 +502,5 @@ document.addEventListener('DOMContentLoaded', function() {
     dashboardItem.classList.add('active');
   }
 });
+
 
