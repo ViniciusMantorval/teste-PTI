@@ -1,3 +1,4 @@
+/* Importando fontes */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 /* Variáveis CSS */
@@ -112,7 +113,7 @@ body {
   padding-top: var(--topbar-height);
 }
 
-/* Topbar */
+/* Header/Topbar */
 .topbar {
   position: fixed;
   top: 0;
@@ -120,26 +121,27 @@ body {
   right: 0;
   height: var(--topbar-height);
   background: var(--bg-primary);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--gray-200);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--spacing-lg);
+  padding: 0 var(--spacing-xl);
   z-index: 1000;
   box-shadow: var(--shadow-sm);
-  transition: var(--transition-normal);
 }
 
+/* User Section */
 .user-section {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
 }
 
 .user-info {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 .user-avatar {
@@ -147,12 +149,7 @@ body {
   height: 40px;
   border-radius: var(--radius-full);
   overflow: hidden;
-  border: 2px solid var(--gray-200);
-  transition: var(--transition-fast);
-}
-
-.user-avatar:hover {
-  border-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 
 .user-avatar img {
@@ -167,50 +164,84 @@ body {
 }
 
 .welcome-text {
-  font-size: 12px;
-  color: var(--gray-500);
-  font-weight: 400;
-}
-
-.company-name {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--gray-900);
 }
 
+.company-name {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  position: relative;
+}
 
 
+
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: var(--primary-color);
+  text-decoration: none;
+}
+
+.logo i {
+  font-size: 1.75rem;
+}
+.logo {
+  display: flex;
+  align-items: center; /* alinha logo e texto no centro vertical */
 }
 
 .logo-img {
-  width: 32px;
-  height: 32px;
+  height: 30px;  /* controla a altura da logo */
+  width: auto;   /* mantém proporção */
+  margin-right: 8px; /* espaço entre logo e texto */
 }
-
-.header-controls {
+/* Logo */
+.logo {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.logo i {
+  font-size: 1.75rem;
+}
+
+/* Header Controls */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
 }
 
 .theme-btn, .user-menu-btn {
   background: none;
   border: none;
+  color: var(--gray-600);
+  font-size: 1.125rem;
+  cursor: pointer;
   padding: var(--spacing-sm);
   border-radius: var(--radius-md);
-  color: var(--gray-600);
-  cursor: pointer;
-  transition: var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
-.theme-btn:hover, .user-menu-btn:hover {
+.search-btn:hover, .theme-btn:hover, .user-menu-btn:hover {
   background: var(--gray-100);
   color: var(--primary-color);
 }
@@ -276,28 +307,29 @@ body {
 
 /* Sidebar */
 .sidebar {
+  position: fixed;
+  top: var(--topbar-height);
+  left: 0;
   width: var(--sidebar-width);
+  height: calc(100vh - var(--topbar-height));
   background: var(--bg-primary);
   border-right: 1px solid var(--gray-200);
-  height: calc(100vh - var(--topbar-height));
-  position: fixed;
-  left: 0;
-  top: var(--topbar-height);
-  overflow-y: auto;
-  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
   z-index: 999;
+  transition: all var(--transition-normal);
 }
 
 .sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: var(--spacing-lg);
   border-bottom: 1px solid var(--gray-200);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .sidebar-header h3 {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--gray-900);
 }
@@ -309,91 +341,109 @@ body {
   color: var(--gray-500);
   cursor: pointer;
   padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--spacing-lg);
+  overflow-y: auto;
 }
 
 .sidebar-nav ul {
   list-style: none;
-  padding: var(--spacing-md) 0;
 }
 
 .nav-item {
-  margin: 0 var(--spacing-md) var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
 }
 
 .nav-item a {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   padding: var(--spacing-md);
   color: var(--gray-700);
   text-decoration: none;
   border-radius: var(--radius-md);
-  transition: var(--transition-fast);
+  transition: all var(--transition-fast);
   font-weight: 500;
 }
 
-.nav-item a:hover {
-  background: var(--gray-100);
-  color: var(--primary-color);
-}
-
+.nav-item:hover a,
 .nav-item.active a {
   background: var(--primary-color);
   color: white;
+  transform: translateX(4px);
 }
-
-.nav-item a i {
+.nav-item i {
   width: 20px;
   text-align: center;
 }
 
 .sidebar-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: var(--spacing-lg);
   border-top: 1px solid var(--gray-200);
-  background: var(--bg-primary);
 }
 
 .company-info {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 .company-logo {
   width: 40px;
   height: 40px;
   background: var(--primary-color);
+  color: white;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
 }
 
 .company-details h4 {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--gray-900);
-  margin-bottom: 2px;
 }
 
 .company-details p {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--gray-500);
 }
 
+
 /* Main Content */
 .main-content {
-  flex: 1;
   margin-left: var(--sidebar-width);
   padding: var(--spacing-xl);
+  flex: 1;
   min-height: calc(100vh - var(--topbar-height));
-  transition: var(--transition-normal);
 }
+
+/* Content Sections */
+.content-section {
+  display: none;
+}
+
+.content-section.active {
+  display: block;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .page-header {
   margin-bottom: var(--spacing-2xl);
