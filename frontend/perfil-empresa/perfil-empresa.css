@@ -64,7 +64,7 @@
   --sidebar-width: 280px;
   --topbar-height: 70px;
 }
-
+body.dark {
 /* Backgrounds escuros */
   --bg-primary: #1f2937;
   --bg-secondary: #111827;
@@ -80,6 +80,7 @@
   --gray-600: #f3f4f6;
   --gray-700: #f9fafb;
   --gray-800: #ffffff;
+}
 /* Reset e configurações globais */
 * {
   margin: 0;
