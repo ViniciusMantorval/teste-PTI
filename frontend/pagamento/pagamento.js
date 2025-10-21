@@ -3,7 +3,7 @@ let isDarkMode = false;
 let selectedPlan = {
   id: 'professional',
   name: 'Plano Professional',
-  price: 99.90,
+  price: 249.90,
   features: [
     'Até 200 funcionários',
     'Treinamentos ilimitados',
@@ -18,7 +18,7 @@ const plans = {
   basic: {
     id: 'basic',
     name: 'Plano Básico',
-    price: 1499.90,
+    price: 249.90,
     description: 'Ideal para pequenas empresas',
     features: [
       'Até 50 funcionários',
@@ -30,7 +30,7 @@ const plans = {
   professional: {
     id: 'professional',
     name: 'Plano Professional',
-    price: 4499.90,
+    price: 699.90,
     description: 'Perfeito para empresas em crescimento',
     features: [
       'Até 200 funcionários',
@@ -43,15 +43,13 @@ const plans = {
   enterprise: {
     id: 'enterprise',
     name: 'Plano Enterprise',
-    price: 9999.90,
+    price: 999.90,
     description: 'Para grandes corporações',
     features: [
       'Funcionários ilimitados',
       'Treinamentos ilimitados',
       'Analytics avançados',
       'Suporte 24/7',
-      'API personalizada',
-      'White label'
     ]
   },
   custom: {
@@ -666,6 +664,7 @@ function formatCPF(cpf) {
   }
   return cpf;
 }
+
 
 
 
