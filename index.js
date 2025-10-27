@@ -508,7 +508,7 @@ app.post('/upload-video', upload.single('video'), async (req, res) => {
     const response = await axios.post(
       'https://openrouter.ai/api/v1/chat/completions',
       {
-        model: 'deepseek/deepseek-chat-v3.1:free',
+        model: 'minimax/minimax-m2:free',
         messages: [
           {
             role: "user",
@@ -1894,6 +1894,7 @@ app.get("/modelo_funcionarios.xlsx", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://10.0.0.87:${port}`);
 });
+
 
 
 
